@@ -5,12 +5,17 @@ on:
     paths:
       - "rules/*.yaml"
 
+permissions:
+  contents: write   # <<<<<< 여기 추가해야 push 가능
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -22,7 +27,7 @@ jobs:
 
       - name: Generate rules.json
         run: |
-          import os, json, yaml, datetime
+          import os, json, yaml
           from pathlib import Path
 
           rules_dir = Path("rules")
@@ -36,6 +41,8 @@ jobs:
                   "title": data.get("title"),
                   "description": data.get("description"),
                   "created_at": data.get("created_at"),
+                  "updated_at": data.get("updated_at"),
+                  "version": data.get("version"),
                   "author": {
                       "name": data.get("author", {}).get("name"),
                       "email": data.get("author", {}).get("email"),
@@ -44,7 +51,6 @@ jobs:
 
           with open("rules.json", "w", encoding="utf-8") as out:
               json.dump(rules_list, out, indent=2, ensure_ascii=False)
-
         shell: python
 
       - name: Commit rules.json
