@@ -1,0 +1,56 @@
+name: Build rules.json
+
+on:
+  push:
+    paths:
+      - "rules/*.yaml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Generate rules.json
+        run: |
+          import os, json, yaml, datetime
+          from pathlib import Path
+
+          rules_dir = Path("rules")
+          rules_list = []
+
+          for f in rules_dir.glob("*.yaml"):
+              with open(f, "r", encoding="utf-8") as fp:
+                  data = yaml.safe_load(fp)
+
+              rules_list.append({
+                  "title": data.get("title"),
+                  "description": data.get("description"),
+                  "created_at": data.get("created_at"),
+                  "author": {
+                      "name": data.get("author", {}).get("name"),
+                      "email": data.get("author", {}).get("email"),
+                  }
+              })
+
+          with open("rules.json", "w", encoding="utf-8") as out:
+              json.dump(rules_list, out, indent=2, ensure_ascii=False)
+
+        shell: python
+
+      - name: Commit rules.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add rules.json
+          git commit -m "Update rules.json" || echo "No changes"
+          git push
