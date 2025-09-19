@@ -38,6 +38,7 @@ jobs:
                   data = yaml.safe_load(fp)
 
               rules_list.append({
+                  "path": f.as_posix(), 
                   "title": data.get("title"),
                   "description": data.get("description"),
                   "created_at": data.get("created_at"),
