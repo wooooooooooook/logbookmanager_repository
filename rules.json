@@ -1,5 +1,6 @@
 [
   {
+    "path": "rules/amc.yaml",
     "title": "서울아산병원-테스트",
     "description": "서울아산병원용 \n2023년 개정 logbook 실태조사 \n검사종류/검사명/부서/담당구분 기반 분류",
     "created_at": "2025-09-19T00:00:00Z",
@@ -11,6 +12,7 @@
     }
   },
   {
+    "path": "rules/cauhs.yaml",
     "title": "중앙대학교병원-흑석",
     "description": "중앙대학교병원용 \nZetta PACS \n2023년 개정 logbook 실태조사 \n검사종류/검사명/부서/담당구분 기반 분류",
     "created_at": "2025-09-17T00:00:00Z",
