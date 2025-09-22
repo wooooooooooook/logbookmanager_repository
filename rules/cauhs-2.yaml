@@ -1,8 +1,12 @@
-title: "커스텀"
-version: "9.9.9"
+title: "중앙대병원-흑석 2022년이후 입국"
+version: "1.0.0"
 created_at: "2025-09-17T00:00:00Z"
 updated_at: "2025-09-17T00:00:00Z"
-description: "중앙대학교병원용 \nZetta PACS \n2023년 개정 logbook 실태조사 \n검사종류/검사명/부서/담당구분 기반 분류"
+description: |
+  중앙대학교병원 / Zetta PACS 
+  record2.radiology.or.kr 사이트 이용하는 2022년 이후 입국자
+  2023년 개정 logbook 실태조사
+  검사종류/검사명/부서/담당구분 기반 분류
 author: 
   name: "김영욱"
   email: "wooooooooooook@gmail.com"
@@ -391,10 +395,10 @@ categories:
         id: "intervention_cfa"
         target: 1
         description: "대퇴동맥천자술"    
-      - name: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관 내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)"
+      - name: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)"
         id: "intervention_angio"
         target: 1
-        description: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관 내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)"    
+        description: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)"    
       - name: "경피적 담도계 배액술 (담관배액술 또는 담낭배액술 등)"
         id: "intervention_biliary"
         target: 1
@@ -1197,7 +1201,7 @@ classification_rules:
         value: "대퇴동맥천자술"
   - category_id: intervention_angio
     parent_category_id: intervention
-    name: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관 내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)"
+    name: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)"
     conditions:
       - operator: contains
         field: modality
@@ -1688,7 +1692,7 @@ export_as_sheet:
               "CT 유도하 경피적 생검 (폐, 신장 등)": 4
               "소아 장중첩증 정복술": 5
               "대퇴동맥천자술": 6
-              "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관 내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)": 7
+              "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)": 7
               "경피적 담도계 배액술 (담관배액술 또는 담낭배액술 등)": 8
               "경피적신우배액술": 9
               "그 외 경피적 배액술 (흉수천자, 복수천자, 농양천자 등)": 10
