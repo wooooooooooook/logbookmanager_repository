@@ -14,27 +14,18 @@ column_mapping:
       field: "id"
       type: "string"
       aliases: ["검사접수번호"]
-      description: "로그북 데이터의 고유 식별자"
     - name: "검사종류"
       field: "modality"
       type: "string"
       aliases: ["PACS장비구분코드_검사"]
-      description: "검사의 종류 (예: 일반촬영, CT, MRI)"
     - name: "검사명"
       field: "exam_name"
       type: "string"
       aliases: ["검사코드"]
-      description: "수행된 검사의 상세 이름"
-    - name: "부서"
-      field: "department"
-      type: "string"
-      aliases: ["DEPT", "ORDER_DEPT", "Department", "부서"]
-      description: "검사를 의뢰한 부서"
-    - name: "담당구분"
+    - name: "판독실"
       field: "assign"
       type: "string"
-      aliases: ["STUDY ASSIGN", "Section", "GROUP1", "Assign"]
-      description: "검사 담당 전문의 구분"
+      aliases: ["PACS판독실코드_New"]
     - name: "나이"
       field: "age"
       type: "number"
@@ -48,13 +39,11 @@ column_mapping:
     - name: "검사일"
       field: "study_date"
       type: "date"
-      aliases: ["STUDY DATE", "Study DateTime", "STUDY_DATE", "Exam Date(Time)", "검사일(년-월-일)"]
-      description: "검사가 수행된 날짜"
+      aliases: ["PACS검사일자"]
     - name: "판독일"
       field: "draft_date"
       type: "date"
-      aliases: ["DRAFT DATE", "Report Date", "DRAFT_DATE", "CREATE_DATE", "판독일(년-월-일)"]
-      description: "판독 보고서가 작성된 날짜"
+      aliases: ["DICTATEDDATE"]
   default_order:
     - "draft_date"
     - "modality"
@@ -64,7 +53,7 @@ column_mapping:
     - "sex"
     - "age"
 
-categories:
+categories: # 2023년 개정 logbook 실태조사
   - name: "미분류"
     id: "unclassified"
     description: "미분류 항목"
@@ -527,12 +516,9 @@ classification_rules:
     conditions:
       - logic: OR
         conditions:
-          - operator: contains
+          - operator: equals
             field: assign
-            value: "H&N"
-          - operator: contains
-            field: assign
-            value: "NEU"
+            value: "6"
       - operator: not_contains
         field: exam_name
         value: "spine"
