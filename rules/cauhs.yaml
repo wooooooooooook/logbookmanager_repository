@@ -1,8 +1,8 @@
-title: "서울아산병원-테스트"
-version: "1.0.0"
-created_at: "2025-09-19T00:00:00Z"
-updated_at: "2025-09-19T00:00:00Z"
-description: "서울아산병원용 \n2023년 개정 logbook 실태조사 \n검사종류/검사명/부서/담당구분 기반 분류"
+title: "커스텀"
+version: "9.9.9"
+created_at: "2025-09-17T00:00:00Z"
+updated_at: "2025-09-17T00:00:00Z"
+description: "중앙대학교병원용 \nZetta PACS \n2023년 개정 logbook 실태조사 \n검사종류/검사명/부서/담당구분 기반 분류"
 author: 
   name: "김영욱"
   email: "wooooooooooook@gmail.com"
@@ -13,19 +13,28 @@ column_mapping:
     - name: "고유번호"
       field: "id"
       type: "string"
-      aliases: ["검사접수번호"]
+      aliases: ["STUDY KEY", "STUDY_KEY", "id", "일렬번호"]
+      description: "로그북 데이터의 고유 식별자"
     - name: "검사종류"
       field: "modality"
       type: "string"
-      aliases: ["PACS장비구분코드_검사"]
+      aliases: ["modality"]
+      description: "검사의 종류 (예: 일반촬영, CT, MRI)"
     - name: "검사명"
       field: "exam_name"
       type: "string"
-      aliases: ["검사코드"]
-    - name: "판독실"
+      aliases: ["DESCRIPTION", "ORDER_NAME", "Protocol Name", "Exam Name", "검사명"]
+      description: "수행된 검사의 상세 이름"
+    - name: "부서"
+      field: "department"
+      type: "string"
+      aliases: ["DEPT", "ORDER_DEPT", "Department", "부서"]
+      description: "검사를 의뢰한 부서"
+    - name: "담당구분"
       field: "assign"
       type: "string"
-      aliases: ["PACS판독실코드_New"]
+      aliases: ["STUDY ASSIGN", "Section", "GROUP1", "Assign"]
+      description: "검사 담당 전문의 구분"
     - name: "나이"
       field: "age"
       type: "number"
@@ -39,11 +48,13 @@ column_mapping:
     - name: "검사일"
       field: "study_date"
       type: "date"
-      aliases: ["PACS검사일자"]
+      aliases: ["STUDY DATE", "Study DateTime", "STUDY_DATE", "Exam Date(Time)", "검사일(년-월-일)"]
+      description: "검사가 수행된 날짜"
     - name: "판독일"
       field: "reading_date"
       type: "date"
-      aliases: ["DICTATEDDATE"]
+      aliases: ["DRAFT DATE", "Report Date", "draft_date", "CREATE_DATE", "판독일(년-월-일)"]
+      description: "판독 보고서가 작성된 날짜"
   default_order:
     - "reading_date"
     - "modality"
@@ -53,7 +64,7 @@ column_mapping:
     - "sex"
     - "age"
 
-categories: # 2023년 개정 logbook 실태조사
+categories:
   - name: "미분류"
     id: "unclassified"
     description: "미분류 항목"
@@ -364,14 +375,14 @@ categories: # 2023년 개정 logbook 실태조사
         id: "intervention_thyroid"
         target: 1
         description: "초음파 유도하 갑상선 침생검 또는 세침흡인술"
-      - name: "초음파 유도하 경피적 생검"
+      - name: "초음파 유도하 경피적 생검(유방, 복부, 신장, 전립선, 근골격 등)"
         id: "intervention_us"
         target: 1
-        description: "초음파 유도하 경피적 생검"    
-      - name: "CT 유도하 경피적 생검"
+        description: "초음파 유도하 경피적 생검(유방, 복부, 신장, 전립선, 근골격 등)"    
+      - name: "CT 유도하 경피적 생검 (폐, 신장 등)"
         id: "intervention_ct"
         target: 1
-        description: "CT 유도하 경피적 생검"    
+        description: "CT 유도하 경피적 생검 (폐, 신장 등)"    
       - name: "소아 장중첩증 정복술"
         id: "intervention_intu"
         target: 1
@@ -380,30 +391,30 @@ categories: # 2023년 개정 logbook 실태조사
         id: "intervention_cfa"
         target: 1
         description: "대퇴동맥천자술"    
-      - name: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관내 치료"
+      - name: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관 내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)"
         id: "intervention_angio"
         target: 1
-        description: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관내 치료"    
-      - name: "경피적 담도계 배액술"
+        description: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관 내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)"    
+      - name: "경피적 담도계 배액술 (담관배액술 또는 담낭배액술 등)"
         id: "intervention_biliary"
         target: 1
-        description: "경피적 담도계 배액술"    
+        description: "경피적 담도계 배액술 (담관배액술 또는 담낭배액술 등)"    
       - name: "경피적신우배액술"
         id: "intervention_pcn"
         target: 1
         description: "경피적신우배액술"    
-      - name: "그 외 경피적 배액술"
+      - name: "그 외 경피적 배액술 (흉수천자, 복수천자, 농양천자 등)"
         id: "intervention_drain"
         target: 1
-        description: "그 외 경피적 배액술"    
+        description: "그 외 경피적 배액술 (흉수천자, 복수천자, 농양천자 등)"    
       - name: "중심정맥 카테터 삽입술"
         id: "intervention_cvc"
         target: 1
         description: "중심정맥 카테터 삽입술"
-      - name: "영상유도하 종양치료"
+      - name: "영상유도하 종양치료 (알코올경화술, 고주파열치료, 마이크로웨이브, HIFU 등)"
         id: "intervention_tumor"
         target: 1
-        description: "영상유도하 종양치료"
+        description: "영상유도하 종양치료 (알코올경화술, 고주파열치료, 마이크로웨이브, HIFU 등)"
       - name: "기타"
         id: "intervention_etc"
         target: 0
@@ -516,9 +527,12 @@ classification_rules:
     conditions:
       - logic: OR
         conditions:
-          - operator: equals
+          - operator: contains
             field: assign
-            value: "6"
+            value: "H&N"
+          - operator: contains
+            field: assign
+            value: "NEU"
       - operator: not_contains
         field: exam_name
         value: "spine"
@@ -1139,7 +1153,7 @@ classification_rules:
             value: "세침흡인술"
   - category_id: intervention_us
     parent_category_id: intervention
-    name: "초음파 유도하 경피적 생검"
+    name: "초음파 유도하 경피적 생검(유방, 복부, 신장, 전립선, 근골격 등)"
     conditions:
       - operator: contains
         field: modality
@@ -1154,7 +1168,7 @@ classification_rules:
             value: "조직검사"
   - category_id: intervention_ct
     parent_category_id: intervention
-    name: "CT 유도하 경피적 생검"
+    name: "CT 유도하 경피적 생검 (폐, 신장 등)"
     conditions:
       - operator: contains
         field: modality
@@ -1183,7 +1197,7 @@ classification_rules:
         value: "대퇴동맥천자술"
   - category_id: intervention_angio
     parent_category_id: intervention
-    name: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관내 치료"
+    name: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관 내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)"
     conditions:
       - operator: contains
         field: modality
@@ -1201,7 +1215,7 @@ classification_rules:
             value: "transluminal angioplasty"
   - category_id: intervention_biliary
     parent_category_id: intervention
-    name: "경피적 담도계 배액술"
+    name: "경피적 담도계 배액술 (담관배액술 또는 담낭배액술 등)"
     conditions:
       - operator: contains
         field: modality
@@ -1229,7 +1243,7 @@ classification_rules:
         value: "nephrostomy"
   - category_id: intervention_drain
     parent_category_id: intervention
-    name: "그 외 경피적 배액술"
+    name: "그 외 경피적 배액술 (흉수천자, 복수천자, 농양천자 등)"
     conditions:
       - logic: OR
         conditions:
@@ -1273,7 +1287,7 @@ classification_rules:
             value: "Placement Of Cvc"
   - category_id: intervention_tumor
     parent_category_id: intervention
-    name: "영상유도하 종양치료"
+    name: "영상유도하 종양치료 (알코올경화술, 고주파열치료, 마이크로웨이브, HIFU 등)"
     conditions:
       - logic: OR
         conditions:
@@ -1408,6 +1422,7 @@ export_as_sheet:
             value:
               from_metadata:
                 key: examination_type_name
+            is_classifier: true
         
         # 세부전공 (조건부 로직으로 가져오기)
         - specialty:
@@ -1417,6 +1432,12 @@ export_as_sheet:
             value:
               conditional:
                 conditions:
+                  - condition:
+                      field: "specialty_name"
+                      operator: "is_null"
+                    value_source:
+                      from_metadata:
+                        key: "examination_type_name"
                   - condition:
                       field: "specialty_name"
                       operator: "equals"
@@ -1434,7 +1455,7 @@ export_as_sheet:
                 default:
                   from_metadata:
                     key: "specialty_name"
-        
+            is_classifier: true
         # 소아/성인 구분
         - age_group:
             name: "소아/성인"
@@ -1461,7 +1482,7 @@ export_as_sheet:
                 default:
                   static:
                     value: "성인"
-        
+            is_classifier: true
         # 환자성별 (데이터 필드에서 가져오기)
         - sex:
             name: "환자성별(M/F)"
@@ -1502,6 +1523,16 @@ export_as_sheet:
                     field: "exam_name"
                 - static:
                     value: "검사명 없음"
+      ajax_template: |
+        $.ajax({
+          data: 'mode=insert&user_idx='+$("input[name='user_idx']").val()+
+                '&step_num=4&x_scan_type={{modality}}&x_major_type={{specialty}}&x_adult_yumu={{age_group}}&x_scan_cnt={{count}}&x_check_date=&x_scan_title=&x_reading_date={{start_date}}&x_reading_date_2={{end_date}}',
+          dataType: "text",
+          contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+          success: function(e) {
+            console.log("{{modality}}/{{specialty}}/{{age_group}} 업로드 완료");
+          }
+        });
     - name: "for_record2"
       description: "record2 사이트 업로드용 (예시 엑셀 파일과 동일한 구조)"
       column_order: 
@@ -1514,7 +1545,6 @@ export_as_sheet:
         - "exam_name"
       
       columns:
-        # 일련번호 (자동 생성)
         - serial_number:
             name: "일련번호"
             type: "number"
@@ -1523,8 +1553,6 @@ export_as_sheet:
               auto_increment:
                 start_value: 1
                 increment: 1
-        
-        # 검사종류 (메타데이터에서 가져오기)
         - modality:
             name: "검사종류"
             type: "string"
@@ -1532,17 +1560,24 @@ export_as_sheet:
             value:
               from_metadata:
                 key: examination_type_name
-        
-        # 세부전공 (조건부 로직으로 가져오기)
+            is_classifier: true
         - specialty:
             name: "세부전공"
             type: "string"
             width: 12
             value:
-              from_metadata:
-                key: "specialty_name"
-                
-        # 환자성별 (데이터 필드에서 가져오기)
+              conditional:
+                conditions:
+                  - condition:
+                      field: "specialty_name"
+                      operator: "is_null"
+                    value_source:
+                      from_metadata:
+                        key: "examination_type_name"
+                default:
+                  from_metadata:
+                    key: "specialty_name"
+            is_classifier: true
         - sex:
             name: "환자성별(M/F)"
             type: "string"
@@ -1550,8 +1585,6 @@ export_as_sheet:
             value:
               from_field:
                 field: "sex"
-        
-        # 검사일 (데이터 필드에서 가져오기)
         - study_date:
             name: "검사일(년-월-일)"
             type: "date"
@@ -1560,8 +1593,6 @@ export_as_sheet:
             value:
               from_field:
                 field: "study_date"
-        
-        # 판독일 (데이터 필드에서 가져오기)
         - reading_date:
             name: "판독일(년-월-일)"
             type: "date"
@@ -1570,8 +1601,6 @@ export_as_sheet:
             value:
               from_field:
                 field: "reading_date"
-        
-        # 검사명 (fallback chain으로 가져오기)
         - exam_name:
             name: "검사명"
             type: "string"
@@ -1582,3 +1611,104 @@ export_as_sheet:
                     field: "exam_name"
                 - static:
                     value: "검사명 없음"
+      template_column_mapping:
+        modality:
+          "일반촬영":
+            value: 1
+            speciality:
+              "신경두경부": 1
+              "흉부": 2
+              "복부": 3
+              "비뇨생식기": 4
+              "척추": 5
+              "관절 및 사지": 6
+              "소아": 12
+              "기타": 999
+          "CT": 
+            value: 2
+            speciality:
+              "신경두경부": 1
+              "흉부": 2
+              "복부": 3
+              "비뇨생식기": 4
+              "척추": 5
+              "관절 및 사지": 6
+              "소아": 12
+              "심장": 8
+              "혈관": 9
+              "기타": 999
+          "MRI": 
+            value: 3
+            speciality:
+              "신경두경부": 1
+              "흉부": 2
+              "복부": 3
+              "비뇨생식기": 4
+              "척추": 5
+              "관절 및 사지": 6
+              "소아": 12
+              "유방": 7
+              "심장": 8
+              "혈관": 9
+              "기타": 999
+          "초음파": 
+            value: 4
+            speciality:
+              "두경부": 1
+              "복부": 3
+              "비뇨기계": 4
+              "근골격계": 6
+              "유방": 7
+              "갑상선": 10
+              "도플러": 11
+              "소아": 12
+              "기타": 999
+          "투시": 
+            value: 5
+            speciality:
+              "복부": 3
+              "비뇨생식기": 4
+              "소아": 12
+              "기타": 999
+          "유방촬영": 
+            value: 6
+            speciality:
+              "유방촬영": 1
+          "핵의학": 
+            value: 7
+            speciality:
+              "일반핵의학검사": 1
+              "PET/CT": 2
+          "시술": 
+            value: 8
+            speciality:
+              "뇌혈관조영술 및 주요 신경중재 치료": 1
+              "초음파 유도하 갑상선 침생검 또는 세침흡인술": 2
+              "초음파 유도하 경피적 생검(유방, 복부, 신장, 전립선, 근골격 등)": 3
+              "CT 유도하 경피적 생검 (폐, 신장 등)": 4
+              "소아 장중첩증 정복술": 5
+              "대퇴동맥천자술": 6
+              "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관 내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)": 7
+              "경피적 담도계 배액술 (담관배액술 또는 담낭배액술 등)": 8
+              "경피적신우배액술": 9
+              "그 외 경피적 배액술 (흉수천자, 복수천자, 농양천자 등)": 10
+              "중심정맥 카테터 삽입술": 11
+              "영상유도하 종양치료 (알코올경화술, 고주파열치료, 마이크로웨이브, HIFU 등)": 12
+              "기타": 999
+      ajax_template: |
+        $.ajax({
+          url: "/major/reading/handle/reading_A_upsert.php",
+          type: "POST",
+          data: {
+            sid: "",
+            gubun: {{modality}},
+            kind: {{specialty}},
+            reading_count: {{count}},
+            sdate: "{{start_date}}",
+            edate: "{{end_date}}"
+          },
+          dataType: "text",
+          success: function(e) {
+            console.log("{{modality}} | {{specialty}} 업로드 완료");
+          }
+        });

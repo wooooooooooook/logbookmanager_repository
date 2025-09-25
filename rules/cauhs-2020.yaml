@@ -55,12 +55,12 @@ column_mapping:
       aliases: ["STUDY DATE", "Study DateTime", "STUDY_DATE", "Exam Date(Time)", "검사일(년-월-일)"]
       description: "검사가 수행된 날짜"
     - name: "판독일"
-      field: "draft_date"
+      field: "reading_date"
       type: "date"
-      aliases: ["DRAFT DATE", "Report Date", "DRAFT_DATE", "CREATE_DATE", "판독일(년-월-일)"]
+      aliases: ["DRAFT DATE", "Report Date", "draft_date", "CREATE_DATE", "판독일(년-월-일)"]
       description: "판독 보고서가 작성된 날짜"
   default_order:
-    - "draft_date"
+    - "reading_date"
     - "modality"
     - "exam_name"
     - "department"
@@ -464,7 +464,7 @@ classification_rules:
           - operator: is_null
             field: department
           - operator: is_null
-            field: draft_date
+            field: reading_date
   - category_id: dataValidationRequired_required
     parent_category_id: dataValidationRequired
     name: "필수 필드 누락"
@@ -510,7 +510,7 @@ classification_rules:
           - operator: is_null
             field: department
           - operator: is_null
-            field: draft_date
+            field: reading_date
   - category_id: xray
     name: "일반촬영"
     conditions:
@@ -1381,7 +1381,7 @@ validation_rules:
       type: "date"
       format: "YYYY-MM-DD"
       allow_future: false
-    draft_date:
+    reading_date:
       type: "date"
       format: "YYYY-MM-DD"
       allow_future: false
@@ -1404,7 +1404,7 @@ export_as_sheet:
         - "age_group"
         - "sex"
         - "study_date"
-        - "draft_date"
+        - "reading_date"
         - "exam_name"
       
       columns:
@@ -1507,14 +1507,14 @@ export_as_sheet:
                 field: "study_date"
         
         # 판독일 (데이터 필드에서 가져오기)
-        - draft_date:
+        - reading_date:
             name: "판독일(년-월-일)"
             type: "date"
             width: 12
             date_format: "YYYY-MM-DD"
             value:
               from_field:
-                field: "draft_date"
+                field: "reading_date"
         
         # 검사명 (fallback chain으로 가져오기)
         - exam_name:
@@ -1545,7 +1545,7 @@ export_as_sheet:
         - "specialty"
         - "sex"
         - "study_date"
-        - "draft_date"
+        - "reading_date"
         - "exam_name"
       
       columns:
@@ -1597,14 +1597,14 @@ export_as_sheet:
             value:
               from_field:
                 field: "study_date"
-        - draft_date:
+        - reading_date:
             name: "판독일(년-월-일)"
             type: "date"
             width: 12
             date_format: "YYYY-MM-DD"
             value:
               from_field:
-                field: "draft_date"
+                field: "reading_date"
         - exam_name:
             name: "검사명"
             type: "string"
