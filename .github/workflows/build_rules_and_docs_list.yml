@@ -1,9 +1,10 @@
-name: Build rules.json
+name: Build rules.json and docs.json
 
 on:
   push:
     paths:
       - "rules/*.yaml"
+      - "docs/*.md"
   workflow_dispatch:
 permissions:
   contents: write   # <<<<<< 여기 추가해야 push 가능
@@ -54,10 +55,32 @@ jobs:
               json.dump(rules_list, out, indent=2, ensure_ascii=False)
         shell: python
 
-      - name: Commit rules.json
+      - name: Generate docs.json
+        run: |
+          import os, json
+          from pathlib import Path
+
+          docs_dir = Path("docs")
+          docs_list = []
+
+          for f in docs_dir.glob("*.md"):
+              # 파일명에서 확장자 제거하고 언더스코어를 공백으로 변환
+              title = f.stem.replace("_", " ")
+              
+              docs_list.append({
+                  "path": f.as_posix(),
+                  "title": title,
+                  "filename": f.name
+              })
+
+          with open("docs.json", "w", encoding="utf-8") as out:
+              json.dump(docs_list, out, indent=2, ensure_ascii=False)
+        shell: python
+
+      - name: Commit rules.json and docs.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add rules.json
-          git commit -m "Update rules.json" || echo "No changes"
+          git add rules.json docs.json
+          git commit -m "Update rules.json and docs.json" || echo "No changes"
           git push
