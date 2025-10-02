@@ -71,378 +71,279 @@ column_mapping:
 categories:
   - name: "미분류"
     id: "unclassified"
-    description: "미분류 항목"
   - name: "데이터 보완 필요"
     id: "dataValidationRequired"
-    description: "필수 필드가 누락되어 보완이 필요한 항목"
     subcategories:
       - name: "필수 필드 누락"
         id: "dataValidationRequired_required"
-        description: "필수 필드가 누락된 항목"
       - name: "선택적 필드 누락"
         id: "dataValidationRequired_optional"
-        description: "선택적 필드가 누락된 항목"
   - name: "일반촬영"
     id: "xray"
     target: 10000
-    description: "일반촬영"
     subcategories:
       - name: "신경두경부"
         id: "xray_neu"
         target: 300
-        description: "신경두경부"
       - name: "흉부"
         id: "xray_cht"
         target: 4000
-        description: "흉부"
       - name: "복부"
         id: "xray_abd"
         target: 1000
-        description: "복부"
       - name: "KUB"
         id: "xray_kub"
         target: 300
-        description: "KUB"
       - name: "척추"
         id: "xray_spine"
         target: 1000
-        description: "척추"
       - name: "관절 및 사지"
         id: "xray_msk"
         target: 2000
-        description: "관절 및 사지"
       - name: "소아"
         id: "xray_ped"
         target: 400
-        description: "소아"
         subcategories:
           - name: "신경두경부"
             id: "xray_ped_neu"
-            description: "소아 신경두경부"
           - name: "흉부"
             id: "xray_ped_cht"
-            description: "소아 흉부"
           - name: "복부"
             id: "xray_ped_abd"
-            description: "소아 복부"
           - name: "KUB"
             id: "xray_ped_kub"
-            description: "KUB"
           - name: "척추"
             id: "xray_ped_spine"
-            description: "소아 척추"
           - name: "관절 및 사지"
             id: "xray_ped_msk"
-            description: "소아 관절 및 사지"
           - name: "기타"
             id: "xray_ped_etc"
-            description: "소아 기타"
       - name: "기타"
         id: "xray_etc"
-        description: "기타"
   - name: "유방촬영"
     id: "mammography"
     target: 300
-    description: "유방촬영"
   - name: "CT"
     id: "ct"
     target: 3500
-    description: "CT"
     subcategories:
       - name: "신경두경부"
         id: "ct_neu"
         target: 700
-        description: "신경두경부"
       - name: "흉부"
         id: "ct_cht"
         target: 800
-        description: "흉부"
       - name: "심장"
         id: "ct_cardiac"
         target: 100
-        description: "심장"    
       - name: "혈관"
         id: "ct_vas"
         target: 100
-        description: "혈관"    
       - name: "복부"
         id: "ct_abd"
         target: 800
-        description: "복부"    
       - name: "비뇨생식기"
         id: "ct_gu"
         target: 300
-        description: "비뇨생식기"    
       - name: "척추"
         id: "ct_spine"
         target: 100
-        description: "척추"
       - name: "관절 및 사지"
         id: "ct_msk"
         target: 200
-        description: "관절 및 사지"    
       - name: "소아"
         id: "ct_ped"
         target: 100
-        description: "소아"
         subcategories:
           - name: "신경두경부"
             id: "ct_ped_neu"
-            description: "소아 신경두경부"
           - name: "흉부"
             id: "ct_ped_cht"
-            description: "소아 흉부"
           - name: "심장"
             id: "ct_ped_cardiac"
-            description: "소아 심장"
           - name: "혈관"
             id: "ct_ped_vas"
-            description: "소아 혈관"    
           - name: "복부"
             id: "ct_ped_abd"
-            description: "소아 복부"
           - name: "비뇨생식기"
             id: "ct_ped_gu"
-            description: "소아 비뇨생식기"
           - name: "척추"
             id: "ct_ped_spine"
-            description: "소아 척추"
           - name: "관절 및 사지"
             id: "ct_ped_msk"
-            description: "소아 관절 및 사지"
           - name: "기타"
             id: "ct_ped_etc"
-            description: "소아 기타"
       - name: "기타"
         id: "ct_etc"
-        description: "기타"
   - name: "MRI"
     id: "mri"
     target: 1200
-    description: "MRI"
     subcategories:
       - name: "신경두경부"
         id: "mri_neu"
         target: 550
-        description: "신경두경부"
       - name: "심장"
         id: "mri_cardiac"
         target: 30
-        description: "심장"
       - name: "복부"
         id: "mri_abd"
         target: 120
-        description: "복부"    
       - name: "비뇨생식기"
         id: "mri_gu"
         target: 45
-        description: "비뇨생식기"    
       - name: "척추"
         id: "mri_spine"
         target: 100
-        description: "척추"    
       - name: "관절 및 사지"
         id: "mri_msk"
         target: 300
-        description: "관절 및 사지"    
       - name: "유방"
         id: "mri_breast"
         target: 15
-        description: "유방"    
       - name: "소아"
         id: "mri_ped"
         target: 30
-        description: "소아"
         subcategories:
           - name: "신경두경부"
             id: "mri_ped_neu"
-            description: "소아 신경두경부"
           - name: "심장"
             id: "mri_ped_cardiac"
-            description: "소아 심장"
           - name: "복부"
             id: "mri_ped_abd"
-            description: "소아 복부"
           - name: "비뇨생식기"
             id: "mri_ped_gu"
-            description: "소아 비뇨생식기"
           - name: "척추"
             id: "mri_ped_spine"
-            description: "소아 척추"
           - name: "관절 및 사지"
             id: "mri_ped_msk"
-            description: "소아 관절 및 사지"
           - name: "기타"
             id: "mri_ped_etc"
-            description: "소아 기타"
       - name: "기타"
         id: "mri_etc"
-        description: "기타"
     
   - name: "초음파"
     id: "ultrasound"
     target: 1300
-    description: "초음파"
     subcategories:
       - name: "두경부"
         id: "ultrasound_head"
         target: 60
-        description: "두경부"
       - name: "갑상선"
         id: "ultrasound_thyroid"
         target: 100
-        description: "갑상선"
       - name: "복부"
         id: "ultrasound_abd"
         target: 500
-        description: "복부"    
       - name: "비뇨기계"
         id: "ultrasound_gu"
         target: 150
-        description: "비뇨기계"    
       - name: "근골격계"
         id: "ultrasound_msk"
         target: 20
-        description: "근골격계"    
       - name: "유방"
         id: "ultrasound_breast"
         target: 150
-        description: "유방"    
       - name: "소아"
         id: "ultrasound_ped"
         target: 100
-        description: "소아"
         subcategories:
           - name: "두경부"
             id: "ultrasound_ped_head"
-            description: "소아 두경부"
           - name: "복부"
             id: "ultrasound_ped_abd"
-            description: "소아 복부"
           - name: "비뇨기계"
             id: "ultrasound_ped_gu"
-            description: "소아 비뇨기계"
           - name: "근골격계"
             id: "ultrasound_ped_msk"
-            description: "소아 근골격계"
           - name: "기타"
             id: "ultrasound_ped_etc"
-            description: "소아 기타"
       - name: "도플러"
         id: "ultrasound_doppler"
         target: 50
-        description: "도플러"    
       - name: "기타"
         id: "ultrasound_etc"
-        description: "기타"
   - name: "투시"
     id: "fluoroscopy"
     target: 80
-    description: "투시"
     subcategories:
       - name: "복부"
         id: "fluoroscopy_abd"
         target: 1
-        description: "복부"
       - name: "비뇨생식기계"
         id: "fluoroscopy_gu"
         target: 1
-        description: "비뇨생식기계"
       - name: "소아"
         id: "fluoroscopy_ped"
         target: 1
-        description: "소아"
         subcategories:
           - name: "복부"
             id: "fluoroscopy_ped_abd"
-            description: "소아 복부"
           - name: "비뇨생식기계"
             id: "fluoroscopy_ped_gu"
-            description: "소아 비뇨생식기계"
           - name: "기타"
             id: "fluoroscopy_ped_etc"
-            description: "소아 기타"
       - name: "기타"
         id: "fluoroscopy_etc"
-        description: "기타"
     
   - name: "시술"
     id: "intervention"
     target: 150
-    description: "시술"
     subcategories:
       - name: "뇌혈관조영술 및 주요 신경중재 치료"
         id: "intervention_neu"
         target: 1
-        description: "뇌혈관조영술 및 주요 신경중재 치료"
       - name: "초음파 유도하 갑상선 침생검 또는 세침흡인술"
         id: "intervention_thyroid"
         target: 1
-        description: "초음파 유도하 갑상선 침생검 또는 세침흡인술"
       - name: "초음파 유도하 경피적 생검(유방, 복부, 신장, 전립선, 근골격 등)"
         id: "intervention_us"
         target: 1
-        description: "초음파 유도하 경피적 생검(유방, 복부, 신장, 전립선, 근골격 등)"    
       - name: "CT 유도하 경피적 생검 (폐, 신장 등)"
         id: "intervention_ct"
         target: 1
-        description: "CT 유도하 경피적 생검 (폐, 신장 등)"    
       - name: "소아 장중첩증 정복술"
         id: "intervention_intu"
         target: 1
-        description: "소아 장중첩증 정복술"    
       - name: "대퇴동맥천자술"
         id: "intervention_cfa"
         target: 1
-        description: "대퇴동맥천자술"    
       - name: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관 내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)"
         id: "intervention_angio"
         target: 1
-        description: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관 내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)"    
       - name: "경피적 담도계 배액술 (담관배액술 또는 담낭배액술 등)"
         id: "intervention_biliary"
         target: 1
-        description: "경피적 담도계 배액술 (담관배액술 또는 담낭배액술 등)"    
       - name: "경피적신우배액술"
         id: "intervention_pcn"
         target: 1
-        description: "경피적신우배액술"    
       - name: "그 외 경피적 배액술 (흉수천자, 복수천자, 농양천자 등)"
         id: "intervention_drain"
         target: 1
-        description: "그 외 경피적 배액술 (흉수천자, 복수천자, 농양천자 등)"    
       - name: "중심정맥 카테터 삽입술"
         id: "intervention_cvc"
         target: 1
-        description: "중심정맥 카테터 삽입술"
       - name: "영상유도하 종양치료 (알코올경화술, 고주파열치료, 마이크로웨이브, HIFU 등)"
         id: "intervention_tumor"
         target: 1
-        description: "영상유도하 종양치료 (알코올경화술, 고주파열치료, 마이크로웨이브, HIFU 등)"
       - name: "기타"
         id: "intervention_etc"
         target: 0
-        description: "기타"
 
   - name: "핵의학"
     id: "nuclearmedicine"
     target: 75
-    description: "핵의학"
     subcategories:
       - name: "PET/CT"
         id: "nuclearmedicine_pet"
         target: 15
-        description: "PET/CT"
       - name: "일반핵의학검사"
         id: "nuclearmedicine_other"
         target: 60
-        description: "일반핵의학검사"
 
 # 분류 기준 정의
 classification_rules:
   # 데이터 검증 규칙 (최우선 적용)
   - category_id: dataValidationRequired
-    name: "데이터 검증 필요"
     priority: 0
     conditions:
       - logic: OR
@@ -467,7 +368,6 @@ classification_rules:
             field: reading_date
   - category_id: dataValidationRequired_required
     parent_category_id: dataValidationRequired
-    name: "필수 필드 누락"
     priority: 0  # 최우선 적용
     conditions:
       - logic: OR
@@ -484,7 +384,6 @@ classification_rules:
             field: study_date
   - category_id: dataValidationRequired_optional
     parent_category_id: dataValidationRequired
-    name: "선택적 필드 누락"
     priority: 1  # 두 번째 우선순위
     conditions:
       - logic: AND
@@ -512,7 +411,6 @@ classification_rules:
           - operator: is_null
             field: reading_date
   - category_id: xray
-    name: "일반촬영"
     conditions:
       - logic: OR
         conditions:
@@ -527,7 +425,6 @@ classification_rules:
             value: "DX"
   - category_id: xray_neu
     parent_category_id: xray
-    name: "신경두경부"
     conditions:
       - logic: OR
         conditions:
@@ -542,14 +439,12 @@ classification_rules:
         value: "spine"
   - category_id: xray_cht
     parent_category_id: xray
-    name: "흉부"
     conditions:
       - operator: contains
         field: assign
         value: "CHT"
   - category_id: xray_abd
     parent_category_id: xray
-    name: "복부"
     conditions:
       - operator: contains
         field: assign
@@ -559,7 +454,6 @@ classification_rules:
         value: "K.U.B"
   - category_id: xray_kub
     parent_category_id: xray
-    name: "KUB"
     priority: 2
     conditions:
       - operator: contains
@@ -567,7 +461,6 @@ classification_rules:
         value: "K.U.B"
   - category_id: xray_spine
     parent_category_id: xray
-    name: "척추"
     priority: 2
     conditions:
       - operator: contains
@@ -575,7 +468,6 @@ classification_rules:
         value: "SPINE"
   - category_id: xray_msk
     parent_category_id: xray
-    name: "관절 및 사지"
     conditions:
       - operator: contains
         field: assign
@@ -585,7 +477,6 @@ classification_rules:
         value: "spine"
   - category_id: xray_ped
     parent_category_id: xray
-    name: "소아"
     priority: 1
     conditions:
       - operator: lessThan
@@ -593,38 +484,30 @@ classification_rules:
         value: 17
   - category_id: xray_ped_neu
     parent_category_id: xray_ped
-    name: "신경두경부"
     inherit_conditions_from: xray_neu
   - category_id: xray_ped_cht
     parent_category_id: xray_ped
-    name: "흉부"
     inherit_conditions_from: xray_cht
   - category_id: xray_ped_abd
     parent_category_id: xray_ped
-    name: "복부"
     inherit_conditions_from: xray_abd
   - category_id: xray_ped_kub
     parent_category_id: xray_ped
-    name: "KUB"
     inherit_conditions_from: xray_kub
   - category_id: xray_ped_spine
     parent_category_id: xray_ped
-    name: "척추"
     inherit_conditions_from: xray_spine
   - category_id: xray_ped_msk
     parent_category_id: xray_ped
-    name: "관절 및 사지"
     inherit_conditions_from: xray_msk
 
   - category_id: mammography
-    name: "유방촬영"
     priority: 2
     conditions:
       - operator: contains
         field: modality
         value: "MG"
   - category_id: ct
-    name: "CT"
     conditions:
       - operator: contains
         field: modality
@@ -634,7 +517,6 @@ classification_rules:
         value: "PT"
   - category_id: ct_neu
     parent_category_id: ct
-    name: "신경두경부"
     conditions:
       - logic: OR
         conditions:
@@ -652,28 +534,24 @@ classification_rules:
         value: "SPINE"
   - category_id: ct_cht
     parent_category_id: ct
-    name: "흉부"
     conditions:
       - operator: contains
         field: assign
         value: "CHT"
   - category_id: ct_cardiac
     parent_category_id: ct
-    name: "심장"
     conditions:
       - operator: contains
         field: assign
         value: "CARDIAC"
   - category_id: ct_vas
     parent_category_id: ct
-    name: "혈관"
     conditions:
       - operator: contains
         field: assign
         value: "VAS"
   - category_id: ct_abd
     parent_category_id: ct
-    name: "복부"
     conditions:
       - operator: contains
         field: assign
@@ -700,7 +578,6 @@ classification_rules:
             value: "산부인과"
   - category_id: ct_gu
     parent_category_id: ct
-    name: "비뇨생식기"    
     priority: 2
     conditions:
       - operator: contains
@@ -728,7 +605,6 @@ classification_rules:
             value: "산부인과"
   - category_id: ct_spine
     parent_category_id: ct
-    name: "척추"    
     priority: 2
     conditions:
       - operator: contains
@@ -736,7 +612,6 @@ classification_rules:
         value: "SPINE"
   - category_id: ct_msk
     parent_category_id: ct
-    name: "관절 및 사지"
     conditions:
       - operator: contains
         field: assign
@@ -746,7 +621,6 @@ classification_rules:
         value: "SPINE"
   - category_id: ct_ped
     parent_category_id: ct
-    name: "소아"
     priority: 1
     conditions:
       - operator: lessThan
@@ -754,34 +628,27 @@ classification_rules:
         value: 17
   - category_id: ct_ped_neu
     parent_category_id: ct_ped
-    name: "신경두경부"
     inherit_conditions_from: ct_neu
   - category_id: ct_ped_cht
     parent_category_id: ct_ped
-    name: "흉부"
     inherit_conditions_from: ct_cht
   - category_id: ct_ped_abd
     parent_category_id: ct_ped
-    name: "복부"
     inherit_conditions_from: ct_abd
   - category_id: ct_ped_gu
     parent_category_id: ct_ped
-    name: "비뇨생식기"
     inherit_conditions_from: ct_gu
   - category_id: ct_ped_msk
     parent_category_id: ct_ped
-    name: "관절 및 사지"
     inherit_conditions_from: ct_msk
 
   - category_id: mri
-    name: "MRI"
     conditions:
       - operator: contains
         field: modality
         value: "MR"
   - category_id: mri_neu
     parent_category_id: mri
-    name: "신경두경부"
     conditions:
       - logic: OR
         conditions:
@@ -796,14 +663,12 @@ classification_rules:
         value: "SPINE"
   - category_id: mri_cardiac
     parent_category_id: mri
-    name: "심장"
     conditions:
       - operator: contains
         field: assign
         value: "CARDIAC"
   - category_id: mri_abd
     parent_category_id: mri
-    name: "복부"
     conditions:
       - operator: contains
         field: assign
@@ -827,7 +692,6 @@ classification_rules:
             value: "bladder"
   - category_id: mri_gu
     parent_category_id: mri
-    name: "비뇨생식기"
     conditions:
       - logic: OR
         conditions:
@@ -848,7 +712,6 @@ classification_rules:
             value: "bladder"
   - category_id: mri_spine
     parent_category_id: mri
-    name: "척추"
     priority: 2
     conditions:
       - operator: contains
@@ -856,7 +719,6 @@ classification_rules:
         value: "SPINE"
   - category_id: mri_msk
     parent_category_id: mri
-    name: "관절 및 사지"
     priority: 3
     conditions:
       - logic: AND
@@ -869,14 +731,12 @@ classification_rules:
             value: "SPINE"
   - category_id: mri_breast
     parent_category_id: mri
-    name: "유방"
     conditions:
       - operator: contains
         field: assign
         value: "MAM"
   - category_id: mri_ped
     parent_category_id: mri
-    name: "소아"
     priority: 1
     conditions:
       - operator: lessThan
@@ -884,22 +744,17 @@ classification_rules:
         value: 17
   - category_id: mri_ped_neu
     parent_category_id: mri_ped
-    name: "신경두경부"
     inherit_conditions_from: mri_neu
   - category_id: mri_ped_abd
     parent_category_id: mri_ped
-    name: "복부"
     inherit_conditions_from: mri_abd
   - category_id: mri_ped_spine
     parent_category_id: mri_ped
-    name: "척추"
     inherit_conditions_from: mri_spine
   - category_id: mri_ped_msk
     parent_category_id: mri_ped
-    name: "관절 및 사지"
     inherit_conditions_from: mri_msk
   - category_id: ultrasound
-    name: "초음파"
     conditions:
       - operator: contains
         field: modality
@@ -920,7 +775,6 @@ classification_rules:
         value: "XA"
   - category_id: ultrasound_ped
     parent_category_id: ultrasound
-    name: "소아"
     priority: 1
     conditions:
       - operator: lessThan
@@ -928,23 +782,18 @@ classification_rules:
         value: 17
   - category_id: ultrasound_ped_head
     parent_category_id: ultrasound_ped
-    name: "두경부"
     inherit_conditions_from: ultrasound_head
   - category_id: ultrasound_ped_abd
     parent_category_id: ultrasound_ped
-    name: "복부"
     inherit_conditions_from: ultrasound_abd
   - category_id: ultrasound_ped_gu
     parent_category_id: ultrasound_ped
-    name: "비뇨기계"
     inherit_conditions_from: ultrasound_gu
   - category_id: ultrasound_ped_msk
     parent_category_id: ultrasound_ped
-    name: "근골격계"
     inherit_conditions_from: ultrasound_msk
   - category_id: ultrasound_head
     parent_category_id: ultrasound
-    name: "두경부"
     conditions:
       - logic: OR
         conditions:
@@ -976,14 +825,12 @@ classification_rules:
             value: "color doppler"
   - category_id: ultrasound_thyroid
     parent_category_id: ultrasound
-    name: "갑상선"
     conditions:
       - operator: contains
         field: exam_name
         value: "thyroid"
   - category_id: ultrasound_abd
     parent_category_id: ultrasound
-    name: "복부"
     conditions:
       - operator: contains
         field: assign
@@ -1010,7 +857,6 @@ classification_rules:
             value: "color doppler"
   - category_id: ultrasound_gu
     parent_category_id: ultrasound
-    name: "비뇨기계"
     conditions:
       - logic: OR
         conditions:
@@ -1028,21 +874,18 @@ classification_rules:
             value: "생식기"
   - category_id: ultrasound_msk
     parent_category_id: ultrasound
-    name: "근골격계"
     conditions:
       - operator: contains
         field: assign
         value: "MSK"
   - category_id: ultrasound_breast
     parent_category_id: ultrasound
-    name: "유방"
     conditions:
       - operator: contains
         field: assign
         value: "MAM"
   - category_id: ultrasound_doppler
     parent_category_id: ultrasound
-    name: "도플러"
     priority: 2
     conditions:
       - logic: OR
@@ -1060,7 +903,6 @@ classification_rules:
             field: exam_name
             value: "혈관도플러"
   - category_id: fluoroscopy
-    name: "투시"
     priority: 3
     conditions:
       - operator: contains
@@ -1068,7 +910,6 @@ classification_rules:
         value: "RF"
   - category_id: fluoroscopy_abd
     parent_category_id: fluoroscopy
-    name: "복부"
     conditions:
       - operator: contains
         field: assign
@@ -1080,7 +921,6 @@ classification_rules:
             value: "Arthro CT"
   - category_id: fluoroscopy_gu
     parent_category_id: fluoroscopy
-    name: "비뇨생식기계"
     conditions:
       - logic: OR
         conditions:
@@ -1092,7 +932,6 @@ classification_rules:
             value: "OBGY"
   - category_id: fluoroscopy_ped
     parent_category_id: fluoroscopy
-    name: "소아"
     conditions:
       - operator: lessThan
         field: age
@@ -1101,30 +940,24 @@ classification_rules:
   # 투시 소아 비고
   - category_id: fluoroscopy_ped_abd
     parent_category_id: fluoroscopy_ped
-    name: "복부"
     inherit_conditions_from: fluoroscopy_abd
   - category_id: fluoroscopy_ped_gu
     parent_category_id: fluoroscopy_ped
-    name: "비뇨생식기계"
     inherit_conditions_from: fluoroscopy_gu
   - category_id: fluoroscopy_ped_etc
     parent_category_id: fluoroscopy_ped
-    name: "기타"
     inherit_conditions_from: fluoroscopy_etc
     priority: 999
   - category_id: fluoroscopy_etc
     parent_category_id: fluoroscopy
-    name: "기타"
     conditions: []
     priority: 999
   - category_id: intervention
-    name: "시술"
     priority: 1
     composed_by_subcategories: true
     # 하위 카테고리로만 구성되므로 conditions는 무시됨
   - category_id: intervention_neu
     parent_category_id: intervention
-    name: "뇌혈관조영술 및 주요 신경중재 치료"
     conditions:
       - logic: OR
         conditions:
@@ -1142,7 +975,6 @@ classification_rules:
             value: "신경중재"
   - category_id: intervention_thyroid
     parent_category_id: intervention
-    name: "초음파 유도하 갑상선 침생검 또는 세침흡인술"
     conditions:
       - logic: OR
         conditions:
@@ -1157,7 +989,6 @@ classification_rules:
             value: "세침흡인술"
   - category_id: intervention_us
     parent_category_id: intervention
-    name: "초음파 유도하 경피적 생검(유방, 복부, 신장, 전립선, 근골격 등)"
     conditions:
       - operator: contains
         field: modality
@@ -1172,7 +1003,6 @@ classification_rules:
             value: "조직검사"
   - category_id: intervention_ct
     parent_category_id: intervention
-    name: "CT 유도하 경피적 생검 (폐, 신장 등)"
     conditions:
       - operator: contains
         field: modality
@@ -1187,21 +1017,18 @@ classification_rules:
             value: "조직검사"
   - category_id: intervention_intu
     parent_category_id: intervention
-    name: "소아 장중첩증 정복술"
     conditions:
       - operator: contains
         field: exam_name
         value: "intussusception"
   - category_id: intervention_cfa
     parent_category_id: intervention
-    name: "대퇴동맥천자술"
     conditions:
       - operator: contains
         field: exam_name
         value: "대퇴동맥천자술"
   - category_id: intervention_angio
     parent_category_id: intervention
-    name: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관 내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)"
     conditions:
       - operator: contains
         field: modality
@@ -1219,7 +1046,6 @@ classification_rules:
             value: "transluminal angioplasty"
   - category_id: intervention_biliary
     parent_category_id: intervention
-    name: "경피적 담도계 배액술 (담관배액술 또는 담낭배액술 등)"
     conditions:
       - operator: contains
         field: modality
@@ -1237,7 +1063,6 @@ classification_rules:
             value: "biliary"
   - category_id: intervention_pcn
     parent_category_id: intervention
-    name: "경피적신우배액술"
     conditions:
       - operator: contains
         field: modality
@@ -1247,7 +1072,6 @@ classification_rules:
         value: "nephrostomy"
   - category_id: intervention_drain
     parent_category_id: intervention
-    name: "그 외 경피적 배액술 (흉수천자, 복수천자, 농양천자 등)"
     conditions:
       - logic: OR
         conditions:
@@ -1273,7 +1097,6 @@ classification_rules:
             value: "cholecystostomy"
   - category_id: intervention_cvc
     parent_category_id: intervention
-    name: "중심정맥 카테터 삽입술"
     conditions:
       - operator: contains
         field: modality
@@ -1291,7 +1114,6 @@ classification_rules:
             value: "Placement Of Cvc"
   - category_id: intervention_tumor
     parent_category_id: intervention
-    name: "영상유도하 종양치료 (알코올경화술, 고주파열치료, 마이크로웨이브, HIFU 등)"
     conditions:
       - logic: OR
         conditions:
@@ -1309,14 +1131,12 @@ classification_rules:
             value: "HIFU"
   - category_id: intervention_etc
     parent_category_id: intervention
-    name: "기타"
     priority: 999
     conditions:
       - operator: contains
         field: modality
         value: "XA"
   - category_id: nuclearmedicine
-    name: "핵의학"
     conditions:
       - logic: OR
         conditions:
@@ -1328,14 +1148,12 @@ classification_rules:
             value: "PT"
   - category_id: nuclearmedicine_pet
     parent_category_id: nuclearmedicine
-    name: "PET/CT"
     conditions:
       - operator: contains
         field: modality
         value: "PT"
   - category_id: nuclearmedicine_other
     parent_category_id: nuclearmedicine
-    name: "일반핵의학검사"
     conditions:
       - operator: contains
         field: modality
@@ -1347,44 +1165,6 @@ classification_rules:
 # 기본 분류 규칙 (위의 규칙에 해당하지 않는 경우)
 default_classification:
   category_id: "unclassified"
-  name: "미분류"
-  description: "정의된 분류에 해당하지 않는 업무"
-  color: "#95a5a6"
-
-# 데이터 검증 규칙
-validation_rules:
-  required_fields:
-    - "id"
-    - "modality"
-    - "exam_name"
-    - "assign"
-    - "study_date"
-  field_types:
-    id:
-      type: "string"
-    modality:
-      type: "string"
-    exam_name:
-      type: "string"
-    department:
-      type: "string"
-    assign:
-      type: "string"
-    age:
-      type: "number"
-      min: 0
-      max: 150
-    sex:
-      type: "enum"
-      values: ["M", "F"]
-    study_date:
-      type: "date"
-      format: "YYYY-MM-DD"
-      allow_future: false
-    reading_date:
-      type: "date"
-      format: "YYYY-MM-DD"
-      allow_future: false
 
 # CSV/Excel 내보내기 설정
 export_as_sheet:
