@@ -1,12 +1,23 @@
 [
   {
-    "path": "docs/Rules_YAML_Guide.md",
-    "title": "Rules YAML Guide",
-    "filename": "Rules_YAML_Guide.md"
+    "path": "docs/규칙 파일 작성법/1._규칙파일_작성_가이드.md",
+    "relative_path": "규칙 파일 작성법/1._규칙파일_작성_가이드.md",
+    "title": "1. 규칙파일 작성 가이드",
+    "filename": "1._규칙파일_작성_가이드.md",
+    "subfolder": "규칙 파일 작성법"
   },
   {
-    "path": "docs/Classification_Rules_Guide.md",
-    "title": "Classification Rules Guide",
-    "filename": "Classification_Rules_Guide.md"
+    "path": "docs/규칙 파일 작성법/2._분류_규칙_작성_가이드.md",
+    "relative_path": "규칙 파일 작성법/2._분류_규칙_작성_가이드.md",
+    "title": "2. 분류 규칙 작성 가이드",
+    "filename": "2._분류_규칙_작성_가이드.md",
+    "subfolder": "규칙 파일 작성법"
+  },
+  {
+    "path": "docs/규칙 파일 작성법/3._내보내기_설정_가이드.md",
+    "relative_path": "규칙 파일 작성법/3._내보내기_설정_가이드.md",
+    "title": "3. 내보내기 설정 가이드",
+    "filename": "3._내보내기_설정_가이드.md",
+    "subfolder": "규칙 파일 작성법"
   }
 ]

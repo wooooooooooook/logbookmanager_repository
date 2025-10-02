@@ -24,18 +24,6 @@
     }
   },
   {
-    "path": "rules/cauhs.yaml",
-    "title": "커스텀",
-    "description": "중앙대학교병원용 \nZetta PACS \n2023년 개정 logbook 실태조사 \n검사종류/검사명/부서/담당구분 기반 분류",
-    "created_at": "2025-09-17T00:00:00Z",
-    "updated_at": "2025-09-17T00:00:00Z",
-    "version": "9.9.9",
-    "author": {
-      "name": "김영욱",
-      "email": "wooooooooooook@gmail.com"
-    }
-  },
-  {
     "path": "rules/cauhs-2020.yaml",
     "title": "중앙대병원-흑석 2020년 이전 입국",
     "description": "중앙대학교병원용 / Zetta PACS\nrecord2020.radiology.or.kr 사이트 이용하는 2020년 이전 입국자\n2023년 개정 logbook 실태조사\n검사종류/검사명/부서/담당구분 기반 분류\n",
