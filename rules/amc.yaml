@@ -1,8 +1,13 @@
-title: "서울아산병원-테스트"
-version: "1.0.0"
+title: "서울아산병원-테스트 2022년이후 입국자용"
+version: "2"
 created_at: "2025-09-19T00:00:00Z"
-updated_at: "2025-09-19T00:00:00Z"
-description: "서울아산병원용 \n2023년 개정 logbook 실태조사 \n검사종류/검사명/부서/담당구분 기반 분류"
+updated_at: "2025-10-03T00:00:00Z"
+description: |
+  서울아산병원
+  record2.radiology.or.kr 사이트 이용하는 2022년 이후 입국자
+  2023년 개정 logbook 실태조사
+  검사종류/검사명/부서/담당구분 기반 분류
+  일부 분류 미흡한 버전
 author: 
   name: "김영욱"
   email: "wooooooooooook@gmail.com"
@@ -21,11 +26,20 @@ column_mapping:
     - name: "검사명"
       field: "exam_name"
       type: "string"
-      aliases: ["검사코드"]
+      aliases: ["검사코드_1"]
     - name: "판독실"
       field: "assign"
       type: "string"
-      aliases: ["PACS판독실코드_New"]
+      aliases: ["PACS판독실코드_New_1"]
+    - name: "검사일"
+      field: "study_date"
+      type: "date"
+      aliases: ["PACS검사일자"]
+    - name: "판독일"
+      field: "reading_date"
+      type: "date"
+      aliases: ["DICTATEDDATE"]
+  optional:
     - name: "나이"
       field: "age"
       type: "number"
@@ -36,14 +50,6 @@ column_mapping:
       type: "string"
       aliases: ["SEX", "PATIENT_SEX", "환자성별(M/F)"]
       description: "환자의 성별 (M 또는 F)"
-    - name: "검사일"
-      field: "study_date"
-      type: "date"
-      aliases: ["PACS검사일자"]
-    - name: "판독일"
-      field: "reading_date"
-      type: "date"
-      aliases: ["DICTATEDDATE"]
   default_order:
     - "reading_date"
     - "modality"
@@ -100,28 +106,28 @@ categories: # 2023년 개정 logbook 실태조사
         id: "xray_ped"
         target: 400
         description: "소아"
-        subcategories:
-          - name: "신경두경부"
-            id: "xray_ped_neu"
-            description: "소아 신경두경부"
-          - name: "흉부"
-            id: "xray_ped_cht"
-            description: "소아 흉부"
-          - name: "복부"
-            id: "xray_ped_abd"
-            description: "소아 복부"
-          - name: "KUB"
-            id: "xray_ped_kub"
-            description: "KUB"
-          - name: "척추"
-            id: "xray_ped_spine"
-            description: "소아 척추"
-          - name: "관절 및 사지"
-            id: "xray_ped_msk"
-            description: "소아 관절 및 사지"
-          - name: "기타"
-            id: "xray_ped_etc"
-            description: "소아 기타"
+        # subcategories:
+        #   - name: "신경두경부"
+        #     id: "xray_ped_neu"
+        #     description: "소아 신경두경부"
+        #   - name: "흉부"
+        #     id: "xray_ped_cht"
+        #     description: "소아 흉부"
+        #   - name: "복부"
+        #     id: "xray_ped_abd"
+        #     description: "소아 복부"
+        #   - name: "KUB"
+        #     id: "xray_ped_kub"
+        #     description: "KUB"
+        #   - name: "척추"
+        #     id: "xray_ped_spine"
+        #     description: "소아 척추"
+        #   - name: "관절 및 사지"
+        #     id: "xray_ped_msk"
+        #     description: "소아 관절 및 사지"
+        #   - name: "기타"
+        #     id: "xray_ped_etc"
+        #     description: "소아 기타"
       - name: "기타"
         id: "xray_etc"
         description: "기타"
@@ -170,34 +176,34 @@ categories: # 2023년 개정 logbook 실태조사
         id: "ct_ped"
         target: 100
         description: "소아"
-        subcategories:
-          - name: "신경두경부"
-            id: "ct_ped_neu"
-            description: "소아 신경두경부"
-          - name: "흉부"
-            id: "ct_ped_cht"
-            description: "소아 흉부"
-          - name: "심장"
-            id: "ct_ped_cardiac"
-            description: "소아 심장"
-          - name: "혈관"
-            id: "ct_ped_vas"
-            description: "소아 혈관"    
-          - name: "복부"
-            id: "ct_ped_abd"
-            description: "소아 복부"
-          - name: "비뇨생식기"
-            id: "ct_ped_gu"
-            description: "소아 비뇨생식기"
-          - name: "척추"
-            id: "ct_ped_spine"
-            description: "소아 척추"
-          - name: "관절 및 사지"
-            id: "ct_ped_msk"
-            description: "소아 관절 및 사지"
-          - name: "기타"
-            id: "ct_ped_etc"
-            description: "소아 기타"
+        # subcategories:
+        #   - name: "신경두경부"
+        #     id: "ct_ped_neu"
+        #     description: "소아 신경두경부"
+        #   - name: "흉부"
+        #     id: "ct_ped_cht"
+        #     description: "소아 흉부"
+        #   - name: "심장"
+        #     id: "ct_ped_cardiac"
+        #     description: "소아 심장"
+        #   - name: "혈관"
+        #     id: "ct_ped_vas"
+        #     description: "소아 혈관"    
+        #   - name: "복부"
+        #     id: "ct_ped_abd"
+        #     description: "소아 복부"
+        #   - name: "비뇨생식기"
+        #     id: "ct_ped_gu"
+        #     description: "소아 비뇨생식기"
+        #   - name: "척추"
+        #     id: "ct_ped_spine"
+        #     description: "소아 척추"
+        #   - name: "관절 및 사지"
+        #     id: "ct_ped_msk"
+        #     description: "소아 관절 및 사지"
+        #   - name: "기타"
+        #     id: "ct_ped_etc"
+        #     description: "소아 기타"
       - name: "기타"
         id: "ct_etc"
         description: "기타"
@@ -238,28 +244,28 @@ categories: # 2023년 개정 logbook 실태조사
         id: "mri_ped"
         target: 30
         description: "소아"
-        subcategories:
-          - name: "신경두경부"
-            id: "mri_ped_neu"
-            description: "소아 신경두경부"
-          - name: "심장"
-            id: "mri_ped_cardiac"
-            description: "소아 심장"
-          - name: "복부"
-            id: "mri_ped_abd"
-            description: "소아 복부"
-          - name: "비뇨생식기"
-            id: "mri_ped_gu"
-            description: "소아 비뇨생식기"
-          - name: "척추"
-            id: "mri_ped_spine"
-            description: "소아 척추"
-          - name: "관절 및 사지"
-            id: "mri_ped_msk"
-            description: "소아 관절 및 사지"
-          - name: "기타"
-            id: "mri_ped_etc"
-            description: "소아 기타"
+        # subcategories:
+        #   - name: "신경두경부"
+        #     id: "mri_ped_neu"
+        #     description: "소아 신경두경부"
+        #   - name: "심장"
+        #     id: "mri_ped_cardiac"
+        #     description: "소아 심장"
+        #   - name: "복부"
+        #     id: "mri_ped_abd"
+        #     description: "소아 복부"
+        #   - name: "비뇨생식기"
+        #     id: "mri_ped_gu"
+        #     description: "소아 비뇨생식기"
+        #   - name: "척추"
+        #     id: "mri_ped_spine"
+        #     description: "소아 척추"
+        #   - name: "관절 및 사지"
+        #     id: "mri_ped_msk"
+        #     description: "소아 관절 및 사지"
+        #   - name: "기타"
+        #     id: "mri_ped_etc"
+        #     description: "소아 기타"
       - name: "기타"
         id: "mri_etc"
         description: "기타"
@@ -297,22 +303,22 @@ categories: # 2023년 개정 logbook 실태조사
         id: "ultrasound_ped"
         target: 100
         description: "소아"
-        subcategories:
-          - name: "두경부"
-            id: "ultrasound_ped_head"
-            description: "소아 두경부"
-          - name: "복부"
-            id: "ultrasound_ped_abd"
-            description: "소아 복부"
-          - name: "비뇨기계"
-            id: "ultrasound_ped_gu"
-            description: "소아 비뇨기계"
-          - name: "근골격계"
-            id: "ultrasound_ped_msk"
-            description: "소아 근골격계"
-          - name: "기타"
-            id: "ultrasound_ped_etc"
-            description: "소아 기타"
+        # subcategories:
+        #   - name: "두경부"
+        #     id: "ultrasound_ped_head"
+        #     description: "소아 두경부"
+        #   - name: "복부"
+        #     id: "ultrasound_ped_abd"
+        #     description: "소아 복부"
+        #   - name: "비뇨기계"
+        #     id: "ultrasound_ped_gu"
+        #     description: "소아 비뇨기계"
+        #   - name: "근골격계"
+        #     id: "ultrasound_ped_msk"
+        #     description: "소아 근골격계"
+        #   - name: "기타"
+        #     id: "ultrasound_ped_etc"
+        #     description: "소아 기타"
       - name: "도플러"
         id: "ultrasound_doppler"
         target: 50
@@ -337,16 +343,16 @@ categories: # 2023년 개정 logbook 실태조사
         id: "fluoroscopy_ped"
         target: 1
         description: "소아"
-        subcategories:
-          - name: "복부"
-            id: "fluoroscopy_ped_abd"
-            description: "소아 복부"
-          - name: "비뇨생식기계"
-            id: "fluoroscopy_ped_gu"
-            description: "소아 비뇨생식기계"
-          - name: "기타"
-            id: "fluoroscopy_ped_etc"
-            description: "소아 기타"
+        # subcategories:
+        #   - name: "복부"
+        #     id: "fluoroscopy_ped_abd"
+        #     description: "소아 복부"
+        #   - name: "비뇨생식기계"
+        #     id: "fluoroscopy_ped_gu"
+        #     description: "소아 비뇨생식기계"
+        #   - name: "기타"
+        #     id: "fluoroscopy_ped_etc"
+        #     description: "소아 기타"
       - name: "기타"
         id: "fluoroscopy_etc"
         description: "기타"
@@ -441,14 +447,6 @@ classification_rules:
           - operator: is_null
             field: assign
           - operator: is_null
-            field: study_date
-          - operator: is_null
-            field: age
-          - operator: is_null
-            field: sex
-          - operator: is_null
-            field: department
-          - operator: is_null
             field: reading_date
   - category_id: dataValidationRequired_required
     parent_category_id: dataValidationRequired
@@ -466,7 +464,11 @@ classification_rules:
           - operator: is_null
             field: assign
           - operator: is_null
-            field: study_date
+            field: reading_date
+          - operator: is_null
+            field: age
+          - operator: is_null
+            field: sex
   - category_id: dataValidationRequired_optional
     parent_category_id: dataValidationRequired
     name: "선택적 필드 누락"
@@ -492,24 +494,12 @@ classification_rules:
             field: age
           - operator: is_null
             field: sex
-          - operator: is_null
-            field: department
-          - operator: is_null
-            field: reading_date
   - category_id: xray
     name: "일반촬영"
     conditions:
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: modality
-            value: "CR"
-          - operator: contains
-            field: modality
-            value: "DR"
-          - operator: contains
-            field: modality
-            value: "DX"
+      - operator: equals
+        field: modality
+        value: "CR"
   - category_id: xray_neu
     parent_category_id: xray
     name: "신경두경부"
@@ -518,27 +508,32 @@ classification_rules:
         conditions:
           - operator: equals
             field: assign
-            value: "6"
-      - operator: not_contains
-        field: exam_name
-        value: "spine"
+            value: "Neuro"
+      - logic: OR
+        conditions:
+          - operator: not_contains
+            field: exam_name
+            value: "Chest"
+          - operator: not_contains
+            field: exam_name
+            value: "Abdomen"
+          - operator: not_contains
+            field: exam_name
+            value: "Spine"
   - category_id: xray_cht
     parent_category_id: xray
     name: "흉부"
     conditions:
       - operator: contains
-        field: assign
-        value: "CHT"
+        field: exam_name
+        value: "Chest"
   - category_id: xray_abd
     parent_category_id: xray
     name: "복부"
     conditions:
       - operator: contains
-        field: assign
-        value: "ABD"
-      - operator: not_equals
         field: exam_name
-        value: "K.U.B"
+        value: "Abdomen"
   - category_id: xray_kub
     parent_category_id: xray
     name: "KUB"
@@ -546,7 +541,8 @@ classification_rules:
     conditions:
       - operator: contains
         field: exam_name
-        value: "K.U.B"
+        value: "KUB"
+        case_sensitive: true
   - category_id: xray_spine
     parent_category_id: xray
     name: "척추"
@@ -554,160 +550,173 @@ classification_rules:
     conditions:
       - operator: contains
         field: exam_name
-        value: "SPINE"
+        value: "Spine"
   - category_id: xray_msk
     parent_category_id: xray
     name: "관절 및 사지"
     conditions:
-      - operator: contains
+      - operator: equals
         field: assign
-        value: "MSK"
-      - operator: not_contains
-        field: exam_name
-        value: "spine"
+        value: "Musculoskeletal"
+      - logic: OR
+        conditions:
+          - operator: not_contains
+            field: exam_name
+            value: "Chest"
+          - operator: not_contains
+            field: exam_name
+            value: "Abdomen"
+          - operator: not_contains
+            field: exam_name
+            value: "Spine"
   - category_id: xray_ped
     parent_category_id: xray
     name: "소아"
     priority: 1
     conditions:
-      - operator: lessThan
-        field: age
-        value: 17
-  - category_id: xray_ped_neu
-    parent_category_id: xray_ped
-    name: "신경두경부"
-    inherit_conditions_from: xray_neu
-  - category_id: xray_ped_cht
-    parent_category_id: xray_ped
-    name: "흉부"
-    inherit_conditions_from: xray_cht
-  - category_id: xray_ped_abd
-    parent_category_id: xray_ped
-    name: "복부"
-    inherit_conditions_from: xray_abd
-  - category_id: xray_ped_kub
-    parent_category_id: xray_ped
-    name: "KUB"
-    inherit_conditions_from: xray_kub
-  - category_id: xray_ped_spine
-    parent_category_id: xray_ped
-    name: "척추"
-    inherit_conditions_from: xray_spine
-  - category_id: xray_ped_msk
-    parent_category_id: xray_ped
-    name: "관절 및 사지"
-    inherit_conditions_from: xray_msk
+      - operator: equals
+        field: assign
+        value: "Pediatrics"
+  # - category_id: xray_ped_neu
+  #   parent_category_id: xray_ped
+  #   name: "신경두경부"
+  #   inherit_conditions_from: xray_neu
+  # - category_id: xray_ped_cht
+  #   parent_category_id: xray_ped
+  #   name: "흉부"
+  #   inherit_conditions_from: xray_cht
+  # - category_id: xray_ped_abd
+  #   parent_category_id: xray_ped
+  #   name: "복부"
+  #   inherit_conditions_from: xray_abd
+  # - category_id: xray_ped_kub
+  #   parent_category_id: xray_ped
+  #   name: "KUB"
+  #   inherit_conditions_from: xray_kub
+  # - category_id: xray_ped_spine
+  #   parent_category_id: xray_ped
+  #   name: "척추"
+  #   inherit_conditions_from: xray_spine
+  # - category_id: xray_ped_msk
+  #   parent_category_id: xray_ped
+  #   name: "관절 및 사지"
+  #   inherit_conditions_from: xray_msk
 
   - category_id: mammography
     name: "유방촬영"
     priority: 2
     conditions:
-      - operator: contains
+      - operator: equals
         field: modality
         value: "MG"
   - category_id: ct
     name: "CT"
     conditions:
-      - operator: contains
+      - operator: equals
         field: modality
         value: "CT"
-      - operator: not_contains
-        field: modality
-        value: "PT"
   - category_id: ct_neu
     parent_category_id: ct
     name: "신경두경부"
     conditions:
       - logic: OR
         conditions:
-          - operator: contains
+          - operator: equals
             field: assign
-            value: "H&N"
-          - operator: contains
-            field: assign
-            value: "NEU"
+            value: "neuro"
           - operator: contains
             field: exam_name
-            value: "thyroid"
-      - operator: not_contains
-        field: exam_name
-        value: "SPINE"
+            value: "brain"
+          - operator: contains
+            field: exam_name
+            value: "facial"
+          - operator: contains
+            field: exam_name
+            value: "head"
   - category_id: ct_cht
     parent_category_id: ct
     name: "흉부"
     conditions:
-      - operator: contains
-        field: assign
-        value: "CHT"
+      - logic: OR
+        conditions:
+          - operator: equals
+            field: assign
+            value: "chest lung"
+          - operator: contains
+            field: exam_name
+            value: "chest"
   - category_id: ct_cardiac
     parent_category_id: ct
     name: "심장"
+    priority: 6
     conditions:
-      - operator: contains
-        field: assign
-        value: "CARDIAC"
+      - logic: OR
+        conditions:
+          - operator: equals
+            field: assign
+            value: "chest CV"
+          - operator: contains
+            field: exam_name
+            value: "chest"
+          - operator: contains
+            field: exam_name
+            value: "heart"
+          - operator: contains
+            field: exam_name
+            value: "coronary artery"
+      - logic: OR
+        conditions:
+          - operator: not_contains
+            field: exam_name
+            value: "aortic"
+          - operator: not_contains
+            field: exam_name
+            value: "aorta"
+          - operator: not_contains
+            field: exam_name
+            value: "angiography"
+          - operator: not_contains
+            field: exam_name
+            value: "pulmonary vein"
   - category_id: ct_vas
     parent_category_id: ct
     name: "혈관"
+    priority: 5
     conditions:
-      - operator: contains
-        field: assign
-        value: "VAS"
+      - logic: OR
+        conditions:
+          - operator: contains
+            field: exam_name
+            value: "aortic"
+          - operator: contains
+            field: exam_name
+            value: "aorta"
+          - operator: contains
+            field: exam_name
+            value: "angiography"
+          - operator: contains
+            field: exam_name
+            value: "pulmonary vein"
   - category_id: ct_abd
     parent_category_id: ct
     name: "복부"
     conditions:
-      - operator: contains
+      - operator: equals
         field: assign
-        value: "ABD"
-      - logic: OR
-        conditions:
-          - operator: not_contains
-            field: department
-            value: "NE"
-          - operator: not_contains
-            field: department
-            value: "UR"
-          - operator: not_contains
-            field: department
-            value: "OB"
-          - operator: not_contains
-            field: department
-            value: "신장내과"
-          - operator: not_contains
-            field: department
-            value: "비뇨의학과"
-          - operator: not_contains
-            field: department
-            value: "산부인과"
+        value: "Abdomen"
   - category_id: ct_gu
     parent_category_id: ct
-    name: "비뇨생식기"    
+    name: "비뇨생식기"
     priority: 2
     conditions:
-      - operator: contains
-        field: assign
-        value: "ABD"
       - logic: OR
         conditions:
-          - operator: contains
-            field: department
-            value: "NE"
-          - operator: contains
-            field: department
-            value: "UR"
-          - operator: contains
-            field: department
-            value: "OB"
-          - operator: contains
-            field: department
-            value: "신장내과"
-          - operator: contains
-            field: department
-            value: "비뇨의학과"
-          - operator: contains
-            field: department
-            value: "산부인과"
+          - operator: equals
+            field: assign
+            value: "Genitourinary"
+          - operator: equals
+            field: assign
+            value: "OBGY"
   - category_id: ct_spine
     parent_category_id: ct
     name: "척추"    
@@ -720,9 +729,9 @@ classification_rules:
     parent_category_id: ct
     name: "관절 및 사지"
     conditions:
-      - operator: contains
+      - operator: equals
         field: assign
-        value: "MSK"
+        value: "Musculoskeletal"
       - operator: not_contains
         field: exam_name
         value: "SPINE"
@@ -731,34 +740,34 @@ classification_rules:
     name: "소아"
     priority: 1
     conditions:
-      - operator: lessThan
-        field: age
-        value: 17
-  - category_id: ct_ped_neu
-    parent_category_id: ct_ped
-    name: "신경두경부"
-    inherit_conditions_from: ct_neu
-  - category_id: ct_ped_cht
-    parent_category_id: ct_ped
-    name: "흉부"
-    inherit_conditions_from: ct_cht
-  - category_id: ct_ped_abd
-    parent_category_id: ct_ped
-    name: "복부"
-    inherit_conditions_from: ct_abd
-  - category_id: ct_ped_gu
-    parent_category_id: ct_ped
-    name: "비뇨생식기"
-    inherit_conditions_from: ct_gu
-  - category_id: ct_ped_msk
-    parent_category_id: ct_ped
-    name: "관절 및 사지"
-    inherit_conditions_from: ct_msk
+      - operator: equals
+        field: assign
+        value: "Pediatrics"
+  # - category_id: ct_ped_neu
+  #   parent_category_id: ct_ped
+  #   name: "신경두경부"
+  #   inherit_conditions_from: ct_neu
+  # - category_id: ct_ped_cht
+  #   parent_category_id: ct_ped
+  #   name: "흉부"
+  #   inherit_conditions_from: ct_cht
+  # - category_id: ct_ped_abd
+  #   parent_category_id: ct_ped
+  #   name: "복부"
+  #   inherit_conditions_from: ct_abd
+  # - category_id: ct_ped_gu
+  #   parent_category_id: ct_ped
+  #   name: "비뇨생식기"
+  #   inherit_conditions_from: ct_gu
+  # - category_id: ct_ped_msk
+  #   parent_category_id: ct_ped
+  #   name: "관절 및 사지"
+  #   inherit_conditions_from: ct_msk
 
   - category_id: mri
     name: "MRI"
     conditions:
-      - operator: contains
+      - operator: equals
         field: modality
         value: "MR"
   - category_id: mri_neu
@@ -767,12 +776,21 @@ classification_rules:
     conditions:
       - logic: OR
         conditions:
-          - operator: contains
+          - operator: equals
             field: assign
-            value: "H&N"
+            value: "Neuro"
           - operator: contains
-            field: assign
-            value: "NEU"
+            field: exam_name
+            value: "brain"
+          - operator: contains
+            field: exam_name
+            value: "diffusion"
+          - operator: contains
+            field: exam_name
+            value: "stroke"
+          - operator: contains
+            field: exam_name
+            value: "cranial"
       - operator: not_contains
         field: exam_name
         value: "SPINE"
@@ -781,53 +799,22 @@ classification_rules:
     name: "심장"
     conditions:
       - operator: contains
-        field: assign
-        value: "CARDIAC"
+        field: exam_name
+        value: "Cardio"
   - category_id: mri_abd
     parent_category_id: mri
     name: "복부"
     conditions:
-      - operator: contains
+      - operator: equals
         field: assign
-        value: "ABD"
-      - logic: OR
-        conditions:
-          - operator: not_contains
-            field: exam_name
-            value: "pelvis"
-          - operator: not_contains
-            field: exam_name
-            value: "kidney"
-          - operator: not_contains
-            field: exam_name
-            value: "scrotum"
-          - operator: not_contains
-            field: exam_name
-            value: "prostate"
-          - operator: not_contains
-            field: exam_name
-            value: "bladder"
+        value: "Abdomen"
   - category_id: mri_gu
     parent_category_id: mri
     name: "비뇨생식기"
     conditions:
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: exam_name
-            value: "pelvis"
-          - operator: contains
-            field: exam_name
-            value: "kidney"
-          - operator: contains
-            field: exam_name
-            value: "scrotum"
-          - operator: contains
-            field: exam_name
-            value: "prostate"
-          - operator: contains
-            field: exam_name
-            value: "bladder"
+      - operator: equals
+        field: assign
+        value: "Genitourinary"
   - category_id: mri_spine
     parent_category_id: mri
     name: "척추"
@@ -841,49 +828,47 @@ classification_rules:
     name: "관절 및 사지"
     priority: 3
     conditions:
-      - logic: AND
-        conditions:
-          - operator: contains
-            field: assign
-            value: "MSK"
-          - operator: not_contains
-            field: exam_name
-            value: "SPINE"
+      - operator: equals
+        field: assign
+        value: "Musculoskeletal"
+      - operator: not_contains
+        field: exam_name
+        value: "SPINE"
   - category_id: mri_breast
     parent_category_id: mri
     name: "유방"
     conditions:
-      - operator: contains
+      - operator: equals
         field: assign
-        value: "MAM"
+        value: "Breast"
   - category_id: mri_ped
     parent_category_id: mri
     name: "소아"
     priority: 1
     conditions:
-      - operator: lessThan
-        field: age
-        value: 17
-  - category_id: mri_ped_neu
-    parent_category_id: mri_ped
-    name: "신경두경부"
-    inherit_conditions_from: mri_neu
-  - category_id: mri_ped_abd
-    parent_category_id: mri_ped
-    name: "복부"
-    inherit_conditions_from: mri_abd
-  - category_id: mri_ped_spine
-    parent_category_id: mri_ped
-    name: "척추"
-    inherit_conditions_from: mri_spine
-  - category_id: mri_ped_msk
-    parent_category_id: mri_ped
-    name: "관절 및 사지"
-    inherit_conditions_from: mri_msk
+      - operator: equals
+        field: assign
+        value: "Pediatrics"
+  # - category_id: mri_ped_neu
+  #   parent_category_id: mri_ped
+  #   name: "신경두경부"
+  #   inherit_conditions_from: mri_neu
+  # - category_id: mri_ped_abd
+  #   parent_category_id: mri_ped
+  #   name: "복부"
+  #   inherit_conditions_from: mri_abd
+  # - category_id: mri_ped_spine
+  #   parent_category_id: mri_ped
+  #   name: "척추"
+  #   inherit_conditions_from: mri_spine
+  # - category_id: mri_ped_msk
+  #   parent_category_id: mri_ped
+  #   name: "관절 및 사지"
+  #   inherit_conditions_from: mri_msk
   - category_id: ultrasound
     name: "초음파"
     conditions:
-      - operator: contains
+      - operator: equals
         field: modality
         value: "US"
       - logic: OR
@@ -897,56 +882,41 @@ classification_rules:
           - operator: not_contains
             field: exam_name
             value: "intussusception"
-      - operator: not_contains
-        field: modality
-        value: "XA"
   - category_id: ultrasound_ped
     parent_category_id: ultrasound
     name: "소아"
     priority: 1
     conditions:
-      - operator: lessThan
-        field: age
-        value: 17
-  - category_id: ultrasound_ped_head
-    parent_category_id: ultrasound_ped
-    name: "두경부"
-    inherit_conditions_from: ultrasound_head
-  - category_id: ultrasound_ped_abd
-    parent_category_id: ultrasound_ped
-    name: "복부"
-    inherit_conditions_from: ultrasound_abd
-  - category_id: ultrasound_ped_gu
-    parent_category_id: ultrasound_ped
-    name: "비뇨기계"
-    inherit_conditions_from: ultrasound_gu
-  - category_id: ultrasound_ped_msk
-    parent_category_id: ultrasound_ped
-    name: "근골격계"
-    inherit_conditions_from: ultrasound_msk
+      - operator: equals
+        field: assign
+        value: "Pediatrics"
+  # - category_id: ultrasound_ped_head
+  #   parent_category_id: ultrasound_ped
+  #   name: "두경부"
+  #   inherit_conditions_from: ultrasound_head
+  # - category_id: ultrasound_ped_abd
+  #   parent_category_id: ultrasound_ped
+  #   name: "복부"
+  #   inherit_conditions_from: ultrasound_abd
+  # - category_id: ultrasound_ped_gu
+  #   parent_category_id: ultrasound_ped
+  #   name: "비뇨기계"
+  #   inherit_conditions_from: ultrasound_gu
+  # - category_id: ultrasound_ped_msk
+  #   parent_category_id: ultrasound_ped
+  #   name: "근골격계"
+  #   inherit_conditions_from: ultrasound_msk
   - category_id: ultrasound_head
     parent_category_id: ultrasound
     name: "두경부"
     conditions:
       - logic: OR
         conditions:
-          - operator: contains
+          - operator: equals
             field: assign
-            value: "NEU"
-          - operator: contains
-            field: assign
-            value: "H&N"
+            value: "Neuro"
       - logic: OR
         conditions:
-          - operator: not_contains
-            field: exam_name
-            value: "penis"
-          - operator: not_contains
-            field: exam_name
-            value: "scrot"
-          - operator: not_contains
-            field: exam_name
-            value: "생식기"
           - operator: not_contains
             field: exam_name
             value: "abdomen doppler"
@@ -967,26 +937,14 @@ classification_rules:
     parent_category_id: ultrasound
     name: "복부"
     conditions:
-      - operator: contains
+      - operator: equals
         field: assign
-        value: "ABD"
+        value: "Abdomen"
       - logic: OR
         conditions:
           - operator: not_contains
             field: exam_name
-            value: "penis"
-          - operator: not_contains
-            field: exam_name
-            value: "scrot"
-          - operator: not_contains
-            field: exam_name
-            value: "생식기"
-          - operator: not_contains
-            field: exam_name
             value: "abdomen doppler"
-          - operator: not_contains
-            field: exam_name
-            value: "carotid doppler"
           - operator: not_contains
             field: exam_name
             value: "color doppler"
@@ -996,9 +954,12 @@ classification_rules:
     conditions:
       - logic: OR
         conditions:
-          - operator: contains
+          - operator: equals
             field: assign
-            value: "URO"
+            value: "Genitourinary"
+          - operator: equals
+            field: assign
+            value: "OBGY"
           - operator: contains
             field: exam_name
             value: "penis"
@@ -1012,16 +973,16 @@ classification_rules:
     parent_category_id: ultrasound
     name: "근골격계"
     conditions:
-      - operator: contains
+      - operator: equals
         field: assign
-        value: "MSK"
+        value: "Musculoskeletal"
   - category_id: ultrasound_breast
     parent_category_id: ultrasound
     name: "유방"
     conditions:
-      - operator: contains
+      - operator: equals
         field: assign
-        value: "MAM"
+        value: "Breast"
   - category_id: ultrasound_doppler
     parent_category_id: ultrasound
     name: "도플러"
@@ -1045,65 +1006,60 @@ classification_rules:
     name: "투시"
     priority: 3
     conditions:
-      - operator: contains
+      - operator: equals
         field: modality
-        value: "RF"
+        value: "DF"
   - category_id: fluoroscopy_abd
     parent_category_id: fluoroscopy
     name: "복부"
     conditions:
-      - operator: contains
+      - operator: equals  
         field: assign
-        value: "ABD"
-      - logic: OR
-        conditions:
-          - operator: not_contains
-            field: exam_name
-            value: "Arthro CT"
+        value: "Abdomen"
   - category_id: fluoroscopy_gu
     parent_category_id: fluoroscopy
     name: "비뇨생식기계"
     conditions:
       - logic: OR
         conditions:
-          - operator: contains
+          - operator: equals
             field: assign
-            value: "URO"
-          - operator: contains
+            value: "Genitourinary"
+          - operator: equals
             field: assign
             value: "OBGY"
   - category_id: fluoroscopy_ped
     parent_category_id: fluoroscopy
     name: "소아"
     conditions:
-      - operator: lessThan
-        field: age
-        value: 17
+      - operator: equals
+        field: assign
+        value: "Pediatrics"
 
-  # 투시 소아 비고
-  - category_id: fluoroscopy_ped_abd
-    parent_category_id: fluoroscopy_ped
-    name: "복부"
-    inherit_conditions_from: fluoroscopy_abd
-  - category_id: fluoroscopy_ped_gu
-    parent_category_id: fluoroscopy_ped
-    name: "비뇨생식기계"
-    inherit_conditions_from: fluoroscopy_gu
-  - category_id: fluoroscopy_ped_etc
-    parent_category_id: fluoroscopy_ped
-    name: "기타"
-    inherit_conditions_from: fluoroscopy_etc
-    priority: 999
-  - category_id: fluoroscopy_etc
-    parent_category_id: fluoroscopy
-    name: "기타"
-    conditions: []
-    priority: 999
+  # # 투시 소아 비고
+  # - category_id: fluoroscopy_ped_abd
+  #   parent_category_id: fluoroscopy_ped
+  #   name: "복부"
+  #   inherit_conditions_from: fluoroscopy_abd
+  # - category_id: fluoroscopy_ped_gu
+  #   parent_category_id: fluoroscopy_ped
+  #   name: "비뇨생식기계"
+  #   inherit_conditions_from: fluoroscopy_gu
+  # - category_id: fluoroscopy_ped_etc
+  #   parent_category_id: fluoroscopy_ped
+  #   name: "기타"
+  #   inherit_conditions_from: fluoroscopy_etc
+  #   priority: 999
+  # - category_id: fluoroscopy_etc
+  #   parent_category_id: fluoroscopy
+  #   name: "기타"
+  #   conditions: []
+  #   priority: 999
+
   - category_id: intervention
     name: "시술"
     priority: 1
     composed_by_subcategories: true
-    # 하위 카테고리로만 구성되므로 conditions는 무시됨
   - category_id: intervention_neu
     parent_category_id: intervention
     name: "뇌혈관조영술 및 주요 신경중재 치료"
@@ -1125,6 +1081,7 @@ classification_rules:
   - category_id: intervention_thyroid
     parent_category_id: intervention
     name: "초음파 유도하 갑상선 침생검 또는 세침흡인술"
+    priority: 5
     conditions:
       - logic: OR
         conditions:
@@ -1133,15 +1090,21 @@ classification_rules:
             value: "갑상선"
           - operator: contains
             field: exam_name
-            value: "침생검"
+            value: "thyroid"
+      - logic: OR
+        conditions:
           - operator: contains
             field: exam_name
-            value: "세침흡인술"
+            value: "biopsy"
+          - operator: contains
+            field: exam_name
+            value: "aspiration"
   - category_id: intervention_us
     parent_category_id: intervention
     name: "초음파 유도하 경피적 생검"
+    priority: 6
     conditions:
-      - operator: contains
+      - operator: equals
         field: modality
         value: "US"
       - logic: OR
@@ -1152,11 +1115,14 @@ classification_rules:
           - operator: contains
             field: exam_name
             value: "조직검사"
+          - operator: contains
+            field: exam_name
+            value: "biopsy"
   - category_id: intervention_ct
     parent_category_id: intervention
     name: "CT 유도하 경피적 생검"
     conditions:
-      - operator: contains
+      - operator: equals
         field: modality
         value: "CT"
       - logic: OR
@@ -1167,6 +1133,9 @@ classification_rules:
           - operator: contains
             field: exam_name
             value: "조직검사"
+          - operator: contains
+            field: exam_name
+            value: "biopsy"
   - category_id: intervention_intu
     parent_category_id: intervention
     name: "소아 장중첩증 정복술"
@@ -1185,9 +1154,9 @@ classification_rules:
     parent_category_id: intervention
     name: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관내 치료"
     conditions:
-      - operator: contains
+      - operator: equals
         field: modality
-        value: "XA"
+        value: "DS"
       - logic: OR
         conditions:
           - operator: contains
@@ -1203,9 +1172,9 @@ classification_rules:
     parent_category_id: intervention
     name: "경피적 담도계 배액술"
     conditions:
-      - operator: contains
+      - operator: equals
         field: modality
-        value: "XA"
+        value: "DS"
       - logic: OR
         conditions:
           - operator: contains
@@ -1217,60 +1186,61 @@ classification_rules:
           - operator: contains
             field: exam_name
             value: "biliary"
+          - operator: contains
+            field: exam_name
+            value: "PTBD"
+          - operator: contains
+            field: exam_name
+            value: "Cholecystostomy"
   - category_id: intervention_pcn
     parent_category_id: intervention
     name: "경피적신우배액술"
     conditions:
-      - operator: contains
+      - operator: equals
         field: modality
-        value: "XA"
-      - operator: contains
-        field: exam_name
-        value: "nephrostomy"
+        value: "DS"
+      - logic: OR
+        conditions:
+          - operator: contains
+            field: exam_name
+            value: "PCN"
+          - operator: contains
+            field: exam_name
+            value: "Nephrostomy"
   - category_id: intervention_drain
     parent_category_id: intervention
     name: "그 외 경피적 배액술"
+    priority: 11
     conditions:
       - logic: OR
         conditions:
           - operator: contains
             field: exam_name
-            value: "drain"
+            value: "drainage"
           - operator: contains
             field: exam_name
-            value: "복막천자"
-          - operator: contains
-            field: exam_name
-            value: "흉막천자"
-      - logic: OR
-        conditions:
-          - operator: not_contains
-            field: exam_name
-            value: "nephrostomy"
-          - operator: not_contains
-            field: exam_name
-            value: "transhepatic"
-          - operator: not_contains
-            field: exam_name
-            value: "cholecystostomy"
+            value: "Chest tube"
   - category_id: intervention_cvc
     parent_category_id: intervention
     name: "중심정맥 카테터 삽입술"
     conditions:
-      - operator: contains
+      - operator: equals
         field: modality
-        value: "XA"
+        value: "DS"
       - logic: OR
         conditions:
           - operator: contains
             field: exam_name
-            value: "중심정맥"
+            value: "catheter insertion"
           - operator: contains
             field: exam_name
-            value: "쇄골하정맥"
+            value: "PICC"
           - operator: contains
             field: exam_name
-            value: "Placement Of Cvc"
+            value: "chemoport"
+          - operator: contains
+            field: exam_name
+            value: "central line"
   - category_id: intervention_tumor
     parent_category_id: intervention
     name: "영상유도하 종양치료"
@@ -1289,6 +1259,9 @@ classification_rules:
           - operator: contains
             field: exam_name
             value: "HIFU"
+          - operator: contains
+            field: exam_name
+            value: "TACE"
   - category_id: intervention_etc
     parent_category_id: intervention
     name: "기타"
@@ -1296,7 +1269,7 @@ classification_rules:
     conditions:
       - operator: contains
         field: modality
-        value: "XA"
+        value: "DS"
   - category_id: nuclearmedicine
     name: "핵의학"
     conditions:
@@ -1359,10 +1332,6 @@ validation_rules:
     sex:
       type: "enum"
       values: ["M", "F"]
-    study_date:
-      type: "date"
-      format: "YYYY-MM-DD"
-      allow_future: false
     reading_date:
       type: "date"
       format: "YYYY-MM-DD"
@@ -1377,131 +1346,6 @@ export_as_sheet:
     date_format: "YYYY-MM-DD"
     time_format: "HH-mm-ss"
   templates:
-    - name: "for_record2020"
-      description: "record2020 사이트 업로드용 (예시 엑셀 파일과 동일한 구조)"
-      column_order: 
-        - "serial_number"
-        - "modality"
-        - "specialty"
-        - "age_group"
-        - "sex"
-        - "study_date"
-        - "reading_date"
-        - "exam_name"
-      
-      columns:
-        # 일련번호 (자동 생성)
-        - serial_number:
-            name: "일련번호"
-            type: "number"
-            width: 8
-            value:
-              auto_increment:
-                start_value: 1
-                increment: 1
-        
-        # 검사종류 (메타데이터에서 가져오기)
-        - modality:
-            name: "검사종류"
-            type: "string"
-            width: 12
-            value:
-              from_metadata:
-                key: examination_type_name
-        
-        # 세부전공 (조건부 로직으로 가져오기)
-        - specialty:
-            name: "세부전공"
-            type: "string"
-            width: 12
-            value:
-              conditional:
-                conditions:
-                  - condition:
-                      field: "specialty_name"
-                      operator: "equals"
-                      value: "소아"
-                    value_source:
-                      from_metadata:
-                        key: "remarks_name"
-                  - condition:
-                      field: "specialty_name"
-                      operator: "not_equals"
-                      value: "소아"
-                    value_source:
-                      from_metadata:
-                        key: "specialty_name"
-                default:
-                  from_metadata:
-                    key: "specialty_name"
-        
-        # 소아/성인 구분
-        - age_group:
-            name: "소아/성인"
-            type: "string"
-            width: 8
-            description: "소아(17세 미만) 또는 성인 구분"
-            value:
-              conditional:
-                conditions:
-                  - condition:
-                      field: "specialty_name"
-                      operator: "equals"
-                      value: "소아"
-                    value_source:
-                      static:
-                        value: "소아"
-                  - condition:
-                      field: "specialty_name"
-                      operator: "not_equals"
-                      value: "소아"
-                    value_source:
-                      static:
-                        value: "성인"
-                default:
-                  static:
-                    value: "성인"
-        
-        # 환자성별 (데이터 필드에서 가져오기)
-        - sex:
-            name: "환자성별(M/F)"
-            type: "string"
-            width: 8
-            value:
-              from_field:
-                field: "sex"
-        
-        # 검사일 (데이터 필드에서 가져오기)
-        - study_date:
-            name: "검사일(년-월-일)"
-            type: "date"
-            width: 12
-            date_format: "YYYY-MM-DD"
-            value:
-              from_field:
-                field: "study_date"
-        
-        # 판독일 (데이터 필드에서 가져오기)
-        - reading_date:
-            name: "판독일(년-월-일)"
-            type: "date"
-            width: 12
-            date_format: "YYYY-MM-DD"
-            value:
-              from_field:
-                field: "reading_date"
-        
-        # 검사명 (fallback chain으로 가져오기)
-        - exam_name:
-            name: "검사명"
-            type: "string"
-            width: 20
-            value:
-              fallback_chain:
-                - from_field:
-                    field: "exam_name"
-                - static:
-                    value: "검사명 없음"
     - name: "for_record2"
       description: "record2 사이트 업로드용 (예시 엑셀 파일과 동일한 구조)"
       column_order: 
@@ -1548,8 +1392,11 @@ export_as_sheet:
             type: "string"
             width: 8
             value:
-              from_field:
-                field: "sex"
+              fallback_chain:
+                - from_field:
+                    field: "sex"
+                - static:
+                    value: "성별정보 없음"
         
         # 검사일 (데이터 필드에서 가져오기)
         - study_date:
@@ -1558,8 +1405,11 @@ export_as_sheet:
             width: 12
             date_format: "YYYY-MM-DD"
             value:
-              from_field:
-                field: "study_date"
+              fallback_chain:
+                - from_field:
+                    field: "study_date"
+                - static:
+                    value: "검사일 없음"
         
         # 판독일 (데이터 필드에서 가져오기)
         - reading_date:
