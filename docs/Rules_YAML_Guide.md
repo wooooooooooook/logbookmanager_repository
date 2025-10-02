@@ -1,0 +1,504 @@
+# Rules.yaml 파일 가이드
+
+## 📋 개요
+
+`static/rules.yaml` 파일은 Logbook Manager의 **핵심 설정 파일**로, XLSX 파일의 데이터를 자동으로 분류하고 관리하는 모든 규칙과 설정을 정의합니다.
+
+## 🗂️ 파일 구조
+
+`rules.yaml` 파일은 다음과 같은 주요 섹션으로 구성됩니다:
+
+```yaml
+# 1. 메타데이터
+title: '커스텀'
+version: '9.9.9'
+created_at: '2025-09-17T00:00:00Z'
+updated_at: '2025-09-17T00:00:00Z'
+description: "중앙대학교병원용 \nZetta PACS \n2023년 개정 logbook 실태조사 \n검사종류/검사명/부서/담당구분 기반 분류"
+author:
+  name: '김영욱'
+  email: 'wooooooooooook@gmail.com'
+
+# 2. 컬럼 매핑
+column_mapping:
+  required: [...]
+  default_order: [...]
+
+# 3. 카테고리 계층 구조
+categories: [...]
+
+# 4. 분류 규칙
+classification_rules: [...]
+
+# 5. 기본 설정
+default_classification: { ... }
+validation_rules: { ... }
+
+# 6. 내보내기 설정 (새로 추가)
+export_as_sheet:
+  default_format: 'csv'
+  encoding: 'utf-8'
+  filename: { ... }
+  templates: [...]
+```
+
+## 1. 메타데이터 섹션
+
+파일의 버전 정보와 메타데이터를 정의합니다.
+
+```yaml
+title: '커스텀'
+version: '9.9.9'
+created_at: '2025-09-17T00:00:00Z'
+updated_at: '2025-09-17T00:00:00Z'
+description: "중앙대학교병원용 \nZetta PACS \n2023년 개정 logbook 실태조사 \n검사종류/검사명/부서/담당구분 기반 분류"
+author:
+  name: '김영욱'
+  email: 'wooooooooooook@gmail.com'
+```
+
+### 속성 설명
+
+- `title`: 설정 파일의 제목
+- `version`: 설정 파일의 버전
+- `created_at`: 파일 최초 생성 일시 (ISO 8601 형식)
+- `updated_at`: 파일 최종 수정 일시 (ISO 8601 형식)
+- `description`: 버전에 대한 설명 (여러 줄 지원)
+- `author`: 작성자 정보
+  - `name`: 작성자 이름
+  - `email`: 작성자 이메일
+
+## 2. 컬럼 매핑 (`column_mapping`)
+
+XLSX 파일의 컬럼과 시스템 내부 필드를 매핑하는 설정입니다.
+
+```yaml
+column_mapping:
+  required:
+    - name: '일렬번호'
+      field: 'id'
+      type: 'string'
+      aliases: ['STUDY KEY', 'STUDY_KEY', 'id', '일렬번호']
+      description: '로그북 데이터의 고유 식별자'
+    # ... 기타 필드들
+  default_order:
+    - 'study_date'
+    - 'reading_date'
+    - 'modality'
+    # ... 기타 순서
+```
+
+### 필수 필드 (`required`)
+
+각 필드는 다음 속성을 가집니다:
+
+| 속성          | 타입   | 설명                                     |
+| ------------- | ------ | ---------------------------------------- |
+| `name`        | string | 필드의 표시 이름                         |
+| `field`       | string | 시스템 내부에서 사용하는 필드명          |
+| `type`        | string | 데이터 타입 (string, number, date)       |
+| `aliases`     | array  | XLSX 파일에서 인식할 수 있는 컬럼명 목록 |
+| `description` | string | 필드에 대한 설명                         |
+
+### 현재 정의된 필드
+
+1. **id** (일렬번호): 데이터의 고유 식별자
+2. **modality** (검사종류): 검사 방법 (CR, DR, CT, MR 등)
+3. **exam_name** (검사명): 수행된 검사의 상세 이름
+4. **department** (부서): 검사를 의뢰한 부서
+5. **assign** (담당구분): 검사 담당 전문의 구분
+6. **age** (나이): 환자의 나이
+7. **sex** (환자성별): 환자의 성별 (M/F)
+8. **study_date** (검사일): 검사 수행 날짜
+9. **reading_date** (판독일): 판독 보고서 작성 날짜
+
+### ⚠️ 필수 필드 주의사항
+
+#### 시스템 필수 필드 (절대 수정 금지)
+
+다음 필드들은 시스템의 핵심 기능과 밀접하게 연관되어 있어 **절대 다른 이름으로 변경하면 안 됩니다**.
+
+##### 1. id 필드
+
+- **필드명**: `id` (고정)
+- **용도**: 데이터의 고유 식별자
+- **시스템 의존성**: 데이터 저장, 행 선택, 업데이트, 삭제 등 모든 핵심 기능
+- **변경 시 영향**: 앱이 완전히 작동하지 않음
+
+##### 2. reading_date 필드
+
+- **필드명**: `reading_date` (고정)
+- **용도**: 판독 보고서 작성 날짜
+- **시스템 의존성**: 기간 프리셋 생성, 날짜 필터링, 통계 계산, 월별 분석
+- **변경 시 영향**: 날짜 관련 모든 기능이 작동하지 않음
+
+#### 올바른 사용 예시
+
+```yaml
+# ✅ 올바른 방법 - 시스템 필수 필드
+- name: '고유번호'
+  field: 'id' # 절대 변경 금지
+  type: 'string'
+- name: '판독일(년-월-일)'
+  field: 'reading_date' # 절대 변경 금지
+  type: 'date'
+  date_format: 'YYYY-MM-DD'
+```
+
+#### 잘못된 사용 예시
+
+```yaml
+# ❌ 잘못된 방법 - 시스템 필수 필드 변경
+- name: '고유번호'
+  field: 'unique_id' # ❌ 앱 오류 발생
+- name: '판독일(년-월-일)'
+  field: 'draft_date' # ❌ 앱 오류 발생
+```
+
+> **💡 중요**: `id`와 `reading_date` 필드명을 변경하면 앱이 정상 작동하지 않습니다. 반드시 이 필드명들을 유지하세요.
+
+### 기본 정렬 순서 (`default_order`)
+
+데이터 표시 시 사용할 기본 컬럼 순서를 정의합니다.
+
+## 3. 카테고리 계층 구조 (`categories`)
+
+분류될 카테고리의 **계층적 구조**와 목표량을 정의합니다.
+
+**목표량 설정**: `target` 속성은 선택사항입니다. 설정된 경우 달성률이 계산되고, 설정되지 않은 경우 달성률 계산에서 제외됩니다.
+
+### 3.1 특수 카테고리 (Special Categories)
+
+시스템에는 **특수 카테고리**가 존재하며, 이들은 앱에 하드코딩되어 있어 **ID를 절대 수정하면 안 됩니다**.
+
+#### 3.1.1 데이터 보완 필요 (`dataValidationRequired`)
+
+**카테고리 ID**: `dataValidationRequired` (수정 금지)
+
+필수 필드가 누락되어 보완이 필요한 항목들을 분류하는 특수 카테고리입니다.
+
+```yaml
+- name: '데이터 보완 필요'
+  id: 'dataValidationRequired' # ⚠️ 수정 금지 - 앱에 하드코딩됨
+  description: '필수 필드가 누락되어 보완이 필요한 항목'
+  subcategories:
+    - name: '필수 필드 누락'
+      id: 'dataValidationRequired_required' # ⚠️ 수정 금지
+      description: '필수 필드가 누락된 항목'
+    - name: '선택적 필드 누락'
+      id: 'dataValidationRequired_optional' # ⚠️ 수정 금지
+      description: '선택적 필드가 누락된 항목'
+```
+
+**특징**:
+
+- **최우선 분류**: `priority: 0`으로 설정되어 다른 모든 분류 규칙보다 먼저 적용됩니다
+- **자동 분류**: 필수 필드 누락 여부에 따라 자동으로 분류됩니다
+- **하드코딩**: 앱 내부에서 이 ID들을 참조하므로 변경 시 오류가 발생합니다
+
+#### 3.1.2 미분류 (`unclassified`)
+
+**카테고리 ID**: `unclassified` (수정 금지)
+
+정의된 분류 규칙에 해당하지 않는 항목들을 분류하는 특수 카테고리입니다.
+
+```yaml
+- name: '미분류'
+  id: 'unclassified' # ⚠️ 수정 금지 - 앱에 하드코딩됨
+  description: '미분류 항목'
+```
+
+**특징**:
+
+- **기본 분류**: 모든 분류 규칙에 해당하지 않는 경우의 기본값입니다
+- **하드코딩**: 앱 내부에서 이 ID를 참조하므로 변경 시 오류가 발생합니다
+- **자동 적용**: `default_classification` 섹션에서 설정됩니다
+
+#### 3.1.3 특수 카테고리 주의사항
+
+> **⚠️ 중요**: 다음 사항을 반드시 준수해야 합니다.
+
+1. **ID 수정 금지**: `dataValidationRequired`, `unclassified` ID는 절대 수정하지 마세요
+2. **앱 호환성**: 이 ID들이 변경되면 앱이 정상 작동하지 않습니다
+3. **하위 카테고리 ID**: `dataValidationRequired_required`, `dataValidationRequired_optional`도 수정 금지입니다
+4. **기능적 역할**: 이 카테고리들은 시스템의 핵심 기능과 밀접하게 연관되어 있습니다
+
+**올바른 사용 예시**:
+
+```yaml
+# ✅ 올바른 방법 - ID는 그대로 두고 다른 속성만 수정
+- name: '데이터 보완 필요'
+  id: 'dataValidationRequired' # 수정하지 않음
+  description: '필수 필드가 누락되어 보완이 필요한 항목' # 수정 가능
+```
+
+**잘못된 사용 예시**:
+
+```yaml
+# ❌ 잘못된 방법 - ID를 수정하면 안 됨
+- name: '데이터 보완 필요'
+  id: 'dataValidation' # 수정하면 안 됨 - 앱 오류 발생
+```
+
+```yaml
+categories:
+  - name: '일반촬영'
+    id: 'xray'
+    target: 10000
+    description: '일반촬영'
+    subcategories:
+      - name: '신경두경부'
+        id: 'xray_neu'
+        target: 300
+      - name: '소아'
+        id: 'xray_ped'
+        target: 400
+        priority: 1
+        subcategories: # 소아 하위의 비고 레벨
+          - name: '신경두경부'
+            id: 'xray_ped_neu'
+            target: 50
+          - name: '기타'
+            id: 'xray_ped_etc'
+            # target 없음 - 달성률 계산 안함
+            priority: 99
+          # ... 기타 비고들
+```
+
+### 카테고리 속성
+
+| 속성            | 타입   | 필수 | 설명                                                              |
+| --------------- | ------ | ---- | ----------------------------------------------------------------- |
+| `name`          | string | ✓    | 카테고리 표시 이름                                                |
+| `id`            | string | ✓    | 카테고리 고유 식별자                                              |
+| `target`        | number |      | 목표량 (있는 경우 달성률 계산, 없으면 계산 안함)                  |
+| `description`   | string |      | 카테고리 설명                                                     |
+| `priority`      | number |      | 참고용 우선순위 (실제로는 `classification_rules`의 priority 사용) |
+| `subcategories` | array  |      | 하위 카테고리 목록                                                |
+
+### 계층 구조
+
+현재 시스템은 **최대 3레벨**의 계층 구조를 지원합니다:
+
+1. **1레벨 (검사종류)**: 일반촬영, 유방촬영, CT, MRI, 초음파, 투시, 시술, 핵의학
+2. **2레벨 (세부전공)**: 신경두경부, 흉부, 복부, 심장, 혈관, 비뇨생식기, 척추, 관절 및 사지, 소아 등
+3. **3레벨 (비고)**: 소아 등 일부 세부전공의 하위 분류
+
+### 카테고리 ID 명명 규칙
+
+시스템의 일관성과 파싱 정확성을 위해 카테고리 ID는 **레벨별 언더스코어 개수 규칙**을 따라야 합니다:
+
+| 레벨      | 언더스코어 개수 | 예시                                   | 설명          |
+| --------- | --------------- | -------------------------------------- | ------------- |
+| **1레벨** | 0개             | `xray`, `ct`, `mri`, `nuclearmedicine` | 검사종류 레벨 |
+| **2레벨** | 1개             | `xray_neu`, `ct_cht`, `mri_abd`        | 세부전공 레벨 |
+| **3레벨** | 2개             | `xray_ped_neu`, `ct_ped_cht`           | 비고 레벨     |
+
+#### 올바른 예시
+
+```yaml
+categories:
+  - name: '일반촬영'
+    id: 'xray' # ✅ 레벨 1: 언더스코어 0개
+    subcategories:
+      - name: '신경두경부'
+        id: 'xray_neu' # ✅ 레벨 2: 언더스코어 1개
+      - name: '소아'
+        id: 'xray_ped' # ✅ 레벨 2: 언더스코어 1개
+        subcategories:
+          - name: '신경두경부'
+            id: 'xray_ped_neu' # ✅ 레벨 3: 언더스코어 2개
+          - name: '기타'
+            id: 'xray_ped_etc' # ✅ 레벨 3: 언더스코어 2개
+```
+
+#### 잘못된 예시
+
+```yaml
+categories:
+  - name: '핵의학'
+    id: 'nuclear_medicine' # ❌ 레벨 1인데 언더스코어 1개
+  - name: '일반촬영'
+    id: 'xray'
+    subcategories:
+      - name: '신경두경부'
+        id: 'xray_neu_rad' # ❌ 레벨 2인데 언더스코어 2개
+```
+
+#### 자동 검증
+
+YAML 파일을 로드할 때 시스템이 자동으로 카테고리 ID의 언더스코어 개수를 검증합니다:
+
+- **검증 실패 시**: 명확한 오류 메시지와 함께 파싱이 중단됩니다
+- **오류 메시지 예시**:
+  ```
+  카테고리 ID 'nuclear_medicine'의 언더스코어 개수가 잘못되었습니다.
+  레벨 1이므로 언더스코어 0개가 필요하지만 1개가 있습니다.
+  ```
+
+> **⚠️ 중요**: 이 규칙을 위반하면 YAML 파일 로드가 실패하므로, 카테고리 ID 작성 시 반드시 이 규칙을 준수해야 합니다.
+
+### 비고 레벨을 가지는 세부전공
+
+소아 등 일부 세부전공은 하위에 **비고 레벨**을 가질 수 있습니다:
+
+```yaml
+- name: '소아'
+  id: 'ct_ped'
+  target: 100
+  subcategories: # 비고 레벨
+    - name: '신경두경부'
+      id: 'ct_ped_neu'
+      target: 30
+    - name: '흉부'
+      id: 'ct_ped_cht'
+      target: 25
+    - name: '기타'
+      id: 'ct_ped_etc'
+      # target 없음 - 달성률 계산 안함
+    # ... 기타 비고들
+```
+
+## 4. 분류 규칙 (`classification_rules`)
+
+데이터를 카테고리에 자동으로 분류하는 규칙을 정의합니다.
+
+> **📖 상세 정보**: 분류 규칙에 대한 자세한 설명은 [**분류 규칙 작성 가이드**](./Classification_Rules_Guide.md)를 참조하세요.
+
+분류 규칙은 계층적 구조(검사종류 → 세부전공 → 비고)로 데이터를 자동 분류하며, 우선순위와 조건 기반으로 동작합니다.
+
+## 5. 기본 분류 (`default_classification`)
+
+정의된 규칙에 해당하지 않는 데이터의 기본 분류를 설정합니다. 자세한 내용은 [분류 규칙 작성 가이드](./Classification_Rules_Guide.md#5-기본-분류-default_classification)를 참조하세요.
+
+## 6. 분류 우선순위
+
+분류 규칙의 우선순위와 관련된 자세한 내용은 [분류 규칙 작성 가이드](./Classification_Rules_Guide.md#6-분류-우선순위)를 참조하세요.
+
+> **💡 중요**: 2레벨(세부전공) 이상의 분류 규칙에서는 `parent_category_id`를 **필수**로 지정해야 합니다. 이는 명확한 계층 구조 정의와 분류 로직의 안정성을 위해 필요합니다.
+
+## 7. 데이터 검증 규칙 (`validation_rules`)
+
+불러온 데이터의 유효성을 검증하는 규칙을 정의합니다.
+
+```yaml
+validation_rules:
+  required_fields:
+    - 'id'
+    - 'modality'
+    - 'exam_name'
+    - 'assign'
+    - 'study_date'
+  field_types:
+    id:
+      type: 'string'
+    modality:
+      type: 'string'
+    exam_name:
+      type: 'string'
+    department:
+      type: 'string'
+    assign:
+      type: 'string'
+    age:
+      type: 'number'
+      min: 0
+      max: 150
+    sex:
+      type: 'enum'
+      values: ['M', 'F']
+    study_date:
+      type: 'date'
+      format: 'YYYY-MM-DD'
+      allow_future: false
+    reading_date:
+      type: 'date'
+      format: 'YYYY-MM-DD'
+      allow_future: false
+```
+
+### 검증 유형
+
+1. **필수 필드**: 반드시 존재해야 하는 필드들
+2. **데이터 타입**: 각 필드의 예상 데이터 타입
+3. **값 범위**: 숫자 필드의 최소/최대값
+4. **열거형**: 제한된 값들 중 하나여야 하는 필드
+5. **날짜 형식**: 날짜 필드의 형식 및 제약사항
+
+## 8. 내보내기 설정 (`export_as_sheet`)
+
+CSV/Excel 내보내기 설정을 정의합니다.
+
+> **📖 상세 정보**: 내보내기 설정의 상세한 구성 방법, 컬럼 매핑, 템플릿 작성 등에 대한 자세한 설명은 [**CSV/Excel 내보내기 가이드**](./CSV_Export_Guide.md)를 참조하세요.
+
+```yaml
+export_as_sheet:
+  default_format: 'csv' # 기본 내보내기 형식
+  encoding: 'utf-8' # 파일 인코딩
+  filename:
+    pattern: 'logbook_export_{date}_{time}'
+    date_format: 'YYYY-MM-DD'
+    time_format: 'HH-mm-ss'
+  templates:
+    - name: 'for_record2020'
+      description: 'record2020 사이트 업로드용'
+      column_order: [...]
+      columns: { ... }
+      template_column_mapping: { ... }
+      ajax_template: |
+        $.ajax({
+          url: "/major/reading/handle/reading_A_upsert.php",
+          type: "POST",
+          data: {
+            sid: "",
+            gubun: {{modality}},
+            kind: {{specialty}},
+            reading_count: {{count}},
+            sdate: "{{start_date}}",
+            edate: "{{end_date}}"
+          },
+          dataType: "text",
+          success: function(e) {
+            console.log("{{modality}} | {{specialty}} 업로드 완료");
+          }
+        });
+```
+
+## 🔧 파일 수정 가이드
+
+> **📖 상세 정보**: 분류 규칙 작성, 조건 상속, 우선순위 설정 등에 대한 자세한 가이드는 [**분류 규칙 작성 가이드**](./Classification_Rules_Guide.md)를 참조하세요.
+
+### 기본 수정 사항
+
+1. **새로운 검사종류 추가**: 카테고리 ID 명명 규칙 준수
+2. **소아 비고 레벨 추가**: 조건 상속 기능 활용
+3. **시술 카테고리 추가**: `composed_by_subcategories` 옵션 사용
+4. **목표량 수정**: `target` 속성 조정
+
+## ⚠️ 주의사항
+
+### 핵심 주의사항
+
+1. **시스템 필수 필드 수정 금지**: `id`와 `reading_date` 필드는 시스템의 핵심 기능에 필수적이므로 절대 다른 이름으로 변경하면 안 됨
+2. **특수 카테고리 ID 수정 금지**: `dataValidationRequired`, `unclassified` 및 관련 하위 카테고리 ID는 앱에 하드코딩되어 있어 절대 수정하면 안 됨
+3. **카테고리 ID 명명 규칙**: 카테고리 ID는 반드시 레벨별 언더스코어 개수 규칙을 따라야 함 (레벨 1: 0개, 레벨 2: 1개, 레벨 3: 2개)
+4. **ID 일관성**: `categories`의 `id`와 `classification_rules`의 `category_id`가 일치해야 함
+5. **우선순위 충돌**: 같은 레벨에서 `priority` 값이 중복되면 예측 불가능한 분류 발생 (특히 소아 분류 누락 위험)
+6. **YAML 문법**: 들여쓰기와 문법을 정확히 지켜야 함
+
+### 상세 주의사항
+
+> **📖 상세 정보**: 분류 규칙 작성 시 주의사항, 우선순위 설정, 조건 상속 등에 대한 자세한 내용은 [**분류 규칙 작성 가이드**](./Classification_Rules_Guide.md)를 참조하세요.
+
+> **📖 상세 정보**: 내보내기 설정 시 주의사항, 컬럼 매핑, 템플릿 작성 등에 대한 자세한 내용은 [**CSV/Excel 내보내기 가이드**](./CSV_Export_Guide.md)를 참조하세요.
+
+## 📚 관련 문서
+
+- **[분류 규칙 작성 가이드](./Classification_Rules_Guide.md)**: 분류 규칙의 상세한 작성 방법, 조건 상속, 우선순위 설정
+- **[CSV/Excel 내보내기 가이드](./CSV_Export_Guide.md)**: 내보내기 설정의 상세한 구성 방법, 컬럼 매핑, 템플릿 작성
+- **[전체 개발 가이드](./Overall_Development_Guide.md)**: 프로젝트 전체 구조 및 개발 가이드
+
+---
+
+**이 문서는 `rules.yaml` 파일의 모든 섹션을 포괄하는 완전한 가이드입니다.**  
+**파일 수정 시 이 문서를 참조하여 올바른 구조와 형식을 유지하세요.**
