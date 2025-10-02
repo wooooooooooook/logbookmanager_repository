@@ -59,9 +59,24 @@ jobs:
         run: |
           import os, json
           from pathlib import Path
+          from collections import defaultdict
 
           docs_dir = Path("docs")
-          docs_list = []
+          directories = {}
+          files = []
+          subfolder_descriptions = {}
+
+          # 서브폴더의 description.txt 파일들 수집
+          for desc_file in docs_dir.rglob("description.txt"):
+              relative_path = desc_file.relative_to(docs_dir)
+              if len(relative_path.parts) > 1:
+                  subfolder = str(relative_path.parent)
+                  try:
+                      with open(desc_file, "r", encoding="utf-8") as f:
+                          description = f.read().strip()
+                          subfolder_descriptions[subfolder] = description
+                  except Exception as e:
+                      print(f"Warning: Could not read {desc_file}: {e}")
 
           # 재귀적으로 모든 .md 파일 찾기
           for f in docs_dir.rglob("*.md"):
@@ -71,25 +86,46 @@ jobs:
               # 상대 경로 계산 (docs 폴더 기준)
               relative_path = f.relative_to(docs_dir)
               
+              file_info = {
+                  "path": f.as_posix(),
+                  "title": title,
+                  "filename": f.name
+              }
+              
               # 서브폴더 정보 추출
               if len(relative_path.parts) > 1:
                   subfolder = str(relative_path.parent)
+                  
+                  # 디렉토리 정보 초기화 (아직 없다면)
+                  if subfolder not in directories:
+                      directories[subfolder] = {
+                          "description": subfolder_descriptions.get(subfolder),
+                          "files": []
+                      }
+                  
+                  # 디렉토리에 파일 추가
+                  directories[subfolder]["files"].append(file_info)
               else:
-                  subfolder = None
-              
-              docs_list.append({
-                  "path": f.as_posix(),
-                  "relative_path": str(relative_path),
-                  "title": title,
-                  "filename": f.name,
-                  "subfolder": subfolder
-              })
+                  files.append(file_info)
 
-          # 서브폴더별로 정렬
-          docs_list.sort(key=lambda x: (x["subfolder"] or "", x["filename"]))
+          # 각 디렉토리의 파일들을 파일명으로 정렬
+          for dir_name in directories:
+              directories[dir_name]["files"].sort(key=lambda x: x["filename"])
+
+          # 루트 파일들을 파일명으로 정렬
+          files.sort(key=lambda x: x["filename"])
+
+          # 디렉토리명으로 정렬
+          sorted_directories = dict(sorted(directories.items()))
+
+          # 최종 JSON 구조 생성
+          docs_data = {
+              "directories": sorted_directories,
+              "files": files
+          }
 
           with open("docs.json", "w", encoding="utf-8") as out:
-              json.dump(docs_list, out, indent=2, ensure_ascii=False)
+              json.dump(docs_data, out, indent=2, ensure_ascii=False)
         shell: python
 
       - name: Commit rules.json and docs.json
