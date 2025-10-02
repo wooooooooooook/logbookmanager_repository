@@ -645,6 +645,9 @@ classification_rules:
           - operator: contains
             field: exam_name
             value: "chest"
+          - operator: contains
+            field: exam_name
+            value: "pulmonary embolism"
   - category_id: ct_cardiac
     parent_category_id: ct
     name: "심장"
@@ -697,13 +700,24 @@ classification_rules:
           - operator: contains
             field: exam_name
             value: "pulmonary vein"
+          - operator: contains
+            field: exam_name
+            value: "venography"
   - category_id: ct_abd
     parent_category_id: ct
     name: "복부"
     conditions:
-      - operator: equals
-        field: assign
-        value: "Abdomen"
+      - logic: OR
+        conditions:
+          - operator: equals
+            field: assign
+            value: "Abdomen"
+          - operator: contains
+            field: exam_name
+            value: "abdomen"
+          - operator: contains
+            field: exam_name
+            value: "liver"
   - category_id: ct_gu
     parent_category_id: ct
     name: "비뇨생식기"
