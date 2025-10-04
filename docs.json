@@ -23,6 +23,11 @@
   },
   "files": [
     {
+      "path": "docs/rule_writing_guide.md",
+      "title": "rule writing guide",
+      "filename": "rule_writing_guide.md"
+    },
+    {
       "path": "docs/처음사용부터 로그북사이트 업로드까지.md",
       "title": "처음사용부터 로그북사이트 업로드까지",
       "filename": "처음사용부터 로그북사이트 업로드까지.md"
