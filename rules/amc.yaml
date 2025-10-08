@@ -400,22 +400,12 @@ classification_rules:
   - category_id: xray_neu
     parent_category_id: xray
     conditions:
-      - logic: OR
-        conditions:
-          - operator: equals
-            field: assign
-            value: "Neuro"
-      - logic: OR
-        conditions:
-          - operator: not_contains
-            field: exam_name
-            value: "Chest"
-          - operator: not_contains
-            field: exam_name
-            value: "Abdomen"
-          - operator: not_contains
-            field: exam_name
-            value: "Spine"
+      - operator: equals
+        field: assign
+        value: "Neuro"
+      - operator: not_contains_any
+        field: exam_name
+        value: ["Chest", "Abdomen", "Spine"]
   - category_id: xray_cht
     parent_category_id: xray
     conditions:
@@ -449,17 +439,9 @@ classification_rules:
       - operator: equals
         field: assign
         value: "Musculoskeletal"
-      - logic: OR
-        conditions:
-          - operator: not_contains
-            field: exam_name
-            value: "Chest"
-          - operator: not_contains
-            field: exam_name
-            value: "Abdomen"
-          - operator: not_contains
-            field: exam_name
-            value: "Spine"
+      - operator: not_contains_any
+        field: exam_name
+        value: ["Chest", "Abdomen", "Spine"]
   - category_id: xray_ped
     parent_category_id: xray
     priority: 1
@@ -505,15 +487,9 @@ classification_rules:
           - operator: equals
             field: assign
             value: "neuro"
-          - operator: contains
+          - operator: contains_any
             field: exam_name
-            value: "brain"
-          - operator: contains
-            field: exam_name
-            value: "facial"
-          - operator: contains
-            field: exam_name
-            value: "head"
+            value: ["brain", "facial", "head"]
   - category_id: ct_cht
     parent_category_id: ct
     conditions:
@@ -522,12 +498,9 @@ classification_rules:
           - operator: equals
             field: assign
             value: "chest lung"
-          - operator: contains
+          - operator: contains_any
             field: exam_name
-            value: "chest"
-          - operator: contains
-            field: exam_name
-            value: "pulmonary embolism"
+            value: ["chest", "pulmonary embolism"]
   - category_id: ct_cardiac
     parent_category_id: ct
     priority: 6
@@ -537,50 +510,19 @@ classification_rules:
           - operator: equals
             field: assign
             value: "chest CV"
-          - operator: contains
+          - operator: contains_any
             field: exam_name
-            value: "chest"
-          - operator: contains
-            field: exam_name
-            value: "heart"
-          - operator: contains
-            field: exam_name
-            value: "coronary artery"
-      - logic: OR
-        conditions:
-          - operator: not_contains
-            field: exam_name
-            value: "aortic"
-          - operator: not_contains
-            field: exam_name
-            value: "aorta"
-          - operator: not_contains
-            field: exam_name
-            value: "angiography"
-          - operator: not_contains
-            field: exam_name
-            value: "pulmonary vein"
+            value: ["chest", "heart", "coronary artery"]
+      - operator: not_contains_any
+        field: exam_name
+        value: ["aortic", "aorta", "angiography", "pulmonary vein"]
   - category_id: ct_vas
     parent_category_id: ct
     priority: 5
     conditions:
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: exam_name
-            value: "aortic"
-          - operator: contains
-            field: exam_name
-            value: "aorta"
-          - operator: contains
-            field: exam_name
-            value: "angiography"
-          - operator: contains
-            field: exam_name
-            value: "pulmonary vein"
-          - operator: contains
-            field: exam_name
-            value: "venography"
+      - operator: contains_any
+        field: exam_name
+        value: ["aortic", "aorta", "angiography", "pulmonary vein", "venography"]
   - category_id: ct_abd
     parent_category_id: ct
     conditions:
@@ -589,24 +531,16 @@ classification_rules:
           - operator: equals
             field: assign
             value: "Abdomen"
-          - operator: contains
+          - operator: contains_any
             field: exam_name
-            value: "abdomen"
-          - operator: contains
-            field: exam_name
-            value: "liver"
+            value: ["abdomen", "liver"]
   - category_id: ct_gu
     parent_category_id: ct
     priority: 2
     conditions:
-      - logic: OR
-        conditions:
-          - operator: equals
-            field: assign
-            value: "Genitourinary"
-          - operator: equals
-            field: assign
-            value: "OBGY"
+      - operator: equals_any
+        field: assign
+        value: ["Genitourinary", "OBGY"]
   - category_id: ct_spine
     parent_category_id: ct
     priority: 2
@@ -659,18 +593,9 @@ classification_rules:
           - operator: equals
             field: assign
             value: "Neuro"
-          - operator: contains
+          - operator: contains_any
             field: exam_name
-            value: "brain"
-          - operator: contains
-            field: exam_name
-            value: "diffusion"
-          - operator: contains
-            field: exam_name
-            value: "stroke"
-          - operator: contains
-            field: exam_name
-            value: "cranial"
+            value: ["brain", "diffusion", "stroke", "cranial"]
       - operator: not_contains
         field: exam_name
         value: "SPINE"
@@ -739,17 +664,9 @@ classification_rules:
       - operator: equals
         field: modality
         value: "US"
-      - logic: OR
-        conditions:
-          - operator: not_contains
-            field: exam_name
-            value: "유도"
-          - operator: not_contains
-            field: exam_name
-            value: "고주파"
-          - operator: not_contains
-            field: exam_name
-            value: "intussusception"
+      - operator: not_contains_any
+        field: exam_name
+        value: ["유도", "고주파", "intussusception"]
   - category_id: ultrasound_ped
     parent_category_id: ultrasound
     priority: 1
@@ -772,22 +689,12 @@ classification_rules:
   - category_id: ultrasound_head
     parent_category_id: ultrasound
     conditions:
-      - logic: OR
-        conditions:
-          - operator: equals
-            field: assign
-            value: "Neuro"
-      - logic: OR
-        conditions:
-          - operator: not_contains
-            field: exam_name
-            value: "abdomen doppler"
-          - operator: not_contains
-            field: exam_name
-            value: "carotid doppler"
-          - operator: not_contains
-            field: exam_name
-            value: "color doppler"
+      - operator: equals
+        field: assign
+        value: "Neuro"
+      - operator: not_contains_any
+        field: exam_name
+        value: ["abdomen doppler", "carotid doppler", "color doppler"]
   - category_id: ultrasound_thyroid
     parent_category_id: ultrasound
     conditions:
@@ -800,34 +707,20 @@ classification_rules:
       - operator: equals
         field: assign
         value: "Abdomen"
-      - logic: OR
-        conditions:
-          - operator: not_contains
-            field: exam_name
-            value: "abdomen doppler"
-          - operator: not_contains
-            field: exam_name
-            value: "color doppler"
+      - operator: not_contains_any
+        field: exam_name
+        value: ["abdomen doppler", "color doppler"]
   - category_id: ultrasound_gu
     parent_category_id: ultrasound
     conditions:
       - logic: OR
         conditions:
-          - operator: equals
+          - operator: equals_any
             field: assign
-            value: "Genitourinary"
-          - operator: equals
-            field: assign
-            value: "OBGY"
-          - operator: contains
+            value: ["Genitourinary", "OBGY"]
+          - operator: contains_any
             field: exam_name
-            value: "penis"
-          - operator: contains
-            field: exam_name
-            value: "scrot"
-          - operator: contains
-            field: exam_name
-            value: "생식기"
+            value: ["penis", "scrot", "생식기"]
   - category_id: ultrasound_msk
     parent_category_id: ultrasound
     conditions:
@@ -844,20 +737,9 @@ classification_rules:
     parent_category_id: ultrasound
     priority: 2
     conditions:
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: exam_name
-            value: "abdomen doppler"
-          - operator: contains
-            field: exam_name
-            value: "carotid doppler"
-          - operator: contains
-            field: exam_name
-            value: "color doppler"
-          - operator: contains
-            field: exam_name
-            value: "혈관도플러"
+      - operator: contains_any
+        field: exam_name
+        value: ["abdomen doppler", "carotid doppler", "color doppler", "혈관도플러"]
   - category_id: fluoroscopy
     priority: 3
     conditions:
@@ -873,14 +755,9 @@ classification_rules:
   - category_id: fluoroscopy_gu
     parent_category_id: fluoroscopy
     conditions:
-      - logic: OR
-        conditions:
-          - operator: equals
-            field: assign
-            value: "Genitourinary"
-          - operator: equals
-            field: assign
-            value: "OBGY"
+      - operator: equals_any
+        field: assign
+        value: ["Genitourinary", "OBGY"]
   - category_id: fluoroscopy_ped
     parent_category_id: fluoroscopy
     conditions:
@@ -910,40 +787,19 @@ classification_rules:
   - category_id: intervention_neu
     parent_category_id: intervention
     conditions:
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: exam_name
-            value: "뇌혈관조영술"
-          - operator: contains
-            field: exam_name
-            value: "Vessel Angiography"
-          - operator: contains
-            field: exam_name
-            value: "Internal Carotid Angiography"
-          - operator: contains
-            field: exam_name
-            value: "신경중재"
+      - operator: contains_any
+        field: exam_name
+        value: ["뇌혈관조영술", "Vessel Angiography", "Internal Carotid Angiography", "신경중재"]
   - category_id: intervention_thyroid
     parent_category_id: intervention
     priority: 5
     conditions:
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: exam_name
-            value: "갑상선"
-          - operator: contains
-            field: exam_name
-            value: "thyroid"
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: exam_name
-            value: "biopsy"
-          - operator: contains
-            field: exam_name
-            value: "aspiration"
+      - operator: contains_any
+        field: exam_name
+        value: ["갑상선", "thyroid"]
+      - operator: contains_any
+        field: exam_name
+        value: ["biopsy", "aspiration"]
   - category_id: intervention_us
     parent_category_id: intervention
     priority: 6
@@ -951,34 +807,18 @@ classification_rules:
       - operator: equals
         field: modality
         value: "US"
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: exam_name
-            value: "생검"
-          - operator: contains
-            field: exam_name
-            value: "조직검사"
-          - operator: contains
-            field: exam_name
-            value: "biopsy"
+      - operator: contains_any
+        field: exam_name
+        value: ["생검", "조직검사", "biopsy"]
   - category_id: intervention_ct
     parent_category_id: intervention
     conditions:
       - operator: equals
         field: modality
         value: "CT"
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: exam_name
-            value: "생검"
-          - operator: contains
-            field: exam_name
-            value: "조직검사"
-          - operator: contains
-            field: exam_name
-            value: "biopsy"
+      - operator: contains_any
+        field: exam_name
+        value: ["생검", "조직검사", "biopsy"]
   - category_id: intervention_intu
     parent_category_id: intervention
     conditions:
@@ -997,106 +837,49 @@ classification_rules:
       - operator: equals
         field: modality
         value: "DS"
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: exam_name
-            value: "embolization"
-          - operator: contains
-            field: exam_name
-            value: "arteriography"
-          - operator: contains
-            field: exam_name
-            value: "transluminal angioplasty"
+      - operator: contains_any
+        field: exam_name
+        value: ["embolization", "arteriography", "transluminal angioplasty"]
   - category_id: intervention_biliary
     parent_category_id: intervention
     conditions:
       - operator: equals
         field: modality
         value: "DS"
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: exam_name
-            value: "transhepatic"
-          - operator: contains
-            field: exam_name
-            value: "cholecystostomy"
-          - operator: contains
-            field: exam_name
-            value: "biliary"
-          - operator: contains
-            field: exam_name
-            value: "PTBD"
-          - operator: contains
-            field: exam_name
-            value: "Cholecystostomy"
+      - operator: contains_any
+        field: exam_name
+        value: ["transhepatic", "cholecystostomy", "biliary", "PTBD", "Cholecystostomy"]
   - category_id: intervention_pcn
     parent_category_id: intervention
     conditions:
       - operator: equals
         field: modality
         value: "DS"
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: exam_name
-            value: "PCN"
-          - operator: contains
-            field: exam_name
-            value: "Nephrostomy"
+      - operator: contains_any
+        field: exam_name
+        value: ["PCN", "Nephrostomy"]
   - category_id: intervention_drain
     parent_category_id: intervention
     priority: 11
     conditions:
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: exam_name
-            value: "drainage"
-          - operator: contains
-            field: exam_name
-            value: "Chest tube"
+      - operator: contains_any
+        field: exam_name
+        value: ["drainage", "Chest tube"]
   - category_id: intervention_cvc
     parent_category_id: intervention
     conditions:
       - operator: equals
         field: modality
         value: "DS"
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: exam_name
-            value: "catheter insertion"
-          - operator: contains
-            field: exam_name
-            value: "PICC"
-          - operator: contains
-            field: exam_name
-            value: "chemoport"
-          - operator: contains
-            field: exam_name
-            value: "central line"
+      - operator: contains_any
+        field: exam_name
+        value: ["catheter insertion", "PICC", "chemoport", "central line"]
   - category_id: intervention_tumor
     parent_category_id: intervention
     conditions:
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: exam_name
-            value: "고주파"
-          - operator: contains
-            field: exam_name
-            value: "sclerotherapy"
-          - operator: contains
-            field: exam_name
-            value: "마이크로웨이브"
-          - operator: contains
-            field: exam_name
-            value: "HIFU"
-          - operator: contains
-            field: exam_name
-            value: "TACE"
+      - operator: contains_any
+        field: exam_name
+        value: ["고주파", "sclerotherapy", "마이크로웨이브", "HIFU", "TACE"]
   - category_id: intervention_etc
     parent_category_id: intervention
     priority: 999
