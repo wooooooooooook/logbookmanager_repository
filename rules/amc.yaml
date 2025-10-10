@@ -11,6 +11,10 @@ description: |
 author: 
   name: "김영욱"
   email: "wooooooooooook@gmail.com"
+info: 
+  hospital: "서울아산병원"
+  reference: "2023년 개정 logbook 실태조사"
+  target: "record2.radiology.or.kr 사이트 이용하는 2022년 이후 입국자"
 
 
 column_mapping:
@@ -912,10 +916,7 @@ classification_rules:
       - operator: not_contains
         field: modality
         value: "PT"
-
-# 기본 분류 규칙 (위의 규칙에 해당하지 않는 경우)
-default_classification:
-  category_id: "unclassified"
+        
 # CSV/Excel 내보내기 설정
 export_as_sheet:
   default_format: "csv"  # 기본 내보내기 형식

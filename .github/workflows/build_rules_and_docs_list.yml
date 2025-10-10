@@ -28,7 +28,7 @@ jobs:
 
       - name: Generate rules.json
         run: |
-          import os, json, yaml
+          import os, json, yaml, subprocess
           from pathlib import Path
 
           rules_dir = Path("rules")
@@ -38,17 +38,29 @@ jobs:
               with open(f, "r", encoding="utf-8") as fp:
                   data = yaml.safe_load(fp)
 
+              # Get last commit time for this file using git
+              try:
+                  result = subprocess.run(
+                      ["git", "log", "-1", "--format=%cI", "--", str(f)], 
+                      capture_output=True, text=True, check=True
+                  )
+                  last_commit_time = result.stdout.strip()
+              except subprocess.CalledProcessError:
+                  # Fallback to current time if git command fails
+                  from datetime import datetime
+                  last_commit_time = datetime.utcnow().isoformat() + "Z"
+
               rules_list.append({
                   "path": f.as_posix(), 
                   "title": data.get("title"),
                   "description": data.get("description"),
-                  "created_at": data.get("created_at"),
-                  "updated_at": data.get("updated_at"),
-                  "version": data.get("version"),
+                  "updated_at": last_commit_time,
                   "author": {
                       "name": data.get("author", {}).get("name"),
                       "email": data.get("author", {}).get("email"),
-                  }
+                  },
+                  "info": data.get("info"),
+                  "column_mapping": data.get("column_mapping")
               })
 
           with open("rules.json", "w", encoding="utf-8") as out:

@@ -1,16 +1,20 @@
-title: "중앙대병원-흑석 2020년 이전 입국"
+title: "중앙대병원-흑석 2021년 이전 입국"
 version: "1.0.0"
 created_at: "2025-09-17T00:00:00Z"
 updated_at: "2025-09-17T00:00:00Z"
 description: |
   중앙대학교병원용 / Zetta PACS
-  record2020.radiology.or.kr 사이트 이용하는 2020년 이전 입국자
+  record2020.radiology.or.kr 사이트 이용하는 2021년 이전 입국자
   2023년 개정 logbook 실태조사
   검사종류/검사명/부서/담당구분 기반 분류
 author: 
   name: "김영욱"
   email: "wooooooooooook@gmail.com"
-
+info: 
+  hospital: "중앙대학교병원-흑석"
+  pacs: "Zetta PACS"
+  reference: "2023년 개정 logbook 실태조사"
+  target: "record2020.radiology.or.kr 사이트 이용하는 2021년 이전 입국자"
 
 column_mapping:
   required:
@@ -784,7 +788,6 @@ classification_rules:
       - operator: lessThan
         field: age
         value: 17
-
   # 투시 소아 비고
   - category_id: fluoroscopy_ped_abd
     parent_category_id: fluoroscopy_ped
@@ -800,6 +803,7 @@ classification_rules:
     parent_category_id: fluoroscopy
     conditions: []
     priority: 999
+    
   - category_id: intervention
     priority: 1
     composed_by_subcategories: true
@@ -929,10 +933,6 @@ classification_rules:
       - operator: not_contains
         field: modality
         value: "PT"
-
-# 기본 분류 규칙 (위의 규칙에 해당하지 않는 경우)
-default_classification:
-  category_id: "unclassified"
 
 # CSV/Excel 내보내기 설정
 export_as_sheet:
