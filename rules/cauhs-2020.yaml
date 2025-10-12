@@ -586,6 +586,15 @@ classification_rules:
   - category_id: ct_ped_cht
     parent_category_id: ct_ped
     inherit_conditions_from: ct_cht
+  - category_id: ct_ped_cardiac
+    parent_category_id: ct_ped
+    inherit_conditions_from: ct_cardiac
+  - category_id: ct_ped_vas
+    parent_category_id: ct_ped
+    inherit_conditions_from: ct_vas
+  - category_id: ct_ped_spine
+    parent_category_id: ct_ped
+    inherit_conditions_from: ct_spine
   - category_id: ct_ped_abd
     parent_category_id: ct_ped
     inherit_conditions_from: ct_abd
@@ -669,6 +678,12 @@ classification_rules:
   - category_id: mri_ped_abd
     parent_category_id: mri_ped
     inherit_conditions_from: mri_abd
+  - category_id: mri_ped_cardiac
+    parent_category_id: mri_ped
+    inherit_conditions_from: mri_cardiac
+  - category_id: mri_ped_gu
+    parent_category_id: mri_ped
+    inherit_conditions_from: mri_gu
   - category_id: mri_ped_spine
     parent_category_id: mri_ped
     inherit_conditions_from: mri_spine
