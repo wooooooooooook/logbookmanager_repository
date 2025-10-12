@@ -1,4 +1,4 @@
-<img src="/imgs/icon-192x192-bg-text.png" alt="로고" width="96" height="96" />
+![logo](/imgs/icon-192x192-bg-text.png)
 
 Logbook manager는 영상의학과 전공의를 위한 로그북 관리 웹앱입니다.
 
