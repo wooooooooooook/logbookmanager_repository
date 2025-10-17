@@ -41,7 +41,7 @@ column_mapping:
     - name: "담당구분"
       field: "assign"
       type: "string"
-      aliases: ["STUDY ASSIGN", "Section", "GROUP1", "Assign"]
+      aliases: ["STUDY_ASSIGN","STUDY ASSIGN", "Section", "GROUP1", "Assign"]
       description: "검사 담당 전문의 구분"
     - name: "나이"
       field: "age"
