@@ -72,15 +72,6 @@ column_mapping:
     - "age"
 
 categories:
-  - name: "미분류"
-    id: "unclassified"
-  - name: "데이터 보완 필요"
-    id: "dataValidationRequired"
-    subcategories:
-      - name: "필수 필드 누락"
-        id: "dataValidationRequired_required"
-      - name: "선택적 필드 누락"
-        id: "dataValidationRequired_optional"
   - name: "일반촬영"
     id: "xray"
     target: 10000
@@ -345,74 +336,6 @@ categories:
 
 # 분류 기준 정의
 classification_rules:
-  # 데이터 검증 규칙 (최우선 적용)
-  - category_id: dataValidationRequired
-    priority: 0
-    conditions:
-      - logic: OR
-        conditions:
-          - operator: is_null
-            field: id
-          - operator: is_null
-            field: modality
-          - operator: is_null
-            field: exam_name
-          - operator: is_null
-            field: assign
-          - operator: is_null
-            field: study_date
-          - operator: is_null
-            field: age
-          - operator: is_null
-            field: sex
-          - operator: is_null
-            field: department
-          - operator: is_null
-            field: reading_date
-  - category_id: dataValidationRequired_required
-    parent_category_id: dataValidationRequired
-    priority: 0  # 최우선 적용
-    conditions:
-      - logic: OR
-        conditions:
-          - operator: is_null
-            field: id
-          - operator: is_null
-            field: modality
-          - operator: is_null
-            field: exam_name
-          - operator: is_null
-            field: assign
-          - operator: is_null
-            field: study_date
-  - category_id: dataValidationRequired_optional
-    parent_category_id: dataValidationRequired
-    priority: 1  # 두 번째 우선순위
-    conditions:
-      - logic: AND
-        conditions:
-          # 필수 필드는 모두 있어야 함
-          - operator: not_null
-            field: id
-          - operator: not_null
-            field: modality
-          - operator: not_null
-            field: exam_name
-          - operator: not_null
-            field: assign
-          - operator: not_null
-            field: study_date
-      - logic: OR
-        conditions:
-          # 선택적 필드 중 하나라도 누락
-          - operator: is_null
-            field: age
-          - operator: is_null
-            field: sex
-          - operator: is_null
-            field: department
-          - operator: is_null
-            field: reading_date
   - category_id: xray
     conditions:
       - operator: contains_any
