@@ -50,7 +50,8 @@ column_mapping:
       description: "환자의 나이"
     - name: "환자성별"
       field: "sex"
-      type: "string"
+      type: "enum"
+      values: ["M", "F", ""]
       parser: "gender"
       aliases: ["SEX", "PATIENT_SEX", "환자성별(M/F)"]
       description: "환자의 성별 (M 또는 F)"
