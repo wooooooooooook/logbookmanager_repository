@@ -824,15 +824,7 @@ classification_rules:
         field: modality
         value: "DS"
   - category_id: nuclearmedicine
-    conditions:
-      - logic: OR
-        conditions:
-          - operator: contains
-            field: modality
-            value: "NM"
-          - operator: contains
-            field: modality
-            value: "PT"
+    composed_by_subcategories: true
   - category_id: nuclearmedicine_pet
     parent_category_id: nuclearmedicine
     conditions:
