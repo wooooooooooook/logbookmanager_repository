@@ -1,9 +1,10 @@
 <div align="center">  
   <h3>처음사용자용 사용법 동영상🎥</h3>  
-  <a href="https://img.youtube.com/vi/rjWRIovmG34/0.jpg">
-    <img src="https://www.youtube.com/watch?v=rjWRIovmG34" width="500">
+  <a href="https://www.youtube.com/watch?v=rjWRIovmG34">
+    <img src="https://img.youtube.com/vi/rjWRIovmG34/0.jpg" width="500">
   </a>  
 </div>
+
 ![logo](/imgs/icon-192x192-bg-text.png)
 ## Logbook manager는 영상의학과 전공의를 위한 로그북 관리 웹앱입니다.
 
