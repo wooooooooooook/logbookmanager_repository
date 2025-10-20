@@ -275,7 +275,7 @@ categories:
       - name: "복부"
         id: "fluoroscopy_abd"
         target: 1
-      - name: "비뇨생식기계"
+      - name: "비뇨생식기"
         id: "fluoroscopy_gu"
         target: 1
       - name: "소아"
@@ -284,7 +284,7 @@ categories:
         subcategories:
           - name: "복부"
             id: "fluoroscopy_ped_abd"
-          - name: "비뇨생식기계"
+          - name: "비뇨생식기"
             id: "fluoroscopy_ped_gu"
           - name: "기타"
             id: "fluoroscopy_ped_etc"

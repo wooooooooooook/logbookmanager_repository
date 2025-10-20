@@ -264,7 +264,7 @@ categories: # 2023년 개정 logbook 실태조사
       - name: "복부"
         id: "fluoroscopy_abd"
         target: 1
-      - name: "비뇨생식기계"
+      - name: "비뇨생식기"
         id: "fluoroscopy_gu"
         target: 1
       - name: "소아"
