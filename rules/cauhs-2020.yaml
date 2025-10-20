@@ -97,7 +97,7 @@ categories:
       - name: "복부"
         id: "xray_abd"
         target: 1000
-      - name: "KUB"
+      - name: "비뇨생식기"
         id: "xray_kub"
         target: 300
       - name: "척추"
@@ -116,7 +116,7 @@ categories:
             id: "xray_ped_cht"
           - name: "복부"
             id: "xray_ped_abd"
-          - name: "KUB"
+          - name: "비뇨생식기"
             id: "xray_ped_kub"
           - name: "척추"
             id: "xray_ped_spine"

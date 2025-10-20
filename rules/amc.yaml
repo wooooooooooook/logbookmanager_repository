@@ -86,7 +86,7 @@ categories: # 2023년 개정 logbook 실태조사
       - name: "복부"
         id: "xray_abd"
         target: 1000
-      - name: "KUB"
+      - name: "비뇨생식기"
         id: "xray_kub"
         target: 300
       - name: "척추"
