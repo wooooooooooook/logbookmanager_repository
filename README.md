@@ -1,5 +1,5 @@
 ![logo](/imgs/icon-192x192-bg-text.png)
-
+[![Watch the video](https://img.youtube.com/vi/rjWRIovmG34/0.jpg)](https://www.youtube.com/watch?v=rjWRIovmG34)
 ## Logbook manager는 영상의학과 전공의를 위한 로그북 관리 웹앱입니다.
 
 ![대시보드](/imgs/screenshot-dashboard.png)
