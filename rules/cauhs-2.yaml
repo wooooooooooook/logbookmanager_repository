@@ -28,21 +28,25 @@ column_mapping:
       type: "string"
       aliases: ["modality"]
       description: "검사의 종류 (예: 일반촬영, CT, MRI)"
+      search_set: true
     - name: "검사명"
       field: "exam_name"
       type: "string"
       aliases: ["DESCRIPTION", "ORDER_NAME", "Protocol Name", "Exam Name", "검사명"]
       description: "수행된 검사의 상세 이름"
-    - name: "부서"
+      search_set: true
+    - name: "의뢰부서"
       field: "department"
       type: "string"
       aliases: ["DEPT", "ORDER_DEPT", "Department", "부서"]
       description: "검사를 의뢰한 부서"
-    - name: "담당구분"
+      search_set: true
+    - name: "판독실"
       field: "assign"
       type: "string"
       aliases: ["STUDY_ASSIGN","STUDY ASSIGN", "Section", "GROUP1", "Assign"]
       description: "검사 담당 전문의 구분"
+      search_set: true
     - name: "나이"
       field: "age"
       type: "number"

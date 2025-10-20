@@ -27,14 +27,17 @@ column_mapping:
       field: "modality"
       type: "string"
       aliases: ["PACS장비구분코드_검사"]
+      search_set: true
     - name: "검사명"
       field: "exam_name"
       type: "string"
       aliases: ["검사코드_1"]
+      search_set: true
     - name: "판독실"
       field: "assign"
       type: "string"
       aliases: ["PACS판독실코드_New_1"]
+      search_set: true
     - name: "검사일"
       field: "study_date"
       type: "date"
