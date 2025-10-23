@@ -1,11 +1,4 @@
-<div align="center">  
-  <h3>처음사용자용 사용법 동영상🎥</h3>  
-  <a href="https://www.youtube.com/watch?v=rjWRIovmG34">
-    <img src="https://img.youtube.com/vi/rjWRIovmG34/0.jpg" width="500">
-  </a>  
-</div>
-
-![logo](/imgs/icon-192x192-bg-text.png)
+[![logo](/imgs/icon-192x192-bg-text.png)](https://logbookmanager-web.vercel.app/)
 ## Logbook manager는 영상의학과 전공의를 위한 로그북 관리 웹앱입니다.
 
 ![대시보드](/imgs/screenshot-dashboard.png)
@@ -18,4 +11,10 @@
 
 Logbook manager와 함께 효율적이고 안전하게 로그북을 관리해보세요!
 
-[**📝 이용 방법 안내**](/docs/처음사용부터_로그북사이트_업로드까지.md)
+[**📝 이용 방법 보러가기**](/docs/처음사용부터_로그북사이트_업로드까지.md)
+<div align="center">  
+  <h3>처음사용자용 사용법 동영상🎥</h3>  
+  <a href="https://www.youtube.com/watch?v=rjWRIovmG34">
+    <img src="https://img.youtube.com/vi/rjWRIovmG34/0.jpg" width="500">
+  </a>  
+</div>

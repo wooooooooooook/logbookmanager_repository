@@ -16,6 +16,7 @@ info:
   reference: "2023년 개정 logbook 실태조사"
   target: "record2020.radiology.or.kr 사이트 이용하는 2021년 이전 입국자"
 
+
 column_mapping:
   required:
     - name: "고유번호"
@@ -44,7 +45,7 @@ column_mapping:
     - name: "판독실"
       field: "assign"
       type: "string"
-      aliases: ["STUDY_ASSIGN", "STUDY ASSIGN", "Section", "GROUP1", "Assign"]
+      aliases: ["STUDY_ASSIGN","STUDY ASSIGN", "Section", "GROUP1", "Assign"]
       description: "검사 담당 전문의 구분"
       search_set: true
     - name: "나이"
@@ -53,6 +54,14 @@ column_mapping:
       parser: "age"
       aliases: ["AGE", "PATIENT_AGE", "Age"]
       description: "환자의 나이"
+    - name: "판독일"
+      field: "reading_date"
+      type: "date"
+      parser: "date"
+      format: "YYYY-MM-DD"
+      aliases: ["DRAFT DATE", "Report Date", "draft_date", "CREATE_DATE", "판독일(년-월-일)"]
+      description: "판독 보고서가 작성된 날짜"
+  optional:
     - name: "환자성별"
       field: "sex"
       type: "enum"
@@ -67,13 +76,6 @@ column_mapping:
       format: "YYYY-MM-DD"
       aliases: ["STUDY DATE", "Study DateTime", "STUDY_DATE", "Exam Date(Time)", "검사일(년-월-일)"]
       description: "검사가 수행된 날짜"
-    - name: "판독일"
-      field: "reading_date"
-      type: "date"
-      parser: "date"
-      format: "YYYY-MM-DD"
-      aliases: ["DRAFT DATE", "Report Date", "draft_date", "CREATE_DATE", "판독일(년-월-일)"]
-      description: "판독 보고서가 작성된 날짜"
   default_order:
     - "reading_date"
     - "modality"
