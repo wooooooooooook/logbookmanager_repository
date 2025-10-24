@@ -5,6 +5,7 @@ on:
     paths:
       - "rules/*.yaml"
       - "docs/*.md"
+      - "docs/**/*.md"
   workflow_dispatch:
 permissions:
   contents: write   # <<<<<< 여기 추가해야 push 가능
