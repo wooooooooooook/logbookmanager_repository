@@ -19,6 +19,16 @@
           "filename": "3._내보내기_설정_가이드.md"
         }
       ]
+    },
+    "설명": {
+      "description": null,
+      "files": [
+        {
+          "path": "docs/설명/달성률_계산_방식.md",
+          "title": "달성률 계산 방식",
+          "filename": "달성률_계산_방식.md"
+        }
+      ]
     }
   },
   "files": [
