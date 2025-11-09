@@ -36,7 +36,7 @@ column_mapping:
     - name: "판독실"
       field: "assign"
       type: "string"
-      aliases: ["PACS판독실코드_New_1","PACS판독실코드"]
+      aliases: ["PACS판독실코드_New_1","PACS판독실코드","PACS판독실코드_검사"]
       search_set: true
     - name: "검사일"
       field: "study_date"
