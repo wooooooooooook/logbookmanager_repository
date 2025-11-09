@@ -302,7 +302,7 @@ categories: # 2023년 개정 logbook 실태조사
       - name: "대퇴동맥천자술"
         id: "intervention_cfa"
         target: 1
-      - name: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)"
+      - name: "대동맥 및 분지혈관에 대한 선택적 혈관조영술 및 혈관 내 치료(TACE, UAE, BAE 등 각 종 transarterial embolization 및 endovascular treatment 시술 포함)"
         id: "intervention_angio"
         target: 1
       - name: "경피적 담도계 배액술 (담관배액술 또는 담낭배액술 등)"
@@ -462,7 +462,7 @@ classification_rules:
             value: "chest CV"
           - operator: contains_any
             field: exam_name
-            value: ["chest", "heart", "coronary artery"]
+            value: ["cardiac", "heart", "coronary artery"]
       - operator: not_contains_any
         field: exam_name
         value: ["aortic", "aorta", "angiography", "pulmonary vein"]
@@ -667,6 +667,7 @@ classification_rules:
         value: ["abdomen doppler", "carotid doppler", "color doppler"]
   - category_id: ultrasound_thyroid
     parent_category_id: ultrasound
+    priority: 9
     conditions:
       - operator: contains
         field: exam_name
@@ -714,9 +715,29 @@ classification_rules:
     parent_category_id: ultrasound
     priority: 2
     conditions:
-      - operator: contains_any
-        field: exam_name
-        value: ["abdomen doppler", "carotid doppler", "color doppler", "혈관도플러"]
+      - logic: OR
+        conditions:            
+          - operator: contains_all
+            field: exam_name
+            value: ["abdomen", "doppler"]
+          - operator: contains_all
+            field: exam_name
+            value: ["kidney", "doppler"]
+          - operator: contains_all
+            field: exam_name
+            value: ["liver", "doppler"]
+          - operator: contains_all
+            field: exam_name
+            value: ["color", "doppler"]
+          - operator: contains_all
+            field: exam_name
+            value: ["neck", "doppler"]
+          - operator: contains_all
+            field: exam_name
+            value: ["artery", "doppler"]
+          - operator: contains_all
+            field: exam_name
+            value: ["vein", "doppler"]
   - category_id: fluoroscopy
     priority: 3
     conditions:
@@ -880,13 +901,13 @@ classification_rules:
         field: modality
         value: "DS"
   - category_id: nuclearmedicine
-    conditions:
-      - operator: contains
-        field: modality
-        value: "NM"
+    composed_by_subcategories: true
   - category_id: nuclearmedicine_pet
     parent_category_id: nuclearmedicine
     conditions:
+      - operator: equals
+        field: modality
+        value: "NM"
       - operator: contains
         field: exam_name
         value: "PET"
@@ -894,6 +915,9 @@ classification_rules:
   - category_id: nuclearmedicine_other
     parent_category_id: nuclearmedicine
     conditions:
+      - operator: equals
+        field: modality
+        value: "NM"
         
 # CSV/Excel 내보내기 설정
 export_as_sheet:
