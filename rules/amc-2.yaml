@@ -26,7 +26,7 @@ column_mapping:
     - name: "검사종류"
       field: "modality"
       type: "string"
-      aliases: ["PACS장비구분코드_검사"]
+      aliases: ["PACS장비구분코드_검사","PACS장비구분코드"]
       search_set: true
     - name: "검사명"
       field: "exam_name"
@@ -36,7 +36,7 @@ column_mapping:
     - name: "판독실"
       field: "assign"
       type: "string"
-      aliases: ["PACS판독실코드_New_1"]
+      aliases: ["PACS판독실코드_New_1","PACS판독실코드"]
       search_set: true
     - name: "검사일"
       field: "study_date"
@@ -346,12 +346,19 @@ classification_rules:
   - category_id: xray_neu
     parent_category_id: xray
     conditions:
-      - operator: equals
-        field: assign
-        value: "Neuro"
-      - operator: not_contains_any
-        field: exam_name
-        value: ["Chest", "Abdomen", "Spine"]
+      - logic: OR
+        conditions:
+          - logic: AND
+            conditions:
+              - operator: equals
+                field: assign
+                value: "Neuro"
+              - operator: not_contains_all
+                field: exam_name
+                value: ["Chest", "Abdomen", "Spine"]
+          - operator: contains_any
+            field: exam_name
+            value: ["skull", "neck", "pns","mastoid"]
   - category_id: xray_cht
     parent_category_id: xray
     conditions:
@@ -361,9 +368,9 @@ classification_rules:
   - category_id: xray_abd
     parent_category_id: xray
     conditions:
-      - operator: contains
+      - operator: contains_any
         field: exam_name
-        value: "Abdomen"
+        value: ["Abdomen", "CTTS"]
   - category_id: xray_kub
     parent_category_id: xray
     priority: 2
@@ -382,37 +389,34 @@ classification_rules:
   - category_id: xray_msk
     parent_category_id: xray
     conditions:
-      - operator: equals
-        field: assign
-        value: "Musculoskeletal"
-      - operator: not_contains_any
-        field: exam_name
-        value: ["Chest", "Abdomen", "Spine"]
+      - logic: OR
+        conditions:
+          - logic: AND
+            conditions:
+              - operator: equals
+                field: assign
+                value: "Musculoskeletal"
+              - operator: not_contains_all
+                field: exam_name
+                value: ["Chest", "Abdomen", "Spine"]
+          - logic: AND
+            conditions:
+              - operator: equals
+                field: assign
+                value: "Emergency"
+              - operator: not_contains_all
+                field: exam_name
+                value: ["skull", "neck", "chest", "abdomen", "spine", "pns"]
+          - operator: contains_any
+            field: exam_name
+            value: ["ankle","shoulder","clavicle","joint", "elbow","femur","foot","forearm","hand","hip","knee","leg","pelvis","rib","coccyx"]
   - category_id: xray_ped
     parent_category_id: xray
     priority: 1
     conditions:
-      - operator: equals
+      - operator: contains_any
         field: assign
-        value: "Pediatrics"
-  # - category_id: xray_ped_neu
-  #   parent_category_id: xray_ped
-  #   inherit_conditions_from: xray_neu
-  # - category_id: xray_ped_cht
-  #   parent_category_id: xray_ped
-  #   inherit_conditions_from: xray_cht
-  # - category_id: xray_ped_abd
-  #   parent_category_id: xray_ped
-  #   inherit_conditions_from: xray_abd
-  # - category_id: xray_ped_kub
-  #   parent_category_id: xray_ped
-  #   inherit_conditions_from: xray_kub
-  # - category_id: xray_ped_spine
-  #   parent_category_id: xray_ped
-  #   inherit_conditions_from: xray_spine
-  # - category_id: xray_ped_msk
-  #   parent_category_id: xray_ped
-  #   inherit_conditions_from: xray_msk
+        value: ["Pediatrics", "PED"]
 
   - category_id: mammography
     priority: 2
@@ -435,7 +439,7 @@ classification_rules:
             value: "neuro"
           - operator: contains_any
             field: exam_name
-            value: ["brain", "facial", "head"]
+            value: ["brain", "facial", "head", "neck","orbit","OMU","PNS","temporal bone"]
   - category_id: ct_cht
     parent_category_id: ct
     conditions:
@@ -468,7 +472,7 @@ classification_rules:
     conditions:
       - operator: contains_any
         field: exam_name
-        value: ["aortic", "aorta", "angiography", "pulmonary vein", "venography"]
+        value: ["aortic", "aorta", "angiography", "pulmonary vein", "venography","arteriography"]
   - category_id: ct_abd
     parent_category_id: ct
     conditions:
@@ -479,14 +483,19 @@ classification_rules:
             value: "Abdomen"
           - operator: contains_any
             field: exam_name
-            value: ["abdomen", "liver"]
+            value: ["abdomen", "liver", "biliary", "pancreas", "enterography"]
   - category_id: ct_gu
     parent_category_id: ct
     priority: 2
     conditions:
-      - operator: equals_any
-        field: assign
-        value: ["Genitourinary", "OBGY"]
+      - logic: OR
+        conditions:
+          - operator: equals_any
+            field: assign
+            value: ["Genitourinary", "OBGY"]
+          - operator: contains_any
+            field: exam_name
+            value: ["urography","urinary"]
   - category_id: ct_spine
     parent_category_id: ct
     priority: 2
@@ -497,12 +506,20 @@ classification_rules:
   - category_id: ct_msk
     parent_category_id: ct
     conditions:
-      - operator: equals
-        field: assign
-        value: "Musculoskeletal"
-      - operator: not_contains
-        field: exam_name
-        value: "SPINE"
+      - logic: OR
+        conditions:
+          - logic: AND
+            conditions:
+              - operator: equals
+                field: assign
+                value: "Musculoskeletal"
+              - operator: not_contains
+                field: exam_name
+                value: "SPINE"
+          - operator: contains_any
+            field: exam_name
+            value: ["extremity","pelvis","trauma"]
+      
   - category_id: ct_ped
     parent_category_id: ct
     priority: 1
@@ -541,16 +558,16 @@ classification_rules:
             value: "Neuro"
           - operator: contains_any
             field: exam_name
-            value: ["brain", "diffusion", "stroke", "cranial"]
+            value: ["brain", "diffusion", "stroke", "cranial","neck"]
       - operator: not_contains
         field: exam_name
         value: "SPINE"
   - category_id: mri_cardiac
     parent_category_id: mri
     conditions:
-      - operator: contains
+      - operator: contains_any
         field: exam_name
-        value: "Cardio"
+        value: ["Cardio", "cardiac", "heart"]
   - category_id: mri_abd
     parent_category_id: mri
     conditions:
@@ -574,12 +591,19 @@ classification_rules:
     parent_category_id: mri
     priority: 3
     conditions:
-      - operator: equals
-        field: assign
-        value: "Musculoskeletal"
-      - operator: not_contains
-        field: exam_name
-        value: "SPINE"
+      - logic: OR
+        conditions:
+          - logic: AND
+            conditions:
+              - operator: equals
+                field: assign
+                value: "Musculoskeletal"
+              - operator: not_contains
+                field: exam_name
+                value: "SPINE"
+          - operator: contains_any
+            field: exam_name
+            value: ["extremity","pelvis","trauma"]
   - category_id: mri_breast
     parent_category_id: mri
     conditions:
@@ -612,7 +636,7 @@ classification_rules:
         value: "US"
       - operator: not_contains_any
         field: exam_name
-        value: ["유도", "고주파", "intussusception"]
+        value: ["유도", "고주파", "intussusception", "aspiration"]
   - category_id: ultrasound_ped
     parent_category_id: ultrasound
     priority: 1
@@ -650,12 +674,19 @@ classification_rules:
   - category_id: ultrasound_abd
     parent_category_id: ultrasound
     conditions:
-      - operator: equals
-        field: assign
-        value: "Abdomen"
-      - operator: not_contains_any
-        field: exam_name
-        value: ["abdomen doppler", "color doppler"]
+      - logic: OR
+        conditions:
+          - logic: AND
+            conditions:
+              - operator: equals
+                field: assign
+                value: "Abdomen"
+              - operator: not_contains_any
+                field: exam_name
+                value: ["abdomen doppler", "color doppler"]
+          - operator: contains_any
+            field: exam_name
+            value: ["appendix","colon"]
   - category_id: ultrasound_gu
     parent_category_id: ultrasound
     conditions:
@@ -695,15 +726,30 @@ classification_rules:
   - category_id: fluoroscopy_abd
     parent_category_id: fluoroscopy
     conditions:
-      - operator: equals  
-        field: assign
-        value: "Abdomen"
+      - logic: OR
+        conditions:
+          - operator: equals
+            field: assign
+            value: "Abdomen"
+          - operator: contains_any
+            field: exam_name
+            value: ["esophago","gastro"]
   - category_id: fluoroscopy_gu
     parent_category_id: fluoroscopy
     conditions:
-      - operator: equals_any
-        field: assign
-        value: ["Genitourinary", "OBGY"]
+      - logic: OR
+        conditions:
+          - logic: AND
+            conditions:
+              - operator: equals
+                field: assign
+                value: "Genitourinary"
+              - operator: not_contains_any
+                field: exam_name
+                value: ["penis", "scrot", "생식기"]
+          - operator: contains_any
+            field: exam_name
+            value: ["cysto","pyelo","urethro"]
   - category_id: fluoroscopy_ped
     parent_category_id: fluoroscopy
     conditions:
@@ -785,7 +831,7 @@ classification_rules:
         value: "DS"
       - operator: contains_any
         field: exam_name
-        value: ["embolization", "arteriography", "transluminal angioplasty"]
+        value: ["embolization", "arteriography", "angioplasty"]
   - category_id: intervention_biliary
     parent_category_id: intervention
     conditions:
@@ -794,7 +840,7 @@ classification_rules:
         value: "DS"
       - operator: contains_any
         field: exam_name
-        value: ["transhepatic", "cholecystostomy", "biliary", "PTBD", "Cholecystostomy"]
+        value: ["transhepatic", "cholecystostomy", "biliary", "PTBD", "Cholecystostomy","Cholangiography"]
   - category_id: intervention_pcn
     parent_category_id: intervention
     conditions:
@@ -810,7 +856,7 @@ classification_rules:
     conditions:
       - operator: contains_any
         field: exam_name
-        value: ["drainage", "Chest tube"]
+        value: ["drainage", "Chest tube", "aspiration", "Cystostomy"]
   - category_id: intervention_cvc
     parent_category_id: intervention
     conditions:
@@ -819,7 +865,7 @@ classification_rules:
         value: "DS"
       - operator: contains_any
         field: exam_name
-        value: ["catheter insertion", "PICC", "chemoport", "central line"]
+        value: ["catheter insertion", "PICC", "chemoport", "central line", "IVC filter"]
   - category_id: intervention_tumor
     parent_category_id: intervention
     conditions:
@@ -834,22 +880,20 @@ classification_rules:
         field: modality
         value: "DS"
   - category_id: nuclearmedicine
-    composed_by_subcategories: true
-  - category_id: nuclearmedicine_pet
-    parent_category_id: nuclearmedicine
-    conditions:
-      - operator: contains
-        field: modality
-        value: "PT"
-  - category_id: nuclearmedicine_other
-    parent_category_id: nuclearmedicine
     conditions:
       - operator: contains
         field: modality
         value: "NM"
-      - operator: not_contains
-        field: modality
-        value: "PT"
+  - category_id: nuclearmedicine_pet
+    parent_category_id: nuclearmedicine
+    conditions:
+      - operator: contains
+        field: exam_name
+        value: "PET"
+        case_sensitive: true
+  - category_id: nuclearmedicine_other
+    parent_category_id: nuclearmedicine
+    conditions:
         
 # CSV/Excel 내보내기 설정
 export_as_sheet:
