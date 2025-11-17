@@ -480,7 +480,7 @@ classification_rules:
       - operator: contains
         field: assign
         value: "ABD"
-      - operator: not_contains_all
+      - operator: not_contains_any
         field: department
         value: ["NE", "UR", "OB", "신장내과", "비뇨의학과", "산부인과"]
   - category_id: ct_gu
@@ -567,15 +567,15 @@ classification_rules:
       - operator: contains
         field: assign
         value: "ABD"
-      - operator: not_contains_all
+      - operator: not_contains_any
         field: exam_name
-        value: ["pelvis", "kidney", "scrotum", "prostate", "bladder"]
+        value: ["pelvis", "kidney", "scrotum", "prostate", "bladder", "전립선", "신장", "방광", "생식기"]
   - category_id: mri_gu
     parent_category_id: mri
     conditions:
       - operator: contains_any
         field: exam_name
-        value: ["pelvis", "kidney", "scrotum", "prostate", "bladder"]
+        value: ["pelvis", "kidney", "scrotum", "prostate", "bladder", "전립선", "신장", "방광", "생식기"]
   - category_id: mri_spine
     parent_category_id: mri
     priority: 2

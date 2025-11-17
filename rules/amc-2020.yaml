@@ -353,7 +353,7 @@ classification_rules:
               - operator: equals
                 field: assign
                 value: "Neuro"
-              - operator: not_contains_all
+              - operator: not_contains_any
                 field: exam_name
                 value: ["Chest", "Abdomen", "Spine"]
           - operator: contains_any
@@ -396,7 +396,7 @@ classification_rules:
               - operator: equals
                 field: assign
                 value: "Musculoskeletal"
-              - operator: not_contains_all
+              - operator: not_contains_any
                 field: exam_name
                 value: ["Chest", "Abdomen", "Spine"]
           - logic: AND
@@ -404,7 +404,7 @@ classification_rules:
               - operator: equals
                 field: assign
                 value: "Emergency"
-              - operator: not_contains_all
+              - operator: not_contains_any
                 field: exam_name
                 value: ["skull", "neck", "chest", "abdomen", "spine", "pns"]
           - operator: contains_any
