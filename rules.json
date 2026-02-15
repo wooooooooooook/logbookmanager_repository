@@ -1,125 +1,9 @@
 [
   {
-    "path": "rules/amc.yaml",
-    "title": "서울아산병원 2022년이후 입국자용",
-    "description": "서울아산병원\nrecord2.radiology.or.kr 사이트 이용하는 2022년 이후 입국자\n2023년 개정 logbook 실태조사\n검사종류/검사명/부서/담당구분 기반 분류\n일부 분류 미흡한 버전\n",
-    "updated_at": "2025-11-20T09:30:17+09:00",
-    "author": {
-      "name": "김영욱",
-      "email": "wooooooooooook@gmail.com"
-    },
-    "info": {
-      "hospital": "서울아산병원",
-      "reference": "2023년 개정 logbook 실태조사",
-      "target": "record2.radiology.or.kr 사이트 이용하는 2022년 이후 입국자"
-    },
-    "column_mapping": {
-      "required": [
-        {
-          "name": "고유번호",
-          "field": "id",
-          "type": "string",
-          "aliases": [
-            "검사접수번호"
-          ]
-        },
-        {
-          "name": "검사종류",
-          "field": "modality",
-          "type": "string",
-          "aliases": [
-            "PACS장비구분코드_검사",
-            "PACS장비구분코드"
-          ],
-          "search_set": true
-        },
-        {
-          "name": "검사명",
-          "field": "exam_name",
-          "type": "string",
-          "aliases": [
-            "검사코드_1"
-          ],
-          "search_set": true
-        },
-        {
-          "name": "판독실",
-          "field": "assign",
-          "type": "string",
-          "aliases": [
-            "PACS판독실코드_New_1",
-            "PACS판독실코드",
-            "PACS판독실코드_검사"
-          ],
-          "search_set": true
-        },
-        {
-          "name": "검사일",
-          "field": "study_date",
-          "type": "date",
-          "parser": "date",
-          "format": "YYYY-MM-DD",
-          "aliases": [
-            "PACS검사일자"
-          ]
-        },
-        {
-          "name": "판독일",
-          "field": "reading_date",
-          "type": "date",
-          "parser": "date",
-          "format": "YYYY-MM-DD",
-          "aliases": [
-            "DICTATEDDATE"
-          ]
-        }
-      ],
-      "optional": [
-        {
-          "name": "나이",
-          "field": "age",
-          "type": "number",
-          "parser": "age",
-          "aliases": [
-            "AGE",
-            "PATIENT_AGE",
-            "Age"
-          ],
-          "description": "환자의 나이"
-        },
-        {
-          "name": "환자성별",
-          "field": "sex",
-          "type": "enum",
-          "values": [
-            "M",
-            "F",
-            ""
-          ],
-          "parser": "gender",
-          "aliases": [
-            "SEX",
-            "PATIENT_SEX",
-            "환자성별(M/F)"
-          ],
-          "description": "환자의 성별 (M 또는 F)"
-        }
-      ],
-      "default_order": [
-        "reading_date",
-        "modality",
-        "exam_name",
-        "assign",
-        "sex",
-        "age"
-      ]
-    }
-  },
-  {
     "path": "rules/cauhs-2.yaml",
     "title": "중앙대병원-흑석 2022년이후 입국",
     "description": "중앙대학교병원 / Zetta PACS \nrecord2.radiology.or.kr 사이트 이용하는 2022년 이후 입국자\n2023년 개정 logbook 실태조사\n검사종류/검사명/부서/담당구분 기반 분류\n",
-    "updated_at": "2025-11-20T09:30:17+09:00",
+    "updated_at": "2026-02-15T09:19:15+09:00",
     "author": {
       "name": "김영욱",
       "email": "wooooooooooook@gmail.com"
@@ -272,7 +156,7 @@
     "path": "rules/amc-2020.yaml",
     "title": "서울아산병원 2021년 이전 입국자용",
     "description": "서울아산병원\nrecord2020.radiology.or.kr 사이트 이용하는 2021년 이전 입국자\n2023년 개정 logbook 실태조사\n검사종류/검사명/부서/담당구분 기반 분류\n일부 분류 미흡한 버전\n",
-    "updated_at": "2025-11-20T09:30:17+09:00",
+    "updated_at": "2026-02-15T09:19:15+09:00",
     "author": {
       "name": "김영욱",
       "email": "wooooooooooook@gmail.com"
@@ -307,7 +191,8 @@
           "field": "exam_name",
           "type": "string",
           "aliases": [
-            "검사코드_1"
+            "검사코드_1",
+            "검사명"
           ],
           "search_set": true
         },
@@ -318,7 +203,8 @@
           "aliases": [
             "PACS판독실코드_New_1",
             "PACS판독실코드",
-            "PACS판독실코드_검사"
+            "PACS판독실코드_검사",
+            "판독실이름"
           ],
           "search_set": true
         },
@@ -388,7 +274,7 @@
     "path": "rules/cauhs-2020.yaml",
     "title": "중앙대병원-흑석 2021년 이전 입국",
     "description": "중앙대학교병원용 / Zetta PACS\nrecord2020.radiology.or.kr 사이트 이용하는 2021년 이전 입국자\n2023년 개정 logbook 실태조사\n검사종류/검사명/부서/담당구분 기반 분류\n",
-    "updated_at": "2025-11-20T09:30:17+09:00",
+    "updated_at": "2026-02-15T09:19:15+09:00",
     "author": {
       "name": "김영욱",
       "email": "wooooooooooook@gmail.com"
@@ -531,6 +417,124 @@
         "modality",
         "exam_name",
         "department",
+        "assign",
+        "sex",
+        "age"
+      ]
+    }
+  },
+  {
+    "path": "rules/amc.yaml",
+    "title": "서울아산병원 2022년이후 입국자용",
+    "description": "서울아산병원\nrecord2.radiology.or.kr 사이트 이용하는 2022년 이후 입국자\n2023년 개정 logbook 실태조사\n검사종류/검사명/부서/담당구분 기반 분류\n일부 분류 미흡한 버전\n",
+    "updated_at": "2026-02-15T09:19:15+09:00",
+    "author": {
+      "name": "김영욱",
+      "email": "wooooooooooook@gmail.com"
+    },
+    "info": {
+      "hospital": "서울아산병원",
+      "reference": "2023년 개정 logbook 실태조사",
+      "target": "record2.radiology.or.kr 사이트 이용하는 2022년 이후 입국자"
+    },
+    "column_mapping": {
+      "required": [
+        {
+          "name": "고유번호",
+          "field": "id",
+          "type": "string",
+          "aliases": [
+            "검사접수번호"
+          ]
+        },
+        {
+          "name": "검사종류",
+          "field": "modality",
+          "type": "string",
+          "aliases": [
+            "PACS장비구분코드_검사",
+            "PACS장비구분코드"
+          ],
+          "search_set": true
+        },
+        {
+          "name": "검사명",
+          "field": "exam_name",
+          "type": "string",
+          "aliases": [
+            "검사코드_1",
+            "검사명"
+          ],
+          "search_set": true
+        },
+        {
+          "name": "판독실",
+          "field": "assign",
+          "type": "string",
+          "aliases": [
+            "PACS판독실코드_New_1",
+            "PACS판독실코드",
+            "PACS판독실코드_검사",
+            "판독실이름"
+          ],
+          "search_set": true
+        },
+        {
+          "name": "검사일",
+          "field": "study_date",
+          "type": "date",
+          "parser": "date",
+          "format": "YYYY-MM-DD",
+          "aliases": [
+            "PACS검사일자"
+          ]
+        },
+        {
+          "name": "판독일",
+          "field": "reading_date",
+          "type": "date",
+          "parser": "date",
+          "format": "YYYY-MM-DD",
+          "aliases": [
+            "DICTATEDDATE"
+          ]
+        }
+      ],
+      "optional": [
+        {
+          "name": "나이",
+          "field": "age",
+          "type": "number",
+          "parser": "age",
+          "aliases": [
+            "AGE",
+            "PATIENT_AGE",
+            "Age"
+          ],
+          "description": "환자의 나이"
+        },
+        {
+          "name": "환자성별",
+          "field": "sex",
+          "type": "enum",
+          "values": [
+            "M",
+            "F",
+            ""
+          ],
+          "parser": "gender",
+          "aliases": [
+            "SEX",
+            "PATIENT_SEX",
+            "환자성별(M/F)"
+          ],
+          "description": "환자의 성별 (M 또는 F)"
+        }
+      ],
+      "default_order": [
+        "reading_date",
+        "modality",
+        "exam_name",
         "assign",
         "sex",
         "age"
