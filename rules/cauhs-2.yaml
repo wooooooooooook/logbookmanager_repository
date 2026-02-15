@@ -130,6 +130,9 @@ categories:
   - name: "유방촬영"
     id: "mammography"
     target: 300
+    subcategories:
+      - name: "유방촬영"
+        id: "mammography_mammography"
   - name: "CT"
     id: "ct"
     target: 3500
@@ -429,8 +432,11 @@ classification_rules:
 
   - category_id: mammography
     priority: 2
+    composed_by_subcategories: true
+  - category_id: mammography_mammography
+    parent_category_id: mammography
     conditions:
-      - operator: contains
+      - operator: equals
         field: modality
         value: "MG"
   - category_id: ct

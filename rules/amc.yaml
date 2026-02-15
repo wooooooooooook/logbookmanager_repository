@@ -98,26 +98,29 @@ categories: # 2023년 개정 logbook 실태조사
       - name: "소아"
         id: "xray_ped"
         target: 400
-        # subcategories:
-        #   - name: "신경두경부"
-        #     id: "xray_ped_neu"
-        #   - name: "흉부"
-        #     id: "xray_ped_cht"
-        #   - name: "복부"
-        #     id: "xray_ped_abd"
-        #   - name: "KUB"
-        #     id: "xray_ped_kub"
-        #   - name: "척추"
-        #     id: "xray_ped_spine"
-        #   - name: "관절 및 사지"
-        #     id: "xray_ped_msk"
-        #   - name: "기타"
-        #     id: "xray_ped_etc"
+        subcategories:
+          - name: "신경두경부"
+            id: "xray_ped_neu"
+          - name: "흉부"
+            id: "xray_ped_cht"
+          - name: "복부"
+            id: "xray_ped_abd"
+          - name: "KUB"
+            id: "xray_ped_kub"
+          - name: "척추"
+            id: "xray_ped_spine"
+          - name: "관절 및 사지"
+            id: "xray_ped_msk"
+          - name: "기타"
+            id: "xray_ped_etc"
       - name: "기타"
         id: "xray_etc"
   - name: "유방촬영"
     id: "mammography"
     target: 300
+    subcategories:
+      - name: "유방촬영"
+        id: "mammography_mammography"
   - name: "CT"
     id: "ct"
     target: 3500
@@ -149,25 +152,25 @@ categories: # 2023년 개정 logbook 실태조사
       - name: "소아"
         id: "ct_ped"
         target: 100
-        # subcategories:
-        #   - name: "신경두경부"
-        #     id: "ct_ped_neu"
-        #   - name: "흉부"
-        #     id: "ct_ped_cht"
-        #   - name: "심장"
-        #     id: "ct_ped_cardiac"
-        #   - name: "혈관"
-        #     id: "ct_ped_vas"
-        #   - name: "복부"
-        #     id: "ct_ped_abd"
-        #   - name: "비뇨생식기"
-        #     id: "ct_ped_gu"
-        #   - name: "척추"
-        #     id: "ct_ped_spine"
-        #   - name: "관절 및 사지"
-        #     id: "ct_ped_msk"
-        #   - name: "기타"
-        #     id: "ct_ped_etc"
+        subcategories:
+          - name: "신경두경부"
+            id: "ct_ped_neu"
+          - name: "흉부"
+            id: "ct_ped_cht"
+          - name: "심장"
+            id: "ct_ped_cardiac"
+          - name: "혈관"
+            id: "ct_ped_vas"
+          - name: "복부"
+            id: "ct_ped_abd"
+          - name: "비뇨생식기"
+            id: "ct_ped_gu"
+          - name: "척추"
+            id: "ct_ped_spine"
+          - name: "관절 및 사지"
+            id: "ct_ped_msk"
+          - name: "기타"
+            id: "ct_ped_etc"
       - name: "기타"
         id: "ct_etc"
   - name: "MRI"
@@ -198,21 +201,21 @@ categories: # 2023년 개정 logbook 실태조사
       - name: "소아"
         id: "mri_ped"
         target: 30
-        # subcategories:
-        #   - name: "신경두경부"
-        #     id: "mri_ped_neu"
-        #   - name: "심장"
-        #     id: "mri_ped_cardiac"
-        #   - name: "복부"
-        #     id: "mri_ped_abd"
-        #   - name: "비뇨생식기"
-        #     id: "mri_ped_gu"
-        #   - name: "척추"
-        #     id: "mri_ped_spine"
-        #   - name: "관절 및 사지"
-        #     id: "mri_ped_msk"
-        #   - name: "기타"
-        #     id: "mri_ped_etc"
+        subcategories:
+          - name: "신경두경부"
+            id: "mri_ped_neu"
+          - name: "심장"
+            id: "mri_ped_cardiac"
+          - name: "복부"
+            id: "mri_ped_abd"
+          - name: "비뇨생식기"
+            id: "mri_ped_gu"
+          - name: "척추"
+            id: "mri_ped_spine"
+          - name: "관절 및 사지"
+            id: "mri_ped_msk"
+          - name: "기타"
+            id: "mri_ped_etc"
       - name: "기타"
         id: "mri_etc"
     
@@ -241,17 +244,17 @@ categories: # 2023년 개정 logbook 실태조사
       - name: "소아"
         id: "ultrasound_ped"
         target: 100
-        # subcategories:
-        #   - name: "두경부"
-        #     id: "ultrasound_ped_head"
-        #   - name: "복부"
-        #     id: "ultrasound_ped_abd"
-        #   - name: "비뇨기계"
-        #     id: "ultrasound_ped_gu"
-        #   - name: "근골격계"
-        #     id: "ultrasound_ped_msk"
-        #   - name: "기타"
-        #     id: "ultrasound_ped_etc"
+        subcategories:
+          - name: "두경부"
+            id: "ultrasound_ped_head"
+          - name: "복부"
+            id: "ultrasound_ped_abd"
+          - name: "비뇨기계"
+            id: "ultrasound_ped_gu"
+          - name: "근골격계"
+            id: "ultrasound_ped_msk"
+          - name: "기타"
+            id: "ultrasound_ped_etc"
       - name: "도플러"
         id: "ultrasound_doppler"
         target: 50
@@ -270,13 +273,13 @@ categories: # 2023년 개정 logbook 실태조사
       - name: "소아"
         id: "fluoroscopy_ped"
         target: 1
-        # subcategories:
-        #   - name: "복부"
-        #     id: "fluoroscopy_ped_abd"
-        #   - name: "비뇨생식기계"
-        #     id: "fluoroscopy_ped_gu"
-        #   - name: "기타"
-        #     id: "fluoroscopy_ped_etc"
+        subcategories:
+          - name: "복부"
+            id: "fluoroscopy_ped_abd"
+          - name: "비뇨생식기계"
+            id: "fluoroscopy_ped_gu"
+          - name: "기타"
+            id: "fluoroscopy_ped_etc"
       - name: "기타"
         id: "fluoroscopy_etc"
     
@@ -383,9 +386,9 @@ classification_rules:
     parent_category_id: xray
     priority: 2
     conditions:
-      - operator: contains
+      - operator: contains_any
         field: exam_name
-        value: "Spine"
+        value: ["Spine", "C-spine", "T-spine", "L-spine", "Sacrum", "atlas"]
   - category_id: xray_msk
     parent_category_id: xray
     conditions:
@@ -409,7 +412,7 @@ classification_rules:
                 value: ["skull", "neck", "chest", "abdomen", "spine", "pns"]
           - operator: contains_any
             field: exam_name
-            value: ["ankle","shoulder","clavicle","joint", "elbow","femur","foot","forearm","hand","hip","knee","leg","pelvis","rib","coccyx"]
+            value: ["ankle","shoulder","clavicle","humerus","joint", "elbow","femur","foot","forearm","wrist","hand","finger","hip","knee","leg","pelvis","rib","coccyx","extremity","whole skeletal","toe","arch"]
   - category_id: xray_ped
     parent_category_id: xray
     priority: 1
@@ -417,9 +420,30 @@ classification_rules:
       - operator: contains_any
         field: assign
         value: ["Pediatrics", "PED"]
+  - category_id: xray_ped_neu
+    parent_category_id: xray_ped
+    inherit_conditions_from: xray_neu
+  - category_id: xray_ped_abd
+    parent_category_id: xray_ped
+    inherit_conditions_from: xray_abd
+  - category_id: xray_ped_msk
+    parent_category_id: xray_ped
+    inherit_conditions_from: xray_msk
+  - category_id: xray_ped_spine
+    parent_category_id: xray_ped
+    inherit_conditions_from: xray_spine
+  - category_id: xray_ped_cht
+    parent_category_id: xray_ped
+    inherit_conditions_from: xray_cht
+  - category_id: xray_ped_kub
+    parent_category_id: xray_ped
+    inherit_conditions_from: xray_kub
 
   - category_id: mammography
     priority: 2
+    composed_by_subcategories: true
+  - category_id: mammography_mammography
+    parent_category_id: mammography
     conditions:
       - operator: equals
         field: modality
@@ -439,7 +463,7 @@ classification_rules:
             value: "neuro"
           - operator: contains_any
             field: exam_name
-            value: ["brain", "facial", "head", "neck","orbit","OMU","PNS","temporal bone"]
+            value: ["brain", "facial", "nasal","head", "neck","orbit","OMU","PNS","temporal bone","pharynx","bronchial","salivary"]
   - category_id: ct_cht
     parent_category_id: ct
     conditions:
@@ -495,7 +519,7 @@ classification_rules:
             value: ["Genitourinary", "OBGY"]
           - operator: contains_any
             field: exam_name
-            value: ["urography","urinary"]
+            value: ["urography","urinary","adrenal","bladder"]
   - category_id: ct_spine
     parent_category_id: ct
     priority: 2
@@ -527,21 +551,30 @@ classification_rules:
       - operator: equals
         field: assign
         value: "Pediatrics"
-  # - category_id: ct_ped_neu
-  #   parent_category_id: ct_ped
-  #   inherit_conditions_from: ct_neu
-  # - category_id: ct_ped_cht
-  #   parent_category_id: ct_ped
-  #   inherit_conditions_from: ct_cht
-  # - category_id: ct_ped_abd
-  #   parent_category_id: ct_ped
-  #   inherit_conditions_from: ct_abd
-  # - category_id: ct_ped_gu
-  #   parent_category_id: ct_ped
-  #   inherit_conditions_from: ct_gu
-  # - category_id: ct_ped_msk
-  #   parent_category_id: ct_ped
-  #   inherit_conditions_from: ct_msk
+  - category_id: ct_ped_neu
+    parent_category_id: ct_ped
+    inherit_conditions_from: ct_neu
+  - category_id: ct_ped_cht
+    parent_category_id: ct_ped
+    inherit_conditions_from: ct_cht
+  - category_id: ct_ped_abd
+    parent_category_id: ct_ped
+    inherit_conditions_from: ct_abd
+  - category_id: ct_ped_gu
+    parent_category_id: ct_ped
+    inherit_conditions_from: ct_gu
+  - category_id: ct_ped_msk
+    parent_category_id: ct_ped
+    inherit_conditions_from: ct_msk
+  - category_id: ct_ped_spine
+    parent_category_id: ct_ped
+    inherit_conditions_from: ct_spine
+  - category_id: ct_ped_vas
+    parent_category_id: ct_ped
+    inherit_conditions_from: ct_vas
+  - category_id: ct_ped_cardiac
+    parent_category_id: ct_ped
+    inherit_conditions_from: ct_cardiac
 
   - category_id: mri
     conditions:
@@ -558,7 +591,7 @@ classification_rules:
             value: "Neuro"
           - operator: contains_any
             field: exam_name
-            value: ["brain", "diffusion", "stroke", "cranial","neck"]
+            value: ["brain", "diffusion", "stroke", "cranial","neck","orbit","sella","head"]
       - operator: not_contains
         field: exam_name
         value: "SPINE"
@@ -571,15 +604,25 @@ classification_rules:
   - category_id: mri_abd
     parent_category_id: mri
     conditions:
-      - operator: equals
-        field: assign
-        value: "Abdomen"
+      - logic: OR
+        conditions:
+          - operator: equals
+            field: assign
+            value: "Abdomen"
+          - operator: contains_any
+            field: exam_name
+            value: ["liver", "biliary", "pancreas","cholangiography", "enterography","abdomen","anal fistula"]
   - category_id: mri_gu
     parent_category_id: mri
     conditions:
-      - operator: equals
-        field: assign
-        value: "Genitourinary"
+      - logic: OR
+        conditions:
+          - operator: equals
+            field: assign
+            value: "Genitourinary"
+          - operator: contains_any
+            field: exam_name
+            value: ["urography","urinary","adrenal","bladder","kidney"]
   - category_id: mri_spine
     parent_category_id: mri
     priority: 2
@@ -617,18 +660,24 @@ classification_rules:
       - operator: equals
         field: assign
         value: "Pediatrics"
-  # - category_id: mri_ped_neu
-  #   parent_category_id: mri_ped
-  #   inherit_conditions_from: mri_neu
-  # - category_id: mri_ped_abd
-  #   parent_category_id: mri_ped
-  #   inherit_conditions_from: mri_abd
-  # - category_id: mri_ped_spine
-  #   parent_category_id: mri_ped
-  #   inherit_conditions_from: mri_spine
-  # - category_id: mri_ped_msk
-  #   parent_category_id: mri_ped
-  #   inherit_conditions_from: mri_msk
+  - category_id: mri_ped_neu
+    parent_category_id: mri_ped
+    inherit_conditions_from: mri_neu
+  - category_id: mri_ped_abd
+    parent_category_id: mri_ped
+    inherit_conditions_from: mri_abd
+  - category_id: mri_ped_spine
+    parent_category_id: mri_ped
+    inherit_conditions_from: mri_spine
+  - category_id: mri_ped_msk
+    parent_category_id: mri_ped
+    inherit_conditions_from: mri_msk
+  - category_id: mri_ped_cardiac
+    parent_category_id: mri_ped
+    inherit_conditions_from: mri_cardiac
+  - category_id: mri_ped_gu
+    parent_category_id: mri_ped
+    inherit_conditions_from: mri_gu
   - category_id: ultrasound
     conditions:
       - operator: equals
@@ -644,27 +693,37 @@ classification_rules:
       - operator: equals
         field: assign
         value: "Pediatrics"
-  # - category_id: ultrasound_ped_head
-  #   parent_category_id: ultrasound_ped
-  #   inherit_conditions_from: ultrasound_head
-  # - category_id: ultrasound_ped_abd
-  #   parent_category_id: ultrasound_ped
-  #   inherit_conditions_from: ultrasound_abd
-  # - category_id: ultrasound_ped_gu
-  #   parent_category_id: ultrasound_ped
-  #   inherit_conditions_from: ultrasound_gu
-  # - category_id: ultrasound_ped_msk
-  #   parent_category_id: ultrasound_ped
-  #   inherit_conditions_from: ultrasound_msk
+  - category_id: ultrasound_ped_head
+    parent_category_id: ultrasound_ped
+    inherit_conditions_from: ultrasound_head
+  - category_id: ultrasound_ped_thyroid
+    parent_category_id: ultrasound_ped
+    inherit_conditions_from: ultrasound_thyroid
+  - category_id: ultrasound_ped_abd
+    parent_category_id: ultrasound_ped
+    inherit_conditions_from: ultrasound_abd
+  - category_id: ultrasound_ped_gu
+    parent_category_id: ultrasound_ped
+    inherit_conditions_from: ultrasound_gu
+  - category_id: ultrasound_ped_msk
+    parent_category_id: ultrasound_ped
+    inherit_conditions_from: ultrasound_msk
   - category_id: ultrasound_head
     parent_category_id: ultrasound
     conditions:
-      - operator: equals
-        field: assign
-        value: "Neuro"
-      - operator: not_contains_any
-        field: exam_name
-        value: ["abdomen doppler", "carotid doppler", "color doppler"]
+      - logic: OR
+        conditions:
+        - logic: AND
+          conditions:
+          - operator: equals
+            field: assign
+            value: "Neuro"
+          - operator: not_contains_any
+            field: exam_name
+            value: ["abdomen doppler", "carotid doppler", "color doppler"]
+        - operator: contains_any
+          field: exam_name
+          value: ["brain", "neck","orbit","sella","head","salivary"]
   - category_id: ultrasound_thyroid
     parent_category_id: ultrasound
     priority: 9
@@ -687,7 +746,7 @@ classification_rules:
                 value: ["abdomen doppler", "color doppler"]
           - operator: contains_any
             field: exam_name
-            value: ["appendix","colon"]
+            value: ["appendix","colon","abdomen","hepatic","mesenteric","bowel","inguinal"]
   - category_id: ultrasound_gu
     parent_category_id: ultrasound
     conditions:
@@ -698,13 +757,18 @@ classification_rules:
             value: ["Genitourinary", "OBGY"]
           - operator: contains_any
             field: exam_name
-            value: ["penis", "scrot", "생식기"]
+            value: ["penis", "scrot", "생식기","kidney","adrenal","bladder","uterus","ovary","genital","prostate"]
   - category_id: ultrasound_msk
     parent_category_id: ultrasound
     conditions:
-      - operator: equals
-        field: assign
-        value: "Musculoskeletal"
+      - logic: OR
+        conditions:
+          - operator: equals
+            field: assign
+            value: "Musculoskeletal"
+          - operator: contains_any
+            field: exam_name
+            value: ["spine","soft tissue","extremity","pelvis","trauma","foot","ankle","knee","hip","shoulder","elbow","wrist","hand","bone","musculo","skeletal","meniscus"]
   - category_id: ultrasound_breast
     parent_category_id: ultrasound
     conditions:
@@ -738,6 +802,9 @@ classification_rules:
           - operator: contains_all
             field: exam_name
             value: ["vein", "doppler"]
+          - operator: contains_all
+            field: exam_name
+            value: ["carotid", "doppler"]
   - category_id: fluoroscopy
     priority: 3
     conditions:
@@ -754,7 +821,7 @@ classification_rules:
             value: "Abdomen"
           - operator: contains_any
             field: exam_name
-            value: ["esophago","gastro"]
+            value: ["esophago","gastro","bowel","cholangio"]
   - category_id: fluoroscopy_gu
     parent_category_id: fluoroscopy
     conditions:
@@ -777,22 +844,21 @@ classification_rules:
       - operator: equals
         field: assign
         value: "Pediatrics"
-
-  # # 투시 소아 비고
-  # - category_id: fluoroscopy_ped_abd
-  #   parent_category_id: fluoroscopy_ped
-  #   inherit_conditions_from: fluoroscopy_abd
-  # - category_id: fluoroscopy_ped_gu
-  #   parent_category_id: fluoroscopy_ped
-  #   inherit_conditions_from: fluoroscopy_gu
-  # - category_id: fluoroscopy_ped_etc
-  #   parent_category_id: fluoroscopy_ped
-  #   inherit_conditions_from: fluoroscopy_etc
-  #   priority: 999
-  # - category_id: fluoroscopy_etc
-  #   parent_category_id: fluoroscopy
-  #   conditions: []
-  #   priority: 999
+  # 투시 소아 비고
+  - category_id: fluoroscopy_ped_abd
+    parent_category_id: fluoroscopy_ped
+    inherit_conditions_from: fluoroscopy_abd
+  - category_id: fluoroscopy_ped_gu
+    parent_category_id: fluoroscopy_ped
+    inherit_conditions_from: fluoroscopy_gu
+  - category_id: fluoroscopy_ped_etc
+    parent_category_id: fluoroscopy_ped
+    inherit_conditions_from: fluoroscopy_etc
+    priority: 999
+  - category_id: fluoroscopy_etc
+    parent_category_id: fluoroscopy
+    conditions: []
+    priority: 999
 
   - category_id: intervention
     priority: 1
