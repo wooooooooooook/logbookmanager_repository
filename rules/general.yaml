@@ -865,7 +865,7 @@ classification_rules:
     conditions:
       - operator: contains_any
         field: modality
-        value: ["RF", "FLUORO"]
+        value: ["RF", "FLUORO", "DF"]
   - category_id: fluoroscopy_abd
     parent_category_id: fluoroscopy
     conditions:
@@ -992,7 +992,10 @@ classification_rules:
         value: ["RFA", "MWA", "HIFU", "Ablation"]
   - category_id: intervention_etc
     parent_category_id: intervention
-    conditions: []
+    conditions: 
+      - operator: contains_any
+        field: modality
+        value: ["DS","XA"]
 
   - category_id: nuclearmedicine
     conditions:
