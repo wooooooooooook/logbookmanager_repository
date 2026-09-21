@@ -1,12 +1,12 @@
-title: "범용(General) - 2022년이후 입국 - 테스트중.."
+title: "ML 분류용 범용 규칙"
 version: "1.0.0"
 created_at: "2023-11-20T00:00:00Z"
 updated_at: "2023-11-20T00:00:00Z"
 description: |
-  범용 설정 파일 (General Configuration)
-  서울아산병원(AMC) 및 중앙대병원(CAUHS) 등 다양한 병원의 PACS 데이터를 아우르는 통합 규칙
-  2023년 개정 logbook 실태조사 기준
-  검사종류/검사명/부서/담당구분 기반 분류
+  ML 분류 모델용 범용 설정 파일
+  서울아산병원(AMC) 및 중앙대병원(CAUHS) 등 다양한 병원의 PACS 데이터를 아우르는 공통 설정
+  분류는 ML 모델이 담당하며 classification_rules는 비워둠
+  ML 분류 대상에서 제외할 항목은 drop_rules로 정의
 author: 
   name: "김영욱"
   email: "wooooooooooook@gmail.com"
@@ -351,6 +351,12 @@ categories: # 2023년 개정 logbook 실태조사 기준
         target: 60
 
 classification_rules: {}
+
+drop_rules:
+  - conditions:
+      - operator: equals
+        field: modality
+        value: "BD"
 
 # CSV/Excel 내보내기 설정
 export_as_sheet:
