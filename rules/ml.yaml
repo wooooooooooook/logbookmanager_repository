@@ -359,13 +359,7 @@ drop_rules:
     operator: equals
     value: "BD"
 
-drop_rules:
-  - conditions:
-      - operator: equals
-        field: modality
-        value: "BD"
-
-# CSV/Excel 내보내기 설정
+# CSV/Excel 내보내기 설정/
 export_as_sheet:
   default_format: "csv"  # 기본 내보내기 형식
   encoding: "utf-8"       # 파일 인코딩
