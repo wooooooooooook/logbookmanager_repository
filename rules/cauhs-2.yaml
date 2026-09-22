@@ -774,12 +774,12 @@ classification_rules:
   - category_id: intervention_thyroid
     parent_category_id: intervention
     conditions:
-      - operator: contains
-        field: exam_name
-        value: "갑상선"
       - operator: contains_any
         field: exam_name
-        value: ["침생검", "세침흡인술"]
+        value: ["갑상선", "thyroid"]
+      - operator: contains_any
+        field: exam_name
+        value: ["침생검", "세침흡인술", "biopsy", "aspiration"]
   - category_id: intervention_us
     parent_category_id: intervention
     conditions:
