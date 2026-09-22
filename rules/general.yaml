@@ -1,7 +1,7 @@
 title: "범용(General) - 2022년이후 입국 - 테스트중.."
-version: "1.0.0"
+version: "1.0.1"
 created_at: "2023-11-20T00:00:00Z"
-updated_at: "2023-11-20T00:00:00Z"
+updated_at: "2026-09-22T00:00:00Z"
 description: |
   범용 설정 파일 (General Configuration)
   서울아산병원(AMC) 및 중앙대병원(CAUHS) 등 다양한 병원의 PACS 데이터를 아우르는 통합 규칙
@@ -923,7 +923,10 @@ classification_rules:
     conditions:
       - operator: contains_any
         field: exam_name
-        value: ["갑상선", "침생검", "세침흡인술", "Thyroid", "Biopsy", "FNA"]
+        value: ["갑상선","thyroid"]
+      - operator: contains_any
+        field: exam_name
+        value: ["침생검", "세침흡인술", "biopsy", "FNA", "needle aspiration"]
   - category_id: intervention_us
     parent_category_id: intervention
     conditions:
@@ -1020,6 +1023,13 @@ classification_rules:
       - operator: not_contains
         field: exam_name
         value: "PET"
+
+drop_rules:
+  - name: "BD 검사 제외"
+    description: "검사종류(modality)가 BD인 데이터는 ML 분류 대상에서 제외"
+    field: modality
+    operator: equals
+    value: "BD"
 
 # CSV/Excel 내보내기 설정
 export_as_sheet:
