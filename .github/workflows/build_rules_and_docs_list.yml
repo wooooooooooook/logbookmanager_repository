@@ -3,12 +3,12 @@ name: Build rules.json and docs.json
 on:
   push:
     paths:
-      - "rules/*.yaml"
-      - "docs/*.md"
-      - "docs/**/*.md"
+      - 'rules/*.yaml'
+      - 'docs/*.md'
+      - 'docs/**/*.md'
   workflow_dispatch:
 permissions:
-  contents: write   # <<<<<< 여기 추가해야 push 가능
+  contents: write # <<<<<< 여기 추가해야 push 가능
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
+          python-version: '3.x'
 
       - name: Install dependencies
         run: pip install pyyaml
