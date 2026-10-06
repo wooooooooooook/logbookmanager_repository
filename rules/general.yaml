@@ -2110,7 +2110,7 @@ export_as_sheet:
                 - from_field:
                     field: 'sex'
                 - static:
-                    value: "N/A"
+                    value: 'N/A'
         - study_date:
             name: '검사일(년-월-일)'
             type: 'date'
@@ -2262,7 +2262,7 @@ export_as_sheet:
                 - from_field:
                     field: 'sex'
                 - static:
-                    value: "N/A"
+                    value: 'N/A'
 
         # 검사일 (데이터 필드에서 가져오기)
         - study_date:

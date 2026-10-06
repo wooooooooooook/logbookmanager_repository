@@ -1754,7 +1754,7 @@ export_as_sheet:
                 - from_field:
                     field: 'sex'
                 - static:
-                    value: "N/A"
+                    value: 'N/A'
 
         # 검사일 (데이터 필드에서 가져오기)
         - study_date:
@@ -1805,9 +1805,9 @@ export_as_sheet:
       # 뒤 이 규칙을 재적용해야 한다.
       direct_registration_validation:
         fields:
-          modality: "x_scan_type"
-          specialty: "x_major_type"
-        source: "record2020"
+          modality: 'x_scan_type'
+          specialty: 'x_major_type'
+        source: 'record2020'
 
       ajax_template: |
         $.ajax({
