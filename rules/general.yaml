@@ -2038,11 +2038,29 @@ classification_rules:
         value: ['NM', 'PT', 'PET']
 
 drop_rules:
-  - name: 'BD 검사 제외'
-    description: '검사종류(modality)가 BD인 데이터는 ML 분류 대상에서 제외'
+  - name: '골밀도 검사 제외'
+    description: '검사종류(modality)가 BD, BMD, BDUS인 골밀도 검사는 판독목록에서 제외'
+    field: modality
+    operator: equals_any
+    value: ['BD', 'BMD', 'BDUS']
+
+  - name: '내시경 검사 제외'
+    description: '검사종류(modality)가 ES인 내시경 검사는 판독목록에서 제외'
     field: modality
     operator: equals
-    value: 'BD'
+    value: 'ES'
+
+  - name: '안과 검사 제외'
+    description: '검사종류(modality)가 FP, OCT, OP, OPT인 안과 검사는 판독목록에서 제외'
+    field: modality
+    operator: equals_any
+    value: ['FP', 'OCT', 'OP', 'OPT']
+
+  - name: '치과 검사 제외'
+    description: '검사종류(modality)가 IO, PX인 치과 검사는 판독목록에서 제외'
+    field: modality
+    operator: equals_any
+    value: ['IO', 'PX']
 
 # CSV/Excel 내보내기 설정
 export_as_sheet:
