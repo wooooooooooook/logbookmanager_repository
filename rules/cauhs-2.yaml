@@ -1,7 +1,7 @@
 title: '중앙대병원-흑석 2022년이후 입국'
-version: '1.2.0'
+version: '1.2.1'
 created_at: '2025-09-17T00:00:00Z'
-updated_at: '2026-10-01T00:00:00Z'
+updated_at: '2026-10-09T00:00:00Z'
 description: |
   중앙대학교병원 / Zetta PACS 
   record2.radiology.or.kr 사이트 이용하는 2022년 이후 입국자
@@ -444,6 +444,9 @@ classification_rules:
           - operator: contains_any
             field: exam_name
             value: ['chest', 'thorax']
+      - operator: not_contains
+        field: exam_name
+        value: 'Infantogram'
   - category_id: xray_abd
     parent_category_id: xray
     conditions:
@@ -734,6 +737,10 @@ classification_rules:
                 'urinary',
                 'adrenal',
                 'bladder',
+                'kidney',
+                'Kidney',
+                'renal',
+                'Renal',
                 '(uro)',
                 '(Uro)',
                 ' uro',
@@ -748,6 +755,10 @@ classification_rules:
       - operator: not_contains_any
         field: exam_name
         value: ['liver', 'biliary', 'pancreas', 'spleen', '간', '담낭', '담도', '췌장', '비장']
+      # 혈관조영 CT(Renal Angiography 등)는 ct_vas로 분류한다
+      - operator: not_contains_any
+        field: exam_name
+        value: ['angiography', 'angiographic', 'Angiography', 'angio', 'Angio']
   - category_id: ct_spine
     parent_category_id: ct
     priority: 2
@@ -1350,7 +1361,18 @@ classification_rules:
       - operator: not_contains_any
         field: exam_name
         value:
-          ['thyroid', '갑상선', 'scrot', 'penis', '부신', '방광', 'IMT Carotid', 'Abdomen Doppler']
+          [
+            'thyroid',
+            '갑상선',
+            'scrot',
+            'penis',
+            '부신',
+            '방광',
+            'IMT Carotid',
+            'Abdomen Doppler',
+            'Neck Doppler',
+            'neck doppler'
+          ]
   - category_id: fluoroscopy
     priority: 3
     conditions:
@@ -1389,6 +1411,24 @@ classification_rules:
       - operator: not_contains
         field: exam_name
         value: 'Arthro CT'
+      - operator: not_contains_any
+        field: exam_name
+        value:
+          [
+            'Cysto',
+            'cysto',
+            'RGU',
+            'rgu',
+            'VCUG',
+            'vcug',
+            'pyelo',
+            'urography',
+            'genitography',
+            'urethro',
+            'HSG',
+            'Hysterosalpingography',
+            'ESWL'
+          ]
   - category_id: fluoroscopy_gu
     parent_category_id: fluoroscopy
     # 요로 조영은 복부 조영보다 먼저 평가한다 (AGP 등 판독실이 복부인 경우)
@@ -1404,7 +1444,22 @@ classification_rules:
             value: ['URO', 'GU', 'UROLOGY']
           - operator: contains_any
             field: exam_name
-            value: ['urography', 'pyelography', 'genitography', 'AGP', 'VCUG']
+            value:
+              [
+                'urography',
+                'pyelography',
+                'genitography',
+                'AGP',
+                'VCUG',
+                'RGU',
+                'cysto',
+                'Cysto',
+                'Cystography',
+                'Cystourogram',
+                'ESWL',
+                'Hysterosalpingography',
+                'HSG'
+              ]
   - category_id: fluoroscopy_ped
     parent_category_id: fluoroscopy
     priority: 1
@@ -1477,7 +1532,8 @@ classification_rules:
         value: ['갑상선', 'thyroid']
       - operator: contains_any
         field: exam_name
-        value: ['침생검', '세침흡인술', '흡인생검', '생검', '흡인', 'biopsy', 'aspiration']
+        value:
+          ['침생검', '세침흡인술', '흡인생검', '생검', '흡인', 'biopsy', 'aspiration', '조직검사']
   - category_id: intervention_us
     parent_category_id: intervention
     conditions:
@@ -1495,7 +1551,7 @@ classification_rules:
         value: 'CT'
       - operator: contains_any
         field: exam_name
-        value: ['생검', '조직검사']
+        value: ['생검', '조직검사', 'Biopsy', 'biopsy']
   - category_id: intervention_intu
     parent_category_id: intervention
     conditions:
@@ -1557,7 +1613,7 @@ classification_rules:
     conditions:
       - operator: contains_any
         field: exam_name
-        value: ['drain', '복막천자', '흉막천자', '초음파유도', '초음파 유도']
+        value: ['drain', 'Drainage', '배액', '복막천자', '흉막천자']
       - operator: not_contains_any
         field: exam_name
         value: ['nephrostomy', 'transhepatic', 'cholecystostomy']
@@ -1599,7 +1655,10 @@ classification_rules:
             '경화술',
             'Sclerotherapy',
             'sclerotherapy',
-            'RFA'
+            'RFA',
+            'PEI',
+            '에탄올',
+            '알코올'
           ]
       - operator: not_contains_any
         field: exam_name

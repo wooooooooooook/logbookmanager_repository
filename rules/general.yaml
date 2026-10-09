@@ -1,7 +1,7 @@
 title: '범용(General) - 2022년이후 입국 - 테스트중..'
-version: '1.2.0'
+version: '1.2.1'
 created_at: '2023-11-20T00:00:00Z'
-updated_at: '2026-10-01T00:00:00Z'
+updated_at: '2026-10-09T00:00:00Z'
 description: |
   범용 설정 파일 (General Configuration)
   서울아산병원(AMC) 및 중앙대병원(CAUHS) 등 다양한 병원의 PACS 데이터를 아우르는 통합 규칙
@@ -536,7 +536,9 @@ classification_rules:
                     'Foot',
                     'Spine',
                     'Pelvis',
-                    'Femur'
+                    'Femur',
+                    'Infantogram',
+                    'infantogram'
                   ]
           - operator: contains
             field: exam_name
@@ -909,6 +911,10 @@ classification_rules:
                 'urinary',
                 'adrenal',
                 'bladder',
+                'kidney',
+                'Kidney',
+                'renal',
+                'Renal',
                 '요로',
                 '결석',
                 '신장',
@@ -920,6 +926,10 @@ classification_rules:
       - operator: not_contains_any
         field: exam_name
         value: ['liver', 'biliary', 'pancreas', 'spleen', '간', '담낭', '담도', '췌장', '비장']
+      # 혈관조영 CT(Renal Angiography 등)는 ct_vas로 분류한다
+      - operator: not_contains_any
+        field: exam_name
+        value: ['angiography', 'angiographic', 'Angiography', 'angio', 'Angio']
   - category_id: ct_spine
     parent_category_id: ct
     priority: 2
@@ -1305,7 +1315,7 @@ classification_rules:
     inherit_conditions_from: mri_breast
 
   - category_id: ultrasound
-    priority: 0
+    priority: 1
     conditions:
       - operator: not_contains_any
         field: exam_name
@@ -1633,7 +1643,9 @@ classification_rules:
             'salivary',
             '침샘',
             'kidney',
-            '신장'
+            '신장',
+            'Neck Doppler',
+            'neck doppler'
           ]
 
   - category_id: fluoroscopy
@@ -1681,7 +1693,20 @@ classification_rules:
       - operator: not_contains_any
         field: exam_name
         value:
-          ['Cysto', 'cysto', 'RGU', 'rgu', 'VCUG', 'vcug', 'pyelo', 'urography', 'genitography']
+          [
+            'Cysto',
+            'cysto',
+            'RGU',
+            'rgu',
+            'VCUG',
+            'vcug',
+            'pyelo',
+            'urography',
+            'genitography',
+            'ESWL',
+            'Hysterosalpingography',
+            'HSG'
+          ]
   - category_id: fluoroscopy_gu
     parent_category_id: fluoroscopy
     priority: 2
@@ -1696,7 +1721,19 @@ classification_rules:
             value: ['URO', 'GU', 'UROLOGY']
           - operator: contains_any
             field: exam_name
-            value: ['urography', 'pyelography', 'genitography', 'AGP', 'VCUG', 'RGU', 'cysto']
+            value:
+              [
+                'urography',
+                'pyelography',
+                'genitography',
+                'AGP',
+                'VCUG',
+                'RGU',
+                'cysto',
+                'ESWL',
+                'Hysterosalpingography',
+                'HSG'
+              ]
   - category_id: fluoroscopy_ped
     parent_category_id: fluoroscopy
     # 나이 우선 원칙: xray_ped / ct_ped / mri_ped / ultrasound_ped / fluoroscopy_ped 동일
@@ -1745,6 +1782,24 @@ classification_rules:
                 'U.G.I',
                 '일반촬영(ABD)'
               ]
+      - operator: not_contains_any
+        field: exam_name
+        value:
+          [
+            'Cysto',
+            'cysto',
+            'RGU',
+            'rgu',
+            'VCUG',
+            'vcug',
+            'pyelo',
+            'urography',
+            'genitography',
+            'urethro',
+            'HSG',
+            'Hysterosalpingography',
+            'ESWL'
+          ]
   - category_id: fluoroscopy_ped_gu
     parent_category_id: fluoroscopy_ped
     priority: 1
@@ -1762,7 +1817,10 @@ classification_rules:
             'VCUG',
             'RGU',
             'RGP',
-            'genitography'
+            'genitography',
+            'ESWL',
+            'Hysterosalpingography',
+            'HSG'
           ]
   - category_id: fluoroscopy_ped_etc
     parent_category_id: fluoroscopy_ped
@@ -1774,7 +1832,7 @@ classification_rules:
     priority: 999
 
   - category_id: intervention
-    priority: 1
+    priority: 0
     composed_by_subcategories: true
   - category_id: intervention_neu
     parent_category_id: intervention
@@ -1811,7 +1869,17 @@ classification_rules:
       - operator: contains_any
         field: exam_name
         value:
-          ['침생검', '세침흡인술', '흡인생검', '생검', '흡인', 'biopsy', 'FNA', 'needle aspiration']
+          [
+            '침생검',
+            '세침흡인술',
+            '흡인생검',
+            '생검',
+            '흡인',
+            'biopsy',
+            'FNA',
+            'needle aspiration',
+            '조직검사'
+          ]
   - category_id: intervention_us
     parent_category_id: intervention
     conditions:
@@ -1949,6 +2017,10 @@ classification_rules:
             '경화',
             '경화술'
           ]
+      # 단순 초음파 확인/표시 행은 배액술이 아닌 초음파 진단검사로 분류한다
+      - operator: not_contains_any
+        field: exam_name
+        value: ['단순Ⅰ', '단순Ⅱ', '단순 I', '단순 II', 'Simple US']
   - category_id: intervention_cvc
     parent_category_id: intervention
     # taxonomy: "중심정맥 카테터 삽입술"
@@ -1994,7 +2066,10 @@ classification_rules:
             '경화',
             'Sclerotherapy',
             'sclerotherapy',
-            '경화술'
+            '경화술',
+            'PEI',
+            '에탄올',
+            '알코올'
           ]
       - operator: not_contains_any
         field: exam_name
